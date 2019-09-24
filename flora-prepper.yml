@@ -1,0 +1,5 @@
+name: flora-prepper
+channels:
+  - defaults
+prefix: /Users/jocelynpender/miniconda3/envs/flora-prepper
+
