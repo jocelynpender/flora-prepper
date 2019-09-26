@@ -2,11 +2,12 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 
 
-def tokenize(fna):
-    assert type(fna.text[0]) == str, 'Text column not string format'
-    fna.text = fna.text.map(lambda x: word_tokenize(x))
-    assert type(fna.text[0]) == list, 'Tokens not returned in text column as list'
-    return fna
+def tokenize(fna_string):
+    """Apply custom tokenization to fna strings"""
+    assert type(fna_string) == str, 'Text column not string format'
+    fna_string = word_tokenize(fna_string)
+    assert type(fna_string) == list, 'Tokens not returned in text column as list'
+    return fna_string
 
 
 def build_nltk_stop_words(stop_words):
@@ -18,27 +19,6 @@ def build_nltk_stop_words(stop_words):
     stop_words += nltk_stop_words
     return stop_words
 
-
-def remove_stop_words(tokenized_fna, stop_words):
-    """Returns a cleaned fna data matrix with no stop words"""
-    count_words_pre_process = tokenized_fna.text.map(len).sum()  # Counter to test function is working properly
-    remove_words = lambda x: [word for word in x if not word in stop_words]  # If word is not in stopwords, append to
-    # list
-    tokenized_fna.text = tokenized_fna.text.map(remove_words)
-    count_words_post_process = tokenized_fna.text.map(len).sum()  # Counter to test function is working properly
-    assert count_words_post_process < count_words_pre_process, 'No stopwords removed'
-    return tokenized_fna
-
-
-# Do feature cleaning tasks
-def clean_fna(fna, fna_stop_words, do_remove_stop_words=True, include_nltk_stop_words=False):
-    """Returns a cleaned fna data frame for use in feature generation. Option to remove nltk stop words"""
-    tokenized_fna = tokenize(fna)
-    if include_nltk_stop_words:
-        fna_stop_words = build_nltk_stop_words(fna_stop_words)
-    if do_remove_stop_words:
-        tokenized_fna = remove_stop_words(tokenized_fna, fna_stop_words)
-    return tokenized_fna
 
 # options:
 # stem, lemmatization,
