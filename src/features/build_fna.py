@@ -2,7 +2,7 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 
 
-def tokenize(fna_string):
+def fna_tokenize(fna_string):
     """Apply custom tokenization to fna strings"""
     assert type(fna_string) == str, 'Text column not string format'
     fna_string = word_tokenize(fna_string)
@@ -19,6 +19,16 @@ def build_nltk_stop_words(stop_words):
     stop_words += nltk_stop_words
     return stop_words
 
+def prepare_stop_words(fna_stop_words, include_nltk_stop_words = True):
+    """Tokenize the stop words"""
+    assert type(fna_stop_words) == list, 'Stop words not provided as a list'
+    if include_nltk_stop_words:
+        fna_stop_words = build_nltk_stop_words(fna_stop_words)
+    tokenized_stop_words = []
+    for word in fna_stop_words:
+        tokenized_stop_words.extend(word_tokenize(word))
+    tokenized_stop_words = frozenset(tokenized_stop_words)
+    return tokenized_stop_words
 
 # options:
 # stem, lemmatization,
