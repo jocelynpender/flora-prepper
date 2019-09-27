@@ -23,14 +23,15 @@ def trim_categories(fna, categories_to_keep):
 
 def sample_fna(fna, frac_to_sample, balance_categories):
     """Trim down the dataset for development purposes with seed"""
-    sampled_fna = fna.sample(frac=frac_to_sample, random_state=1)
-    assert len(sampled_fna) < len(fna), 'Sampled dataset must be smaller than complete dataset'
-
     if balance_categories:  # https://stackoverflow.com/questions/45839316/pandas-balancing-data
-        groups = sampled_fna.groupby('classification')
-        sampled_fna = groups.apply(lambda x: x.sample(groups.size().min(), random_state=1))
-        sampled_fna = sampled_fna.reset_index(drop=True)
-        assert len(set(sampled_fna.groupby('classification').count().text)) == 1, 'All categories must have the same count'
+        groups = fna.groupby('classification')
+        fna = groups.apply(lambda x: x.sample(groups.size().min(), random_state=1))
+        fna = fna.reset_index(drop=True)
+        assert len(set(fna.groupby('classification').count().text)) == 1, 'All categories must have the same count'
+
+    sampled_fna = fna.sample(frac=frac_to_sample, random_state=1)
+    if frac_to_sample < 1:
+        assert len(sampled_fna) < len(fna), 'Sampled dataset must be smaller than complete dataset'
 
     return sampled_fna
 
