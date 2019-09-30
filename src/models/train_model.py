@@ -1,13 +1,16 @@
 from sklearn.naive_bayes import MultinomialNB
 from sklearn import metrics
+from src.data.make_fna import *
 from src.data.make_bc import *
+from src.data.make_budds import *
 from src.features.build_features import *
 
 
-fna = make_fna_data_frame(fna_filepath="data/external/fna_keys.csv", balance_categories=True)
+fna = make_fna_data_frame(fna_filepath="data/external/fna_keys.csv", frac_to_sample=0.1, balance_categories=True)
 bc = make_bc_data_frame(bc_filepath="data/external/efloratest-explode.csv",
                         frac_to_sample=1, balance_categories=True)
-flora_data_frame = pd.concat([fna, bc])
+budds = make_budds_data_frame("data/external/buddsfloraofcana00otta_djvu.xml", frac_to_sample=1, balance_categories=True)
+flora_data_frame = pd.concat([fna, bc, budds])
 
 # Model Generation Using Multinomial Naive Bayes
 tokenized_stop_words = prepare_stop_words(fna_stop_words=["unknown", "accepted", "synonym", "basionym"])
