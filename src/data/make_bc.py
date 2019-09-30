@@ -1,4 +1,4 @@
-from src.data.make_fna import *
+from src.data.make_helper_functions import *
 
 def read_bc_csv(bc_filepath):
     """Import Flora of North America (FNA) data for model training and perform processing tasks"""
@@ -27,5 +27,5 @@ def make_bc_data_frame(bc_filepath="data/external/efloratest-explode.csv",
                         frac_to_sample=1, balance_categories=True):
     bc = read_bc_csv(bc_filepath)
     bc = merge_bc_columns(bc)
-    sampled_bc = sample_fna(bc, frac_to_sample, balance_categories)
+    sampled_bc = sample_flora(bc, frac_to_sample, balance_categories)
     return sampled_bc
