@@ -1,7 +1,8 @@
 # also encode in the file the option to produce an tf/idf not just dtm
 # tokenizer to remove unwanted elements from out data like symbols and numbers
 #  https://www.datacamp.com/community/tutorials/text-analytics-beginners-nltk
-
+from nltk import word_tokenize
+from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from sklearn.model_selection import train_test_split
 
@@ -24,13 +25,13 @@ def build_nltk_stop_words(stop_words):
     return stop_words
 
 
-def prepare_stop_words(fna_stop_words, include_nltk_stop_words=True):
+def prepare_stop_words(custom_stop_words, include_nltk_stop_words=True):
     """Tokenize the stop words"""
-    assert type(fna_stop_words) == list, 'Stop words not provided as a list'
+    assert type(custom_stop_words) == list, 'Stop words not provided as a list'
     if include_nltk_stop_words:
-        fna_stop_words = build_nltk_stop_words(fna_stop_words)
+        custom_stop_words = build_nltk_stop_words(custom_stop_words)
     tokenized_stop_words = []
-    for word in fna_stop_words:
+    for word in custom_stop_words:
         tokenized_stop_words.extend(word_tokenize(word))
     tokenized_stop_words = frozenset(tokenized_stop_words)
     return tokenized_stop_words

@@ -14,7 +14,10 @@ budds = make_budds_data_frame(budds_file_path="data/external/buddsfloraofcana00o
 flora_data_frame = pd.concat([fna, bc, budds])
 
 # Model Generation Using Multinomial Naive Bayes
-tokenized_stop_words = prepare_stop_words(fna_stop_words=["unknown", "accepted", "synonym", "basionym"])
+tokenized_stop_words = prepare_stop_words(custom_stop_words=["unknown", "accepted", "synonym",
+                                                             "basionym", "source",
+                                                             "note"])  # Find a way to keep numbers and elipses!
+
 
 def run_model(text_counts, flora_data_frame):
     X_train, X_test, y_train, y_test = build_train_test_split(text_counts, flora_data_frame)
