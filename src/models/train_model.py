@@ -5,8 +5,8 @@ from src.data.make_bc import *
 from src.data.make_budds import *
 from src.features.build_features import *
 
-
-fna = make_fna_data_frame(fna_filepath="data/external/fna_keys.csv", frac_to_sample=0.1, balance_categories=True)
+fna = make_fna_data_frame(fna_filepath="data/external/fna_keys.csv", frac_to_sample=0.1, balance_categories=True,
+                          categories_to_keep=["key", "morphology", "taxon_identification", "distribution"])
 bc = make_bc_data_frame(bc_filepath="data/external/eflora-bc-full.csv",
                         frac_to_sample=1, balance_categories=True)
 budds = make_budds_data_frame(budds_file_path="data/external/buddsfloraofcana00otta_djvu.xml", frac_to_sample=1,
@@ -25,6 +25,7 @@ def run_model(text_counts, flora_data_frame):
     predicted = clf.predict(X_test)
     print("MultinomialNB Accuracy:", metrics.accuracy_score(y_test, predicted))
     return predicted
+
 
 # ==== DTM =====
 dtm_text_counts = build_dtm_text_counts(flora_tokenizer, tokenized_stop_words, flora_data_frame)
@@ -49,3 +50,8 @@ predictions = run_model(tfidf_text_counts, flora_data_frame)
 # saveRDS(fna_test, file = "data/interim/r_studio_fna_test.Rds")
 
 # save.image("models/budds_classifier_data.RData")
+
+# OCT 1st
+# WORK with morphology, keys and habitat/distribution text.
+
+# Test bigrams/unigrams
