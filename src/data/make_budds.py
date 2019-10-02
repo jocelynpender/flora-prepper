@@ -15,24 +15,23 @@ def return_text_series(tree, path):
     return text_series
 
 
-def extract_classification_text():
+def extract_classification_text(tree):
     """Run extraction on all classification types and return four pandas Series"""
     taxon_identification = return_text_series(tree, "//taxon_identification")
     key = return_text_series(tree, "//key")
-    morphology = return_text_series(tree, "//description[@type='morphology']")
-    discussion = return_text_series(tree, "//discussion")
-    return taxon_identification, key, morphology, discussion
+    morphology = return_text_series(tree, "//description")
+    return taxon_identification, key, morphology
 
 
-def make_budds_data_frame(file_path, frac_to_sample=1, balance_categories=True):
+def make_budds_data_frame(budds_file_path, frac_to_sample=1, balance_categories=True):
     """Parse the XML file, extract classification text data, and concatenate it all together in a pandas DataFrame.
     Run sampling and balancing if desired."""
-    tree = etree.parse(file_path)
+    tree = etree.parse(budds_file_path)
     assert type(tree) == lxml.etree._ElementTree, 'Tree not parsed properly'
 
-    taxon_identification, key, morphology, discussion = extract_classification_text()
-    classifications = ["taxon_identification", "key", "morphology", "discussion"]
-    budds = pd.concat([taxon_identification, key, morphology, discussion], keys=classifications,
+    taxon_identification, key, morphology = extract_classification_text(tree)
+    classifications = ["taxon_identification", "key", "morphology"]
+    budds = pd.concat([taxon_identification, key, morphology], keys=classifications,
                       names=["classification", "row"])
     budds = budds.reset_index()  # Moves names from index into columns in a new dataframe
     assert type(budds) == pd.core.frame.DataFrame, "Budds not converted to DataFrame"
