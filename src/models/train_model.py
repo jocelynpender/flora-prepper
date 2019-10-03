@@ -1,39 +1,14 @@
 from sklearn.naive_bayes import MultinomialNB
 from sklearn import metrics
-from src.data.make_fna import *
-from src.data.make_bc import *
-from src.data.make_budds import *
 from src.features.build_features import *
 
-fna = make_fna_data_frame(fna_filepath="data/external/fna_keys.csv", frac_to_sample=0.1, balance_categories=True,
-                          categories_to_keep=["key", "morphology", "taxon_identification", "distribution"])
-bc = make_bc_data_frame(bc_filepath="data/external/eflora-bc-full.csv",
-                        frac_to_sample=1, balance_categories=True)
-budds = make_budds_data_frame(budds_file_path="data/external/buddsfloraofcana00otta_djvu.xml", frac_to_sample=1,
-                              balance_categories=True)
-flora_data_frame = pd.concat([fna, bc, budds])
-
-# Model Generation Using Multinomial Naive Bayes
-tokenized_stop_words = prepare_stop_words(custom_stop_words=["unknown", "accepted", "synonym",
-                                                             "basionym", "source",
-                                                             "note"])  # Find a way to keep numbers and elipses!
-
-
 def run_model(text_counts, flora_data_frame):
+    """Builds training and testing set using flora_data_frame classification and runs model on text counts (features)."""
     X_train, X_test, y_train, y_test = build_train_test_split(text_counts, flora_data_frame)
     clf = MultinomialNB().fit(X_train, y_train)
     predicted = clf.predict(X_test)
     print("MultinomialNB Accuracy:", metrics.accuracy_score(y_test, predicted))
     return predicted
-
-
-# ==== DTM =====
-dtm_text_counts = build_dtm_text_counts(flora_tokenizer, tokenized_stop_words, flora_data_frame)
-predictions = run_model(dtm_text_counts, flora_data_frame)
-
-# ==== TFIDF =====
-tfidf_text_counts = build_tfidf_text_counts(flora_tokenizer, tokenized_stop_words, flora_data_frame)
-predictions = run_model(tfidf_text_counts, flora_data_frame)
 
 # other things to try: 1-gram vs. 2-gram
 
