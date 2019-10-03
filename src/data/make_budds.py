@@ -36,6 +36,6 @@ def make_budds_data_frame(budds_file_path, frac_to_sample=1, balance_categories=
     budds = budds.reset_index()  # Moves names from index into columns in a new dataframe
     assert type(budds) == pd.core.frame.DataFrame, "Budds not converted to DataFrame"
     budds.columns = ["classification", "row", "text"]
-
-    sampled_budds = sample_flora(budds, frac_to_sample, balance_categories)
+    budds_with_length = add_length_to_data_frame(budds)
+    sampled_budds = sample_flora(budds_with_length, frac_to_sample, balance_categories)
     return sampled_budds
