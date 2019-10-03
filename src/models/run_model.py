@@ -2,13 +2,15 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn import metrics
 from src.features.build_features import *
 
+
 def run_model(text_counts, flora_data_frame):
-    """Builds training and testing set using flora_data_frame classification and runs model on text counts (features)."""
+    """Builds training and testing set using flora_data_frame classification and runs model on text counts (
+    features). """
     X_train, X_test, y_train, y_test = build_train_test_split(text_counts, flora_data_frame)
     clf = MultinomialNB().fit(X_train, y_train)
     predicted = clf.predict(X_test)
     print("MultinomialNB Accuracy:", metrics.accuracy_score(y_test, predicted))
-    return predicted
+    return X_test, predicted
 
 # other things to try: 1-gram vs. 2-gram
 
