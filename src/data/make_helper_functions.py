@@ -1,4 +1,3 @@
-import numpy as np
 import pandas as pd
 
 
@@ -15,3 +14,10 @@ def sample_flora(flora, frac_to_sample, balance_categories):
         assert len(sampled_flora) < len(flora), 'Sampled dataset must be smaller than complete dataset'
 
     return sampled_flora
+
+
+def add_length_to_data_frame(data_frame):
+    """Returns a data frame with length of the text column calculated. Column name must be 'text'."""
+    length = data_frame['text'].apply(len)
+    data_frame_with_length = pd.concat([data_frame, length.rename('length')], axis=1)
+    return data_frame_with_length
