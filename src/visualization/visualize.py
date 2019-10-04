@@ -1,10 +1,11 @@
+import matplotlib.pyplot as plt
 from nltk import FreqDist
 from wordcloud import WordCloud
-import matplotlib.pyplot as plt
-from src.features.build_features import *
-
+from features.process_text import process_text
 
 # https://www.datacamp.com/community/tutorials/wordcloud-python
+
+
 
 def visualize_words(text, tokenized_stop_words):
     """Generate both wordcloud and frequency distribution visualizations when passed a list of text strings and a
