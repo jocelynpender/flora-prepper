@@ -1,66 +1,22 @@
 # also encode in the file the option to produce an tf/idf not just dtm
 # tokenizer to remove unwanted elements from out data like symbols and numbers
 #  https://www.datacamp.com/community/tutorials/text-analytics-beginners-nltk
-import pandas as pd
-from nltk import word_tokenize
-from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from sklearn.model_selection import train_test_split
-from nltk.tokenize.treebank import TreebankWordDetokenizer
-from src.data.misc import *
-from scipy import sparse
-
-
-def flora_tokenizer(input_string):
-    """Apply custom tokenization to fna strings.
-
-    Todo:
-    remove stopwords
-    remove 's
-    remove numbers
-    remove short words
-    remove cells with two spaces (length = 2)
-    """
-    assert type(input_string) == str, 'Text column not string format'
-    input_string = word_tokenize(input_string)
-    assert type(input_string) == list, 'Tokens not returned in text column as list'
-    return input_string
-
-
-def build_nltk_stop_words(stop_words):
-    """Takes a set of stop words and add nltk's english words to it"""
-    import nltk
-    nltk.download('stopwords')
-    nltk_stop_words = set(stopwords.words('english'))
-    assert len(nltk_stop_words) > 0, 'NLTK words not loaded'
-    stop_words += nltk_stop_words
-    return stop_words
-
-
-def prepare_stop_words(custom_stop_words, include_nltk_stop_words=True):
-    """Tokenize the stop words"""
-    assert type(custom_stop_words) == list, 'Stop words not provided as a list'
-    if include_nltk_stop_words:
-        custom_stop_words = build_nltk_stop_words(custom_stop_words)
-    tokenized_stop_words = []
-    for word in custom_stop_words:
-        tokenized_stop_words.extend(word_tokenize(word))
-    tokenized_stop_words = frozenset(tokenized_stop_words)
-    return tokenized_stop_words
 
 
 def build_dtm_text_counts(flora_tokenizer, tokenized_stop_words, data_frame):
     custom_vec = CountVectorizer(lowercase=True, tokenizer=flora_tokenizer, stop_words=tokenized_stop_words,
                                  ngram_range=(1, 1))
     text_counts = custom_vec.fit_transform(data_frame['text'])  # Build Document-Term-Matrix
-    return text_counts, custom_vec
+    return text_counts
 
 
 def build_tfidf_text_counts(flora_tokenizer, tokenized_stop_words, data_frame):
     custom_vec = TfidfVectorizer(lowercase=True, tokenizer=flora_tokenizer, stop_words=tokenized_stop_words,
                                  ngram_range=(1, 1))
     text_counts = custom_vec.fit_transform(data_frame['text'])  # Build TF-IDF Matrix
-    return text_counts, custom_vec
+    return text_counts
 
 
 def build_train_test_split(text_counts, data_frame):
@@ -69,74 +25,10 @@ def build_train_test_split(text_counts, data_frame):
     return X_train, X_test, y_train, y_test
 
 
-def process_text(text, tokenized_stop_words):
-    """This function is used to mimic nltk processing when visualizing or otherwise viewing data. This is not linked
-    to the nltk vectorizer object"""
-    processed_text = flora_tokenizer(text)  # Tokenize
-    processed_text = [word for word in processed_text if word.lower() not in tokenized_stop_words]
-    return processed_text
 
 
-def process_text_tokenize_detokenize(flora_data_frame_text, tokenized_stop_words):
-    """Pass it the text column of a data frame and it processes texts and throws it all back together."""
-    processed_flora_data_series = flora_data_frame_text.apply(lambda x: process_text(x, tokenized_stop_words))
-    processed_flora_data_series = processed_flora_data_series.apply(lambda x: TreebankWordDetokenizer().detokenize(x))
-    return processed_flora_data_series
 
 
-def locate_empty_strings(flora_data_frame_text):
-    """Takes a pandas series and return index to use for data frame drop operation."""
-    assert type(flora_data_frame_text) == pd.core.series.Series, 'Input is not a pandas Series'
-    flora_data_frame_text = flora_data_frame_text.map(lambda x: x.strip())  # convert all whitespace to nothing to
-    # subsequently test and drop, https://stackoverflow.com/questions/2405292/how-to-check-if-text-is-empty-spaces
-    # -tabs-newlines-in-python
-    indx = flora_data_frame_text.map(is_blank) == False
-    return indx
-
-
-def process_length_in_place(flora_data_frame, tokenized_stop_words):
-    """Process text using the same text processing procedure as was used in the DTM/TFIDF models, and recreate the
-    length column with the cleaned text strings. This results in a more accurate length metric.
-
-    Returns:
-    flora_data_frame with revised text length column and rows with only blanks or empty text
-    strings removed."""
-    before_process_length = flora_data_frame.text.apply(len)
-
-    # Applying the same text processing used in the DTM/TFIDF models
-    flora_data_frame.text = process_text_tokenize_detokenize(flora_data_frame.text, tokenized_stop_words)
-
-    # Remove strings with no textual data
-    flora_data_frame_no_empty = flora_data_frame[locate_empty_strings(flora_data_frame.text)]
-    assert flora_data_frame_no_empty.shape[0] < flora_data_frame.shape[0], 'Rows with empty text strings not removed'
-    after_process_length = flora_data_frame_no_empty.text.apply(len)
-    assert sum(after_process_length) < sum(before_process_length), 'Text not processed'
-
-    # Add new length data to data frame
-    length_processed_flora_data_series = pd.concat(
-        [flora_data_frame_no_empty.text, after_process_length.rename('length')], axis=1)
-    flora_data_frame_no_empty = flora_data_frame_no_empty.drop(columns='length')
-    flora_data_frame_no_empty = flora_data_frame_no_empty.drop(columns='text')
-    flora_data_frame_no_empty = pd.concat([flora_data_frame_no_empty, length_processed_flora_data_series], axis=1)
-    return flora_data_frame_no_empty
-
-
-def prepare_length_features(text_counts, custom_vec, length_processed_flora_data_frame):
-    """Instead of a sparse matrix of text counts, let's build a sparse matrix including text counts and length to
-    train the model. """
-    vocab = custom_vec.get_feature_names() # https://stackoverflow.com/questions/39121104/how-to-add-another-feature
-    # -length-of-text-to-current-bag-of-words-classificati
-
-    length_model_data_frame = pd.DataFrame(text_counts.toarray(), columns=vocab)
-    length_model_data_frame = pd.concat(
-        [length_model_data_frame, length_processed_flora_data_frame['length'].reset_index(drop=True)], axis=1)
-
-    length_model_data_frame_values = length_model_data_frame.values.astype(np.float64)
-    length_model_sparse = sparse.csr_matrix(length_model_data_frame_values)
-
-    assert length_model_sparse.shape > text_counts.shape, 'Length model should have one more column of data than BOW ' \
-                                                          'model '
-    return length_model_sparse
 # Restrict features to frequent terms
 
 # freq_terms <- findFreqTerms(fna_dtm_train, 5)
