@@ -1,14 +1,16 @@
 from src.data.make_helper_functions import *
+import pandas as pd
 import numpy as np
 
-def read_bc_csv(bc_filepath):
+
+def read_bc_csv(bc_filepath, first_col_index=False):
     """Import Flora of North America (FNA) data for model training and perform processing tasks"""
-    bc = pd.read_csv(bc_filepath, index_col=0,
+    bc_index_col = 0 if first_col_index else False
+    bc = pd.read_csv(bc_filepath, index_col=bc_index_col,
                      dtype={"species": np.object, "classification": "category", "content": np.object,
                             "morphology_content": np.object, "morphology_content_misc": np.object})
     assert bc is not None, 'E-Flora BC file must contain data'
     return bc
-
 
 def merge_bc_columns(bc):
     """Input is idiosyncractic eflora bc data frame with scraped data (i.e., three columns holding content:
@@ -27,10 +29,13 @@ def merge_bc_columns(bc):
     return bc
 
 
-def make_bc_data_frame(bc_filepath="data/external/eflora-bc-partial.csv", frac_to_sample=1, balance_categories=True):
-    bc = read_bc_csv(bc_filepath)
+def make_bc_data_frame(bc_filepath="data/external/eflora-bc-full_no-id.csv", frac_to_sample=1,
+                       balance_categories=True, categories_to_keep=["key", "morphology", "taxon_identification",
+                                                                    "habitat", "discussion"]):
+    bc = read_bc_csv(bc_filepath) #, first_col_index=True)
     bc = merge_bc_columns(bc)
     bc.classification.cat.rename_categories({'keys': 'key', 'name': 'taxon_identification'}, inplace=True)
     bc_with_length = add_length_to_data_frame(bc)
-    sampled_bc = sample_flora(bc_with_length, frac_to_sample, balance_categories)
+    bc_trimmed = trim_categories(bc_with_length, categories_to_keep)
+    sampled_bc = sample_flora(bc_trimmed, frac_to_sample, balance_categories)
     return sampled_bc
