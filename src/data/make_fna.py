@@ -11,17 +11,6 @@ def read_fna_csv(fna_filepath):
     return fna
 
 
-def trim_categories(fna, categories_to_keep):
-    """Only keep categories relevant to global model"""
-    fna.classification.cat.set_categories(categories_to_keep, inplace=True)
-    assert len(fna.classification.cat.categories) \
-        == len(categories_to_keep), 'Number of new categories must match number of categories to keep'
-
-    # Remove NaN introduced by category filtering
-    trimmed_fna = fna.dropna()
-    return trimmed_fna
-
-
 def make_fna_data_frame(fna_filepath="data/external/fna_keys.csv",
                         frac_to_sample=0.1, balance_categories=False,
                         categories_to_keep=["key", "morphology", "taxon_identification"]):
