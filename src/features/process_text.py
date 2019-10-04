@@ -38,3 +38,14 @@ def process_text_tokenize_detokenize(flora_data_frame_text, tokenized_stop_words
     processed_flora_data_series = flora_data_frame_text.apply(lambda x: process_text(x, tokenized_stop_words))
     processed_flora_data_series = processed_flora_data_series.apply(lambda x: TreebankWordDetokenizer().detokenize(x))
     return processed_flora_data_series
+
+
+def find_most_frequent_words(text_string, threshold=2000):
+    assert type(text_string) == list, 'Input must be a list of words'
+    text_string_lower = [word.lower() for word in text_string] # ensure all words are processed in lower case
+    all_words = nltk.FreqDist(text_string_lower)
+    word_lengths = [len(length) for length in list(all_words)]
+    assert statistics.mean(word_lengths) > 1, 'Letters returned instead of words'
+    most_freq_words = list(all_words)[:threshold]
+    return most_freq_words
+
