@@ -19,10 +19,11 @@ from src.data.make_bc import *
 from src.data.make_budds import *
 from src.models.run_model import *
 from src.visualization.visualize import *
-from nltk import word_tokenize
-from nltk.corpus import stopwords
-from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
-from sklearn.model_selection import train_test_split
+from src.features.build_features import *
+from src.features.build_length_features import *
+from src.features.build_stop_words import *
+from src.features.process_text import *
+import numpy as np
 
 
 # ## Import the data
@@ -30,13 +31,15 @@ from sklearn.model_selection import train_test_split
 # In[2]:
 
 
-fna = make_fna_data_frame(fna_filepath="../data/external/fna_keys.csv", frac_to_sample=0.1, balance_categories=True,
-                          categories_to_keep=["key", "morphology", "taxon_identification", "distribution"])
-bc = make_bc_data_frame(bc_filepath="../data/external/eflora-bc-partial.csv",
-                        frac_to_sample=0.15, balance_categories=True)
+fna = make_fna_data_frame(fna_filepath="../data/external/fna_with_habitat.csv", frac_to_sample=0.1, balance_categories=True,
+                          categories_to_keep=["key", "morphology", "taxon_identification", 
+                                              "distribution", "discussion", "habitat"])
+bc = make_bc_data_frame(bc_filepath="../data/external/eflora-bc-full_no-id.csv",
+                        frac_to_sample=0.13, balance_categories=True, 
+                        categories_to_keep=["key", "morphology", "taxon_identification", "habitat", "discussion"])
 budds = make_budds_data_frame(budds_file_path="../data/external/buddsfloraofcana00otta_djvu.xml", frac_to_sample=1,
                               balance_categories=True)
-flora_data_frame = pd.concat([fna, bc, budds], keys=['fna', 'bc', 'budds'], names=['Dataset name', 'Row ID'])
+flora_data_frame = pd.concat([fna, bc, budds], keys=['fna', 'bc', 'budds'], names=['dataset_name', 'row_id'])
 
 
 # ## Visualize the data
@@ -45,22 +48,23 @@ flora_data_frame = pd.concat([fna, bc, budds], keys=['fna', 'bc', 'budds'], name
 # In[3]:
 
 
+flora_data_frame = flora_data_frame.sample(frac=1) # Shuffle the dataset in place
 flora_data_frame = flora_data_frame.reset_index()
-flora_data_frame['Dataset name'].value_counts().plot.bar()
+flora_data_frame['dataset_name'].value_counts().plot.bar()
 plt.show()
 
 
-# In[34]:
+# In[4]:
 
 
-flora_data_frame[['classification', 'Dataset name', 'text']].groupby(['classification', 'Dataset name']).count().plot.bar()
+flora_data_frame[['classification', 'dataset_name', 'text']] .groupby(['classification', 'dataset_name']).count().plot.bar()
 
 
 # ### View a word cloud for all text data 
 # Text is processed using the same custom (bare-bones) tokenizer and stopwords used to train the model. 
 # 
 
-# In[ ]:
+# In[5]:
 
 
 tokenized_stop_words = prepare_stop_words(custom_stop_words=["unknown", "accepted", "synonym",
@@ -73,7 +77,7 @@ visualize_words(text, tokenized_stop_words)
 # ### Generate word clouds by classification.
 # Are there any noticeable differences between the words used most frequently between the classifications?
 
-# In[ ]:
+# In[6]:
 
 
 taxon_identification = " ".join(text_string for text_string in flora_data_frame[flora_data_frame.classification == "taxon_identification"].text)
@@ -84,7 +88,7 @@ habitat = " ".join(text_string for text_string in flora_data_frame[flora_data_fr
 
 # Taxon identification
 
-# In[ ]:
+# In[7]:
 
 
 visualize_words(taxon_identification, tokenized_stop_words)
@@ -92,7 +96,7 @@ visualize_words(taxon_identification, tokenized_stop_words)
 
 # Morphology
 
-# In[ ]:
+# In[8]:
 
 
 visualize_words(morphology, tokenized_stop_words)
@@ -100,7 +104,7 @@ visualize_words(morphology, tokenized_stop_words)
 
 # Keys
 
-# In[ ]:
+# In[9]:
 
 
 visualize_words(key, tokenized_stop_words)
@@ -108,7 +112,7 @@ visualize_words(key, tokenized_stop_words)
 
 # Habitat
 
-# In[ ]:
+# In[10]:
 
 
 visualize_words(habitat, tokenized_stop_words)
@@ -117,7 +121,7 @@ visualize_words(habitat, tokenized_stop_words)
 # ### Word clouds by flora source
 # Are there differences between training sets in the most commonly used words?
 
-# In[ ]:
+# In[11]:
 
 
 bc_text = " ".join(text_string for text_string in bc.text if text_string not in tokenized_stop_words)
@@ -127,7 +131,7 @@ fna_text = " ".join(text_string for text_string in fna.text if text_string not i
 
 # BC
 
-# In[ ]:
+# In[12]:
 
 
 visualize_words(bc_text, tokenized_stop_words)
@@ -135,7 +139,7 @@ visualize_words(bc_text, tokenized_stop_words)
 
 # FNA
 
-# In[ ]:
+# In[13]:
 
 
 visualize_words(fna_text, tokenized_stop_words)
@@ -143,7 +147,7 @@ visualize_words(fna_text, tokenized_stop_words)
 
 # Budds
 
-# In[ ]:
+# In[14]:
 
 
 visualize_words(budds_text, tokenized_stop_words)
@@ -153,7 +157,7 @@ visualize_words(budds_text, tokenized_stop_words)
 # 
 # Key
 
-# In[ ]:
+# In[15]:
 
 
 word_cloud_key = WordCloud(stopwords=tokenized_stop_words, 
@@ -165,7 +169,7 @@ plt.show()
 
 # Morphology
 
-# In[ ]:
+# In[16]:
 
 
 word_cloud_morphology = WordCloud(stopwords=tokenized_stop_words, 
@@ -178,7 +182,7 @@ plt.show()
 # ### Visualize distinctive words using tf-idf
 # 
 
-# In[ ]:
+# In[17]:
 
 
 custom_vec = TfidfVectorizer(lowercase=True, tokenizer=flora_tokenizer, stop_words=tokenized_stop_words, ngram_range=(1, 1))
@@ -196,29 +200,31 @@ plt.show()
 
 # ## Run a DTM based model and a TFIDF based model and review accuracy
 
-# In[ ]:
+# In[18]:
 
 
 # ==== DTM =====
 dtm_text_counts = build_dtm_text_counts(flora_tokenizer, tokenized_stop_words, flora_data_frame)
-X_test, predictions = run_model(dtm_text_counts, flora_data_frame)
+dtm_X_test, dtm_predictions = run_model(dtm_text_counts, flora_data_frame)
 
 # ==== TFIDF =====
 tfidf_text_counts = build_tfidf_text_counts(flora_tokenizer, tokenized_stop_words, flora_data_frame)
-X_test, predictions = run_model(tfidf_text_counts, flora_data_frame)
+tfidf_X_test, tfidf_predictions = run_model(tfidf_text_counts, flora_data_frame)
 
 
-# #### View incorrectly classified statements
+# #### View classified statements
 
-# In[ ]:
+# In[19]:
 
 
-results = zip(X_test, predictions)
+results = zip(dtm_X_test, dtm_predictions)
 print(tuple(results))
 
 
-# In[ ]:
+# In[20]:
 
+
+# TODO: View incorrectly classified statements
 
 # Currently not working
 
@@ -228,12 +234,11 @@ print(tuple(results))
 
 # ## Run a model based on text length
 
-# In[ ]:
+# In[21]:
 
 
 # Process text, remove stopwords. Remove empty cells.
 length_processed_flora_data_frame = process_length_in_place(flora_data_frame, tokenized_stop_words)
-
 
 plot = length_processed_flora_data_frame['length'].hist(by=length_processed_flora_data_frame['classification'])
 plt.show()
@@ -241,14 +246,19 @@ plt.show()
 
 # It looks like discussion should be removed from the dataset. It is curiously short in length. This may be an artifact from the bc dataset.
 
-# In[ ]:
+# In[22]:
 
 
+length_custom_vec = CountVectorizer(lowercase=True, tokenizer=flora_tokenizer, stop_words=tokenized_stop_words,
+                                 ngram_range=(1, 1))
+length_text_counts = length_custom_vec.fit_transform(length_processed_flora_data_frame['text'])
+
+length_model_sparse = prepare_length_features(length_text_counts, length_custom_vec, length_processed_flora_data_frame)
 
 X_test, predicted = run_model(length_model_sparse, length_processed_flora_data_frame)
 
 
-# In[ ]:
+# In[23]:
 
 
 #fig,ax = plt.subplots(figsize=(5,5))
@@ -258,3 +268,51 @@ X_test, predicted = run_model(length_model_sparse, length_processed_flora_data_f
 
 # To do plots:
 # classification coloured by source
+
+# ## Run a model with only the most frequently occuring words
+
+# In[24]:
+
+
+length_processed_flora_data_frame['text']
+
+
+# In[27]:
+
+
+flora_data_frame[flora_data_frame.classification == "taxon_identification"]
+
+
+# In[28]:
+
+
+all_text = " ".join(text_string for text_string in flora_data_frame.text)
+top_words_text = find_most_frequent_words(all_text)
+
+all_text_processed = process_text(all_text, tokenized_stop_words, top_words=top_words_text)
+#word_features = find_most_frequent_words(all_text_processed)
+#all_text_custom_vec = CountVectorizer(lowercase=True, tokenizer=flora_tokenizer, stop_words=tokenized_stop_words,
+                                 ngram_range=(1, 1))
+#all_text_counts = all_text_custom_vec.fit_transform(word_features)
+#X_test, predicted = run_model(all_text_counts, flora_data_frame)
+
+
+# In[29]:
+
+
+all_text_counts
+
+
+# In[30]:
+
+
+flora_data_frame
+
+
+# In[ ]:
+
+
+featuresets = [(document_features(d), c) for (d,c) in documents]
+train_set, test_set = featuresets[100:], featuresets[:100]
+classifier = nltk.NaiveBayesClassifier.train(train_set)
+
