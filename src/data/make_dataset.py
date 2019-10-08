@@ -16,10 +16,10 @@ def main(output_filepath="data/processed/flora_data_frame.csv"):
     fna = make_fna_data_frame(fna_filepath="data/external/fna_with_habitat.csv", frac_to_sample=0.1,
                               balance_categories=True,
                               categories_to_keep=["key", "morphology", "taxon_identification",
-                                                  "distribution", "discussion", "habitat"])
+                                                  "distribution", "habitat"])
     bc = make_bc_data_frame(bc_filepath="data/external/eflora-bc-full_no-id.csv",
                             frac_to_sample=0.13, balance_categories=True,
-                            categories_to_keep=["key", "morphology", "taxon_identification", "habitat", "discussion"])
+                            categories_to_keep=["key", "morphology", "taxon_identification", "habitat"])
     budds = make_budds_data_frame(budds_file_path="data/external/buddsfloraofcana00otta_djvu.xml", frac_to_sample=1,
                                   balance_categories=True)
     flora_data_frame = pd.concat([fna, bc, budds], keys=['fna', 'bc', 'budds'], names=['dataset_name', 'row_id'])
