@@ -1,5 +1,6 @@
 from nltk import word_tokenize
 from nltk.corpus import stopwords
+from features.process_text import process_string_with_cleaning_regime
 
 
 def build_nltk_stop_words(stop_words):
@@ -12,7 +13,7 @@ def build_nltk_stop_words(stop_words):
     return stop_words
 
 
-def prepare_stop_words(custom_stop_words, include_nltk_stop_words=True):
+def prepare_stop_words(custom_stop_words, include_nltk_stop_words=True, clean=False):
     """Tokenize the stop words"""
     assert type(custom_stop_words) == list, 'Stop words not provided as a list'
     if include_nltk_stop_words:
@@ -20,5 +21,11 @@ def prepare_stop_words(custom_stop_words, include_nltk_stop_words=True):
     tokenized_stop_words = []
     for word in custom_stop_words:
         tokenized_stop_words.extend(word_tokenize(word))
+
+    if clean:
+        tokenized_stop_words = process_string_with_cleaning_regime(tokenized_stop_words)
+        #for word in tokenized_stop_words:
+         #   print(word)
+
     tokenized_stop_words = frozenset(tokenized_stop_words)
     return tokenized_stop_words

@@ -5,6 +5,7 @@ import statistics
 import string as string_module
 from nltk.stem.porter import PorterStemmer
 from nltk.stem import WordNetLemmatizer
+
 nltk.download('wordnet')
 
 
@@ -23,8 +24,8 @@ def flora_tokenizer(string, numbers=False, short_words=False, punctuation=False,
 
     return string
 
-def flora_tokenizer_clean(string, numbers=False, short_words=False,
-                 punctuation=False, stem=False, lem=False):
+
+def flora_tokenizer_clean(string):
     """Apply custom tokenization to fna strings. This function is deployed in a number of different model variations.
     When punctuation is set = True, removes brackets, semi-colons, apostrophes.
 
@@ -36,28 +37,33 @@ def flora_tokenizer_clean(string, numbers=False, short_words=False,
     assert type(string) == str, 'Text column not string format'
     string = word_tokenize(string)
     assert type(string) == list, 'Tokens not returned in text column as list'
-
-    if numbers: string = [word for word in string if not word.isdigit()] # https://stackoverflow.com/questions
-    # /12199757/python-ternary-operator-without-else/51261735
-    if short_words: # remove short words (less than 3 char), e.g., mm, cm, s left over from 's
-        string = [word for word in string if len(word) > 3]
-    if punctuation:  # https://machinelearningmastery.com/clean-text-machine-learning-python/
-        table = str.maketrans('', '', string_module.punctuation)
-        string = [word.translate(table) for word in string]
-    if stem:
-        porter = PorterStemmer()
-        string = [porter.stem(word) for word in string]
-    if lem:
-        lemmatizer = WordNetLemmatizer()
-        string = [lemmatizer.lemmatize(word) for word in string]
-
+    string = process_string_with_cleaning_regime(string)
     return string
 
 
-def process_text(text, tokenized_stop_words, to_lower=False, top_words=None):
+def process_string_with_cleaning_regime(string):
+    assert type(string) == list, 'Input not list format'
+    string = [word for word in string if not word.isdigit()]  # https://stackoverflow.com/questions
+    # /12199757/python-ternary-operator-without-else/51261735
+    string = [word for word in string if
+              len(word) > 3]  # remove short words (less than 3 char), e.g., mm, cm, s left over from 's
+    table = str.maketrans('', '',
+                          string_module.punctuation)  # https://machinelearningmastery.com/clean-text-machine-learning-python/
+    string = [word.translate(table) for word in string]
+    porter = PorterStemmer()
+    string = [porter.stem(word) for word in string]
+    lemmatizer = WordNetLemmatizer()
+    string = [lemmatizer.lemmatize(word) for word in string]
+    return string
+
+
+def process_text(text, tokenized_stop_words, to_lower=False, top_words=None, clean=False):
     """This function is used to mimic nltk processing when visualizing or otherwise viewing data. This is not linked
     to the nltk vectorizer object"""
-    processed_text = flora_tokenizer(text, numbers, short_words, punctuation, stem, lem)  # Tokenize
+    if clean:
+        processed_text = flora_tokenizer_clean(text)  # Tokenize and clean
+    else:
+        processed_text = flora_tokenizer(text)  # Tokenize
     processed_text_no_stop_words = [word for word in processed_text if word.lower() not in tokenized_stop_words]
 
     if top_words:  # remove all but top words
