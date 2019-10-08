@@ -5,18 +5,24 @@ from src.data.make_helper_functions import *
 
 
 def return_text_series(tree, path):
-    """Using the parsed etree and the node path, return a nicely formatted pandas Series containing text data extracted
-    from the node."""
+    """Input:
+        A parsed etree from an XML file and the desired node path to extract text from
+    Returns:
+        A nicely formatted pandas Series containing text data extracted from the node."""
     assert len(path) > 0, "Path not valid"
     text_list = [element.text for element in tree.findall(path)] # Extract text from all XML nodes
     assert type(text_list) == list, "List comprehension not run"
-    text_series = pd.Series(text_list) # Convert the list into a series for downstream dataframe concatenation
+    text_series = pd.Series(text_list) # Convert the list into a series for downstream data frame concatenation
     assert type(text_series) == pd.core.series.Series, "List comprehension not run"
     return text_series
 
 
 def extract_classification_text(tree):
-    """Run extraction on all classification types and return four pandas Series"""
+    """Run extraction on all classification types that exist in the Budds flora XML file.
+    Input:
+        A parsed etree from an XML file.
+    Returns:
+        Four pandas Series based on the four classifications."""
     taxon_identification = return_text_series(tree, "//taxon_identification")
     key = return_text_series(tree, "//key")
     morphology = return_text_series(tree, "//description")
@@ -24,16 +30,19 @@ def extract_classification_text(tree):
 
 
 def make_budds_data_frame(budds_file_path, frac_to_sample=1, balance_categories=True):
-    """Parse the XML file, extract classification text data, and concatenate it all together in a pandas DataFrame.
-    Run sampling and balancing if desired."""
+    """Parse the Budds Flora XML file, extract classification text data, and concatenate it all together in a pandas DataFrame.
+    Run sampling and balancing if desired.
+    Input:
+        File path to XML file.
+    Returns:
+        Data frame with text data parsed, length added, trimming and balancing performed."""
     tree = etree.parse(budds_file_path)
     assert type(tree) == lxml.etree._ElementTree, 'Tree not parsed properly'
-
     taxon_identification, key, morphology = extract_classification_text(tree)
     classifications = ["taxon_identification", "key", "morphology"]
     budds = pd.concat([taxon_identification, key, morphology], keys=classifications,
                       names=["classification", "row"])
-    budds = budds.reset_index()  # Moves names from index into columns in a new dataframe
+    budds = budds.reset_index()  # Moves names from index into columns in a new data frame
     assert type(budds) == pd.core.frame.DataFrame, "Budds not converted to DataFrame"
     budds.columns = ["classification", "row", "text"]
     budds_with_length = add_length_to_data_frame(budds)

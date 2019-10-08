@@ -4,7 +4,11 @@ import pandas as pd
 
 
 def read_fna_csv(fna_filepath):
-    """Import Flora of North America (FNA) data for model training and perform processing tasks"""
+    """Import Flora of North America (FNA) data for model training and perform processing tasks.
+    Input:
+        Filepath
+    Output:
+        Pandas data frame."""
     fna = pd.read_csv(fna_filepath, index_col=0,
                       dtype={"classification": "category", "text": np.object, "length": "int64"})
     assert fna is not None, 'FNA file must contain data'
@@ -19,6 +23,3 @@ def make_fna_data_frame(fna_filepath="data/external/fna_keys.csv",
     trimmed_fna = trim_categories(fna, categories_to_keep)
     sampled_fna = sample_flora(trimmed_fna, frac_to_sample, balance_categories)
     return sampled_fna
-
-#fna = make_fna_data_frame(fna_filepath="../../data/external/fna_keys.csv")
-

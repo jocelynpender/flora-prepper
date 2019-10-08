@@ -4,19 +4,25 @@ import numpy as np
 
 
 def read_bc_csv(bc_filepath, first_col_index=False):
-    """Import Flora of North America (FNA) data for model training and perform processing tasks"""
-    bc_index_col = 0 if first_col_index else False
+    """Import Illustrated Flora of BC CSV, scraped from E-Flora BC, for model training and perform processing tasks"""
+    bc_index_col = 0 if first_col_index else False  # Version of the file has index integrity problems
     bc = pd.read_csv(bc_filepath, index_col=bc_index_col,
                      dtype={"species": np.object, "classification": "category", "content": np.object,
-                            "morphology_content": np.object, "morphology_content_misc": np.object})
+                            "morphology_content": np.object,
+                            "morphology_content_misc": np.object})  # Collapse morphology columns into one
     assert bc is not None, 'E-Flora BC file must contain data'
     return bc
 
+
 def merge_bc_columns(bc):
-    """Input is idiosyncractic eflora bc data frame with scraped data (i.e., three columns holding content:
-    content, morphology_content, morphology_content_misc. Returns a data frame with collapsed text,
-    with the three content columns removed, replaced by a column named text. Due to string collapse, some elements
-    may contain two whitespaces and nothing else."""
+    """Input:
+        Idiosyncractic E-Flora BC data frame with scraped data (i.e., three columns holding content:
+    content, morphology_content, morphology_content_misc).
+
+    Returns:
+        A data frame with collapsed text, with the three content columns removed, replaced by a column named text.
+        Replace NA values with whitespace. (Could be improved).
+        Due to string collapse, some elements may contain two whitespaces and nothing else."""
     bc[["content", "morphology_content", "morphology_content_misc", "species"]] \
         = bc[["content", "morphology_content", "morphology_content_misc", "species"]].fillna(value="")
     bc = bc[bc.classification.index.isna() == False]
@@ -32,7 +38,13 @@ def merge_bc_columns(bc):
 def make_bc_data_frame(bc_filepath="data/external/eflora-bc-full_no-id.csv", frac_to_sample=1,
                        balance_categories=True, categories_to_keep=["key", "morphology", "taxon_identification",
                                                                     "habitat", "discussion"]):
-    bc = read_bc_csv(bc_filepath) #, first_col_index=True)
+    """Perform requisite import tasks for E-Flora BC Data.
+    Input:
+        File path
+    Returns:
+        Data frame with correctly named columns, trimmed and balanced dataset, and text length added to the dataframe
+        for use in model building."""
+    bc = read_bc_csv(bc_filepath)  # , first_col_index=True)
     bc = merge_bc_columns(bc)
     bc.classification.cat.rename_categories({'keys': 'key', 'name': 'taxon_identification'}, inplace=True)
     bc_with_length = add_length_to_data_frame(bc)
