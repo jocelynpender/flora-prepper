@@ -4,8 +4,11 @@
 # # Flora Prepper Model Evaluation
 # ## Initialize the environment
 
-# In[1]:
+# In[23]:
 
+
+get_ipython().run_line_magic('load_ext', 'autoreload')
+get_ipython().run_line_magic('autoreload', '2')
 
 import os
 import sys
@@ -64,7 +67,7 @@ flora_data_frame[['classification', 'dataset_name', 'text']] .groupby(['classifi
 # Text is processed using the same custom (bare-bones) tokenizer and stopwords used to train the model. 
 # 
 
-# In[5]:
+# In[4]:
 
 
 tokenized_stop_words = prepare_stop_words(custom_stop_words=["unknown", "accepted", "synonym",
@@ -218,7 +221,7 @@ tfidf_X_test, tfidf_predictions = run_model(tfidf_text_counts, flora_data_frame)
 
 
 results = zip(dtm_X_test, dtm_predictions)
-print(tuple(results))
+print(tuple(results)[:10])
 
 
 # In[20]:
@@ -269,50 +272,23 @@ X_test, predicted = run_model(length_model_sparse, length_processed_flora_data_f
 # To do plots:
 # classification coloured by source
 
-# ## Run a model with only the most frequently occuring words
-
-# In[24]:
-
-
-length_processed_flora_data_frame['text']
-
-
-# In[27]:
-
-
-flora_data_frame[flora_data_frame.classification == "taxon_identification"]
-
+# ## Run a model with only the most frequently occurring words
 
 # In[28]:
 
 
 all_text = " ".join(text_string for text_string in flora_data_frame.text)
-top_words_text = find_most_frequent_words(all_text)
+all_text = flora_tokenizer(all_text)
+top_words_text = find_most_frequent_words(all_text, threshold=15499)
+top_words_flora_data_frame = filter_data_frame_top_words(flora_data_frame, top_words_text, tokenized_stop_words)
+top_words_flora_data_frame
 
-all_text_processed = process_text(all_text, tokenized_stop_words, top_words=top_words_text)
-#word_features = find_most_frequent_words(all_text_processed)
-#all_text_custom_vec = CountVectorizer(lowercase=True, tokenizer=flora_tokenizer, stop_words=tokenized_stop_words,
+
+# In[21]:
+
+
+all_text_custom_vec = CountVectorizer(lowercase=True, tokenizer=flora_tokenizer, stop_words=tokenized_stop_words,
                                  ngram_range=(1, 1))
-#all_text_counts = all_text_custom_vec.fit_transform(word_features)
-#X_test, predicted = run_model(all_text_counts, flora_data_frame)
-
-
-# In[29]:
-
-
-all_text_counts
-
-
-# In[30]:
-
-
-flora_data_frame
-
-
-# In[ ]:
-
-
-featuresets = [(document_features(d), c) for (d,c) in documents]
-train_set, test_set = featuresets[100:], featuresets[:100]
-classifier = nltk.NaiveBayesClassifier.train(train_set)
+all_text_counts = all_text_custom_vec.fit_transform(top_words_flora_data_frame['text'])
+X_test, predicted = run_model(all_text_counts, top_words_flora_data_frame)
 
