@@ -2,22 +2,42 @@ import nltk
 from nltk import word_tokenize
 from nltk.tokenize.treebank import TreebankWordDetokenizer
 import statistics
+import string as string_module
+from nltk.stem.porter import PorterStemmer
+from nltk.stem import WordNetLemmatizer
+nltk.download('wordnet')
 
 
-def flora_tokenizer(input_string):
-    """Apply custom tokenization to fna strings.
+def flora_tokenizer(string, numbers=False, short_words=False, punctuation=False, stem=False, lem=False):
+    """Apply custom tokenization to fna strings. This function is deployed in a number of different model variations.
+    When punctuation is set = True, removes brackets, semi-colons, apostrophes.
 
-    TODO:
-    remove stopwords
-    remove 's
-    remove numbers
-    remove short words
-    remove cells with two spaces (length = 2)
+    Input:
+        A string
+    Returns:
+        A list with tokens from string
     """
-    assert type(input_string) == str, 'Text column not string format'
-    input_string = word_tokenize(input_string)
-    assert type(input_string) == list, 'Tokens not returned in text column as list'
-    return input_string
+    assert type(string) == str, 'Text column not string format'
+    string = word_tokenize(string)
+    assert type(string) == list, 'Tokens not returned in text column as list'
+
+    if numbers:
+        string = [word for word in string if not word.isdigit()]
+    if short_words: # remove short words (less than 3 char), e.g., mm, cm, s left over from 's
+
+        string = [word for word in string if len(word) > 3]
+    if punctuation:
+        table = str.maketrans('', '',
+                              string_module.punctuation)  # https://machinelearningmastery.com/clean-text-machine-learning-python/
+        string = [word.translate(table) for word in string]
+    if stem:
+        porter = PorterStemmer()
+        string = [porter.stem(word) for word in string]
+    if lem:
+        lemmatizer = WordNetLemmatizer()
+        string = [lemmatizer.lemmatize(word) for word in string]
+
+    return string
 
 
 def process_text(text, tokenized_stop_words, to_lower=False, top_words=None):
@@ -44,20 +64,21 @@ def process_text_tokenize_detokenize(flora_data_frame_text, tokenized_stop_words
 def find_most_frequent_words(text_string, threshold=2000):
     """I'm finding that the upper limit of FreqDist.most_common() is 15,499"""
     assert type(text_string) == list, 'Input must be a list of words'
-    text_string_lower = [word.lower() for word in text_string] # ensure all words are processed in lower case
+    text_string_lower = [word.lower() for word in text_string]  # ensure all words are processed in lower case
     all_words = nltk.FreqDist(text_string_lower)
     word_lengths = [len(length) for length in list(all_words)]
     assert statistics.mean(word_lengths) > 1, 'Letters returned instead of words'
     most_freq_words = all_words.most_common()[:threshold]
-    most_freq_words = [word[0] for word in most_freq_words] # Grab the first element of each tuple
-   # assert len(most_freq_words) == threshold, 'Top words length does not match threshold'
+    most_freq_words = [word[0] for word in most_freq_words]  # Grab the first element of each tuple
+    # assert len(most_freq_words) == threshold, 'Top words length does not match threshold'
     return most_freq_words
 
 
 def filter_data_frame_top_words(flora_data_frame, top_words_text, tokenized_stop_words):
     """Transform the text column by removing words not in the set of top words passed to the function."""
-    top_words_flora_text_series = flora_data_frame.text.apply(lambda x: process_text(x, tokenized_stop_words, to_lower=True, top_words=top_words_text))
+    top_words_flora_text_series = flora_data_frame.text.apply(
+        lambda x: process_text(x, tokenized_stop_words, to_lower=True, top_words=top_words_text))
     top_words_flora_data_frame = flora_data_frame.copy()
-    top_words_flora_data_frame.text = top_words_flora_text_series.apply(lambda x: TreebankWordDetokenizer().detokenize(x))
+    top_words_flora_data_frame.text = top_words_flora_text_series.apply(
+        lambda x: TreebankWordDetokenizer().detokenize(x))
     return top_words_flora_data_frame
-
