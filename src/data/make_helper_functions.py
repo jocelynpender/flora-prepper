@@ -9,10 +9,11 @@ def trim_categories(flora, categories_to_keep):
     Output:
         A pandas data frame with rows belonging to unwanted categories dropped.
     """
-    flora.classification.cat.set_categories(categories_to_keep, inplace=True)
-    assert len(flora.classification.cat.categories) \
+    flora_reset = flora.copy()
+    flora_reset.classification.cat.set_categories(categories_to_keep, inplace=True)
+    assert len(flora_reset.classification.cat.categories) \
         == len(categories_to_keep), 'Number of new categories must match number of categories to keep'
-    trimmed_fna = flora.dropna() # Remove NaN introduced by category filtering
+    trimmed_fna = flora_reset.dropna() # Remove NaN introduced by category filtering
     return trimmed_fna
 
 
