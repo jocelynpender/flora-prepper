@@ -23,19 +23,3 @@ def build_train_test_split(text_counts, data_frame):
     X_train, X_test, y_train, y_test = train_test_split(
         text_counts, data_frame['classification'], test_size=0.3, random_state=1)
     return X_train, X_test, y_train, y_test
-
-
-
-
-
-
-# Restrict features to frequent terms
-
-# freq_terms <- findFreqTerms(fna_dtm_train, 5)
-# saveRDS(freq_terms, file = "models/budds_freq_terms.Rds")
-
-# fna_dtm_freq_terms_train <- fna_dtm_train[, freq_terms]
-# fna_dtm_freq_terms_test <- fna_dtm_test[, freq_terms]
-
-# fna_train <- apply(fna_dtm_freq_terms_train, 2, yes.no)
-# fna_test <- apply(fna_dtm_freq_terms_test, 2, yes.no)
