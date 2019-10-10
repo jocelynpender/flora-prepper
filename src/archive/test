@@ -1,0 +1,77 @@
+from src.data.make_fna import *
+from src.data.make_bc import *
+from src.data.make_budds import *
+from src.models.run_model import *
+from src.visualization.visualize import *
+from nltk import word_tokenize
+from nltk.corpus import stopwords
+from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
+from sklearn.model_selection import train_test_split
+from src.features.build_features import *
+
+# %% md
+
+## Import the data
+
+# %%
+
+fna = make_fna_data_frame(fna_filepath="data/external/fna_keys.csv", frac_to_sample=0.1, balance_categories=True,
+                          categories_to_keep=["key", "morphology", "taxon_identification", "distribution"])
+bc = make_bc_data_frame(bc_filepath="data/external/eflora-bc-partial.csv",
+                        frac_to_sample=0.15, balance_categories=True)
+budds = make_budds_data_frame(budds_file_path="data/external/buddsfloraofcana00otta_djvu.xml", frac_to_sample=1,
+                              balance_categories=True)
+flora_data_frame = pd.concat([fna, bc, budds], keys=['fna', 'bc', 'budds'], names=['dataset_name', 'row_id'])
+
+tokenized_stop_words = prepare_stop_words(custom_stop_words=["unknown", "accepted", "synonym",
+                                                             "basionym", "source",
+                                                             "note",
+                                                             "notes"])  # Find a way to keep numbers and elipses!
+
+# Process text, remove stopwords. Remove empty cells.
+length_processed_flora_data_frame = process_length_in_place(flora_data_frame, tokenized_stop_words)
+
+plot = length_processed_flora_data_frame['length'].hist(by=length_processed_flora_data_frame['classification'])
+plt.show()
+
+# It looks like discussion should be removed from the dataset. It is curiously short in length. This may be an
+# artifact from the bc dataset.
+
+length_processed_flora_data_frame[length_processed_flora_data_frame.classification == 'discussion'].text
+
+X_train, X_test, y_train, y_test = build_train_test_split(length_processed_flora_data_frame.length, length_processed_flora_data_frame)
+clf = MultinomialNB().fit(X_train, y_train)
+predicted = clf.predict(X_test)
+print("MultinomialNB Accuracy:", metrics.accuracy_score(y_test, predicted))
+
+
+text_counts, custom_vec = build_tfidf_text_counts(flora_tokenizer, tokenized_stop_words,
+                                                  length_processed_flora_data_frame)
+length_model_sparse = prepare_length_features(text_counts, custom_vec, length_processed_flora_data_frame)
+
+vocab = custom_vec.get_feature_names() # https://stackoverflow.com/questions/39121104/how-to-add-another-feature
+    # -length-of-text-to-current-bag-of-words-classificati
+
+length_model_data_frame = pd.DataFrame(text_counts.toarray(), columns=vocab)
+length_model_data_frame = pd.concat(
+    [length_model_data_frame, length_processed_flora_data_frame['length'].reset_index(drop=True)], axis=1)
+
+length_model_data_frame_values = length_model_data_frame.values.astype(np.float64)
+length_model_sparse = sparse.csr_matrix(length_model_data_frame_values)
+
+
+
+print(length_model_sparse.shape)
+print(text_counts.shape)
+
+X_train, X_test, y_train, y_test = build_train_test_split(length_model_sparse, length_processed_flora_data_frame)
+clf = MultinomialNB().fit(X_train, y_train)
+predicted = clf.predict(X_test)
+print("MultinomialNB Accuracy:", metrics.accuracy_score(y_test, predicted))
+
+X_test, predicted = run_model(length_model_sparse, length_processed_flora_data_frame)
+
+#predictions = run_model(length_processed_flora_data_frame.length, length_processed_flora_data_frame)
+
+#dtm_text_counts = build_dtm_text_counts(flora_tokenizer, tokenized_stop_words, flora_data_frame)
+#X_train, X_test, y_train, y_test = build_train_test_split(dtm_text_counts, flora_data_frame)

@@ -1,0 +1,28 @@
+from src.data.make_bc import make_bc_data_frame
+from src.data.make_budds import make_budds_data_frame
+from src.data.make_fna import make_fna_data_frame
+from src.features.build_features import *
+from src.models.run_model import run_model
+import pandas as pd
+
+def main():
+    fna = make_fna_data_frame(fna_filepath="data/external/fna_keys.csv", frac_to_sample=0.1, balance_categories=True,
+                              categories_to_keep=["key", "morphology", "taxon_identification", "distribution"])
+    bc = make_bc_data_frame(bc_filepath="data/external/eflora-bc-full_no-id.csv",
+                            frac_to_sample=0.15, balance_categories=True)
+    budds = make_budds_data_frame(budds_file_path="data/external/buddsfloraofcana00otta_djvu.xml", frac_to_sample=1,
+                                  balance_categories=True)
+    flora_data_frame = pd.concat([fna, bc, budds], keys=['fna', 'bc', 'budds'], names=['dataset_name', 'row_id'])
+
+
+    tokenized_stop_words = prepare_stop_words(custom_stop_words=["unknown", "accepted", "synonym",
+                                                                 "basionym", "source",
+                                                                 "note", "notes"])  # Find a way to keep numbers and elipses!
+    text = " ".join(text_string for text_string in flora_data_frame.text)
+
+
+    dtm_text_counts = build_dtm_text_counts(flora_tokenizer, tokenized_stop_words, flora_data_frame)
+    X_test, predictions = run_model(dtm_text_counts, flora_data_frame)
+
+if __name__ == '__main__':
+    main()
