@@ -31,7 +31,7 @@ import src.features as features
 # In[2]:
 
 
-flora_data_frame = pd.read_csv("../data/processed/flora_data_frame.csv")
+flora_data_frame = pd.read_csv("../data/processed/flora_data_frame.csv", index_col=0)
 flora_data_frame['dataset_name'].value_counts().plot.bar()
 plt.show()
 flora_data_frame[['classification', 'dataset_name', 'text']] .groupby(['classification', 'dataset_name']).count().plot.bar()
@@ -194,11 +194,11 @@ plt.show()
 
 # ==== DTM =====
 dtm_text_counts = build_dtm_text_counts(features.flora_tokenizer, tokenized_stop_words, flora_data_frame)
-dtm_X_test, dtm_predictions = run_model(dtm_text_counts, flora_data_frame)
+dtm_y_test, dtm_predictions = run_model(dtm_text_counts, flora_data_frame)
 
 # ==== TFIDF =====
 tfidf_text_counts = build_tfidf_text_counts(features.flora_tokenizer, tokenized_stop_words, flora_data_frame)
-tfidf_X_test, tfidf_predictions = run_model(tfidf_text_counts, flora_data_frame)
+tfidf_y_test, tfidf_predictions = run_model(tfidf_text_counts, flora_data_frame)
 
 
 # #### View classified statements
@@ -206,38 +206,62 @@ tfidf_X_test, tfidf_predictions = run_model(tfidf_text_counts, flora_data_frame)
 # In[17]:
 
 
-results = zip(dtm_X_test, dtm_predictions)
-print(tuple(results)[:10])
-
-
-# ### Run with strict cleaning regime
-
-# In[16]:
-
-
-# ==== DTM =====
-dtm_text_counts = build_dtm_text_counts(features.flora_tokenizer_clean, tokenized_stop_words_clean, flora_data_frame)
-dtm_X_test, dtm_predictions = run_model(dtm_text_counts, flora_data_frame)
-
-# ==== TFIDF =====
-tfidf_text_counts = build_tfidf_text_counts(features.flora_tokenizer_clean, tokenized_stop_words_clean, flora_data_frame)
-tfidf_X_test, tfidf_predictions = run_model(tfidf_text_counts, flora_data_frame)
+dtm_y_test_df = pd.DataFrame(dtm_y_test).reset_index()
+dtm_predictions_series = pd.Series(dtm_predictions)
+results = pd.concat([dtm_y_test_df, dtm_predictions_series], axis=1)
+results.rename(columns={0: 'predictions'}, inplace=True)
+results = results.set_index('index')
+results_flora_data_frame = pd.concat([results, flora_data_frame], axis=1)
+results_flora_data_frame
 
 
 # In[18]:
 
 
-# TODO: View incorrectly classified statements
+incorrect = results[results.classification != results.predictions]
+incorrect_data_frame = results_flora_data_frame.iloc[incorrect.index]
+incorrect_data_frame.to_csv(path_or_buf = "incorrect_dtm_clean.csv")
+incorrect_data_frame
 
-# Currently not working
 
-#for item, labels in zip(X_test, predictions):
- #   print('%s => %s' % (item, ', '.join(flora_data_frame.classification[x] for x in labels)))
+# ### Run with strict cleaning regime
+
+# In[19]:
+
+
+# ==== DTM =====
+dtm_text_counts = build_dtm_text_counts(features.flora_tokenizer_clean, tokenized_stop_words_clean, flora_data_frame)
+dtm_y_test, dtm_predictions = run_model(dtm_text_counts, flora_data_frame)
+
+# ==== TFIDF =====
+tfidf_text_counts = build_tfidf_text_counts(features.flora_tokenizer_clean, tokenized_stop_words_clean, flora_data_frame)
+tfidf_y_test, tfidf_predictions = run_model(tfidf_text_counts, flora_data_frame)
+
+
+# In[20]:
+
+
+dtm_y_test_df = pd.DataFrame(dtm_y_test).reset_index()
+dtm_predictions_series = pd.Series(dtm_predictions)
+results = pd.concat([dtm_y_test_df, dtm_predictions_series], axis=1)
+results.rename(columns={0: 'predictions'}, inplace=True)
+results = results.set_index('index')
+results_flora_data_frame = pd.concat([results, flora_data_frame], axis=1)
+results_flora_data_frame
+
+
+# In[21]:
+
+
+incorrect = results[results.classification != results.predictions]
+incorrect_data_frame = results_flora_data_frame.iloc[incorrect.index]
+incorrect_data_frame.to_csv(path_or_buf = "incorrect_dtm_dirty.csv")
+incorrect_data_frame
 
 
 # ## Run a model based on text length
 
-# In[19]:
+# In[22]:
 
 
 # Process text, remove stopwords. Remove empty cells.
@@ -249,7 +273,7 @@ plt.show()
 
 # It looks like discussion should be removed from the dataset. It is curiously short in length. This may be an artifact from the bc dataset.
 
-# In[20]:
+# In[23]:
 
 
 length_custom_vec = CountVectorizer(lowercase=True, tokenizer=features.flora_tokenizer, stop_words=tokenized_stop_words,
@@ -261,7 +285,7 @@ length_model_sparse = features.prepare_length_features(length_text_counts, lengt
 X_test, predicted = run_model(length_model_sparse, length_processed_flora_data_frame)
 
 
-# In[21]:
+# In[24]:
 
 
 #fig,ax = plt.subplots(figsize=(5,5))
@@ -274,7 +298,7 @@ X_test, predicted = run_model(length_model_sparse, length_processed_flora_data_f
 
 # ## Run a model with only the most frequently occurring words
 
-# In[22]:
+# In[25]:
 
 
 all_text = " ".join(text_string for text_string in flora_data_frame.text)
@@ -284,7 +308,7 @@ top_words_flora_data_frame = features.filter_data_frame_top_words(flora_data_fra
 top_words_flora_data_frame
 
 
-# In[23]:
+# In[26]:
 
 
 all_text_custom_vec = CountVectorizer(lowercase=True, tokenizer=features.flora_tokenizer, stop_words=tokenized_stop_words,

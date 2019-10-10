@@ -1,0 +1,39 @@
+,classification,predictions,dataset_name,row_id,classification,length,row,species,text
+425,taxon_identification,morphology,bc,4245,taxon_identification,40,,Erythronium oregonum ssp. oregonum,white fawn lily (giant white fawnlily)  
+397,key,morphology,budds,21,key,79,136.0,,"Rootlets solitary, one to a frond Lemna
+
+Rootlets several to a frond Spirodela
+"
+1668,taxon_identification,habitat,bc,4999,taxon_identification,41,,Cuscuta pacifica var. pacifica,Cuscuta pacifica Engelm. var. pacifica   
+613,morphology,key,bc,2896,morphology,62,,Dryas integrifolia ssp. integrifolia,"Fruits Numerous achenes with long (to 4 cm), feathery styles. "
+2087,key,morphology,budds,53,key,179,28.0,,"Megaspores 0.3-0.5 mm in diam, white or
+bluish; surface with small tubercles or
+wrinkled /. bolandeh
+
+Megaspores 0.4-0.6 mm in diam; surface dis-
+tinctly spinulose /. echinospora
+"
+1559,morphology,key,bc,2973,morphology,110,,Calamagrostis montanensis,"Leaves Leaf blades 2-3 (4) mm wide, seldom reaching the panicle, flattened to in-rolled; ligules 2-3 mm long. "
+1143,morphology,key,fna,4335,morphology,40,,,"Leaves with concolorous, cucullate tips."
+287,key,morphology,fna,2963,key,345,,,"1 Plants 80–200 cm; leaves usually alternate distally, blades oblong-lanceolate to lance-ovate, 8–27 cm, apices acuminate morphology 29a Helianthus pauciflorus subsp. pauciflorus 1 Plants 50–120 cm; leaves opposite, blades rhombic-ovate to lance-linear, 5–12 cm, apices acute or obtuse morphology 29b Helianthus pauciflorus subsp. subrhomboideus"
+2495,morphology,key,fna,5728,morphology,170,,,Leaves: apex generally callous. Inflorescences spikelike or umbellate. Flowers in glomerules. Seeds usually without tuft of hairs; caruncle conspicuous to barely visible.
+1992,key,morphology,budds,180,key,105,137.0,,"Fronds short-stalked or stalkless, floating L. minor
+
+Fronds long-stalked, usually submerged L. trisulca
+"
+836,morphology,key,bc,2243,morphology,61,,Calla palustris,"Fruits Berry-like, egg-shaped, red, 5 mm long; seeds 6 to 8. "
+2095,taxon_identification,morphology,bc,5397,taxon_identification,20,,Agrostis stolonifera,creeping bentgrass  
+2614,key,morphology,fna,2308,key,560,,,"1 Inflorescences solitary flowers; sepals similar to bracts; nectary lobes elongate, curved about filament bases; stigmas broadly funnelform, without subtending ring of hairs; capsule segments stout, persistent after seed dispersal. morphology 1 Monotropa uniflora 1 Inflorescences racemes, rarely solitary flowers; sepals not similar to bracts; nectary lobes not elongate or curved about filament bases; stigmas umbilicate, often with subtending ring of hairs; capsule segments thin, often some fall away after seed dispersal. morphology 2 Monotropa hypopitys"
+1733,key,morphology,budds,4,key,153,47.0,,"Flowers in a bracted, few-flowered raceme;
+stems leafy Scheuchzeria
+
+Flowers in a bractless, many-flowered spike-
+like raceme; stems leafless Triglochin
+"
+2128,morphology,key,bc,3069,morphology,417,,Geum rivale,"Leaves Basal leaves several, long-stalked, interruptedly pinnately cleft, 10-30 cm long, hairy at least beneath, with 7 to 15 cleft and toothed segments, 1 to 3 of them much larger than the others, the terminal segment the largest, to 10 cm long, broadly egg-shaped and 3-lobed; additional much smaller segments remote and variable in shape; stem leaves alternate, 2 to 5, much smaller, variously toothed to 3-lobed. "
+1578,morphology,taxon_identification,budds,324,morphology,68,311.0,,Valuable forage grasses. Many species grow very early in the season.
+1269,key,morphology,fna,2581,key,430,,,"1 Stems hairy; leaves mostly cauline, blades 5–20 × 1–2 cm, sparsely hairy; arrays of heads 8–18 × 1–4 cm; corollas yellowish, 1–1.5 mm morphology 35a Artemisia laciniata subsp. laciniata 1 Stems glabrous; leaves mostly basal, blades of proximalmost 4–8 × 0.5–1 cm, of cauline 1.5–0.8 × 0.2 cm, sericeous; arrays of heads 2–5 × 0.5–1 cm; corollas yellow or reddish-tinged, 1.5–2 mm morphology 35b Artemisia laciniata subsp. parryi"
+1283,key,morphology,bc,368,key,173,,Pinus ponderosa,"4.  Cones sessile or subsessile, 5-25 cm long, cone scales thick, woody, and sometimes remaining closed, seeds wingless or wings short and remaining attached to scale.     "
+134,key,morphology,fna,1544,key,203,,,1 Calyx glabrous; seeds papillose; petals 6–10 cm; leaves 5–20 cm. morphology 1 Romneya coulteri 1 Calyx appressed-pubescent; seeds smooth; petals 4–8 cm; leaves 3–10 cm. morphology 2 Romneya trichocalyx
+76,morphology,key,bc,2555,morphology,70,,Ambrosia chamissonis,Fruits Achenes enclosed within the involucral bracts; pappus lacking. 
+1279,key,morphology,fna,689,key,330,,,"1 Petals 6–12(–15), ascending to apically recurved, white to pink, linear or narrowly oblong, 2–3 cm × ca. 2 mm; peninsular Florida. morphology 1 Deeringothamnus pulchellus 1 Petals prevalently 6, erect or slightly spreading, canary yellow, lance-oblong, ca. 1.5 cm × ca. 3–4 mm; e, c Florida. morphology 2 Deeringothamnus rugelii"

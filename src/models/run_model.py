@@ -10,7 +10,7 @@ def run_model(text_counts, flora_data_frame):
     clf = MultinomialNB().fit(X_train, y_train)
     predicted = clf.predict(X_test)
     print("MultinomialNB Accuracy:", metrics.accuracy_score(y_test, predicted))
-    return X_test, predicted
+    return y_test, predicted
 
 # other things to try: 1-gram vs. 2-gram
 

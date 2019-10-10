@@ -1,0 +1,380 @@
+,classification,predictions,dataset_name,row_id,classification,length,row,species,text
+2049,key,morphology,bc,1169,key,117,,,4.	Stems with well-defined infrastipular prickles (pair of prickles at or just below each node) or nearly unarmed.   
+192,key,morphology,bc,1332,key,24,,,1. Plants perennials.   
+425,taxon_identification,morphology,bc,4245,taxon_identification,40,,Erythronium oregonum ssp. oregonum,white fawn lily (giant white fawnlily)  
+397,key,morphology,budds,21,key,79,136.0,,"Rootlets solitary, one to a frond Lemna
+
+Rootlets several to a frond Spirodela
+"
+2416,key,morphology,fna,1598,key,416,,,"1 Pseudobulbs not elongate, suborbicular, strongly flattened. morphology 1a Prosthechea boothiana var. erythronioides 1 Pseudobulbs mostly elongate, rarely ovoid, somewhat flattened. morphology 2 2 Inflorescences elongate, to 45 cm, pedunculate; sepals more than 20 mm. morphology 2a Prosthechea cochleata var. triandra 2 Inflorescences short, 0.5 cm, sessile; sepals less than 8 mm. morphology 3 Prosthechea pygmaea"
+2158,morphology,key,fna,4354,morphology,84,,,"Proximal midcauline leaf blades broadly lanceolate, sparsely hairy. 2n = 18, 36, 54."
+2591,morphology,key,fna,5345,morphology,413,,,"Shrubs, 1.5–3.5 m. Stems erect; branchlets grayish brown to light gray, glaucous. Leaf blades of fascicled and non-fascicled leaves flat, elliptic to widely oblanceolate, 6–22(–30) × 3–12(–22) mm, length usually 2+ times width, margins entire, apex usually obtuse to rounded, rarely truncate. Flowers: sepals, petals, and nectary usually white, sometimes pale blue or pale lavender. Capsules 4–6 mm wide. 2n = 24."
+1668,taxon_identification,habitat,bc,4999,taxon_identification,41,,Cuscuta pacifica var. pacifica,Cuscuta pacifica Engelm. var. pacifica   
+1964,key,morphology,fna,618,key,330,,,"1. Spikes curved and twisted; upper sheath margins expanded, enclosing the lowest spikelets; anthers 0.5-1.3 mm long morphology 1 Parapholis incurva 1. Spikes straight, not twisted; sheath margins usually all alike, the lowest spikelets generally exserted beyond the sheaths; anthers 1.5-4 mm long morphology 2 Parapholis strigosa"
+1651,key,morphology,bc,1550,key,83,,,1.	Stipules entire to coarsely toothed; inflorescence single to several-flowered.  
+613,morphology,key,bc,2896,morphology,62,,Dryas integrifolia ssp. integrifolia,"Fruits Numerous achenes with long (to 4 cm), feathery styles. "
+2087,key,morphology,budds,53,key,179,28.0,,"Megaspores 0.3-0.5 mm in diam, white or
+bluish; surface with small tubercles or
+wrinkled /. bolandeh
+
+Megaspores 0.4-0.6 mm in diam; surface dis-
+tinctly spinulose /. echinospora
+"
+367,key,morphology,budds,74,key,587,45.0,,"1. Plants with all leaves similar and
+
+submersed 2
+
+Plants with broader leaves floating and
+
+narrower leaves submersed P. gramineus
+
+2. Leaves broad, their bases clasping stem P. richardsonii
+
+Leaves linear and thread-like 3
+
+3. Stipules free from base of leaf. P.foliosus
+
+Stipules fused with base of leaf, forming a
+
+sheath at least 1 cm long 4
+
+4. Stigmas raised on evident style; nutlets
+
+with 2 keels P. pectinatus
+
+Stigmas inconspicuous; nutlets not
+
+keeled 5
+
+5. Plant slender; sheaths close around stem P. interior
+
+Plant coarse; sheaths 2-5 times diameter
+
+of stem P. vaginatus "
+660,key,morphology,fna,854,key,769,,,"1 Sepals 6 or 8 in 2 whorls, outer valvate morphology 2 1 Sepals 4-6 in 1 whorl, imbricate morphology 3 2 Sepals 8 in 2 whorls of 4; hilum circular. morphology 1 Mimusops 2 Sepals 6 in 2 whorls of 3; hilum linear. morphology 2 Manilkara 3 Corolla lobes divided; stems not armed or armed with thorns; seeds 4-12 mm. morphology 3 Sideroxylon 3 Corolla lobes undivided; stems unarmed; seeds 13-40 mm morphology 4 4 Petioles 5-10 mm; leaves densely hairy abaxially; staminodes absent. morphology 5 Chrysophyllum 4 Petioles 10-51 mm; leaves glabrous or glabrate abaxially; staminodes petaloid morphology 5 5 Pedicels glabrous; sepals 1.5-2 mm; berries yellow to orange. morphology 3 Sideroxylon 5 Pedicels densely hairy; sepals 4.5-11 mm; berries brown morphology 4 Pouteria"
+1954,key,morphology,bc,1817,key,92,,Eriophorum virginicum,"4. Midribs of scales extending to the tips, sheaths green...............E. viridcarinatum   "
+2004,key,morphology,fna,970,key,2043,,,"1 Herbs; staminodes opposite petals. morphology 2 2 Perennials; petals 3–22 mm, usually longer than sepals; stigmas 4; capsules 4-valved. morphology 1 Parnassia 2 Annuals; petals 0–0.4 mm, much shorter than sepals; stigmas 3; capsules 3-valved. morphology 2 Lepuropetalon 1 Shrubs, trees, or vines; staminodes alternate with petals or 0. morphology 3 3 Vines. morphology 4 4 Plants climbing by adventitious roots; sepals and petals 4; ovaries and capsules 4-locular. morphology 7 Euonymus 4 Plants twining or clambering; sepals and petals 5; ovaries and capsules 3-locular. morphology 5 5 Leaves opposite, persistent; seeds 5–6 per locule, winged, arils absent. morphology 3 Hippocratea 5 Leaves alternate, deciduous; seeds 2 per locule, not winged, arils red. morphology 5 Celastrus 3 Shrubs or trees. morphology 6 6 Leaves caducous, plants appearing leafless, blades 1–2 mm; fruits capsules, apices beaked. morphology 4 Canotia 6 Leaves deciduous or persistent, blades 3–160 mm; fruits capsules, drupes, or nutlike, apices not beaked except when nutlike. morphology 7 7 Leaves alternate or fascicled. morphology 8 8 Sepals, petals, and stamens 4; fruits drupes. morphology 12 Schaefferia 8 Sepals, petals, and stamens 5; fruits capsules or nutlike. morphology 9 9 Fruits capsules; arils red; inflorescences axillary; leaf blade venation pinnate. morphology 9 Maytenus 9 Fruits nutlike; arils absent; inflorescences terminal; leaf blades 1-veined. morphology 10 Mortonia 7 Leaves opposite or whorled. morphology 10 10 Leaves deciduous; arils yellow, orange, or red. morphology 7 Euonymus 10 Leaves persistent; arils white, yellow, or absent. morphology 11 11 Branchlets terete; ovaries 4-locular; stigmas 4; fruits red drupes. morphology 6 Crossopetalum 11 Branchlets 4-angled; ovaries 2-locular; stigmas 2; fruits capsules or bluish black drupes. morphology 12 12 Shrubs or trees, to 8 m; flowers unisexual (plants dioecious); fruits drupes. morphology 8 Gyminda 12 Shrubs, 0.1–1 m; flowers bisexual; fruits capsules. morphology 11 Paxistima"
+2471,key,taxon_identification,bc,1506,key,40,,Zigadenus venenosus,Key to the Species and Taxonomic Notes  
+1559,morphology,key,bc,2973,morphology,110,,Calamagrostis montanensis,"Leaves Leaf blades 2-3 (4) mm wide, seldom reaching the panicle, flattened to in-rolled; ligules 2-3 mm long. "
+1462,key,morphology,budds,165,key,305,50.0,,"Flowering stems usually not extending above
+the leaves, its branches generally curved
+downward; achenes as wide as long; leaves
+generally ovate-lanceolate A. gramineum
+
+Flowering stems extending above the leaves,
+its branches ascending; achenes longer than
+wide; leaves usually ovate A. plantago-aquatica
+"
+1143,morphology,key,fna,4335,morphology,40,,,"Leaves with concolorous, cucullate tips."
+107,key,morphology,bc,220,key,249,,Primula incana,"4b. Plants relatively slender, to 20 cm tall, not or only slightly whitish- or yellowish-mealy; corolla lobes pink to violet (rarely white), 4-7 mm long; calyx lobes equalling or exceeding the tube; flowers heterostylous……........P. mistassinica   "
+1608,key,morphology,bc,314,key,75,,,1a. Corollas white or creamy-white.……………………………………………………………………..........2   
+1009,morphology,key,bc,2429,morphology,63,,Dodecatheon jeffreyi ssp. jeffreyi,General Plants fibrous-rooted; roots whitish; bulblets absent. 
+1073,key,morphology,budds,153,key,96,128.0,,"Upper scales obtuse or short mucronate;
+achenes 1.5-2 mm long, about 1.2 mm
+thick C. houghtonii
+"
+2086,taxon_identification,key,budds,411,taxon_identification,33,117.0,,Thuja occidentalis L. white cedar
+1292,key,taxon_identification,bc,573,key,40,,Triglochin maritima,Key to the Species and Taxonomic Notes  
+1653,key,morphology,fna,2463,key,288,,,1. Lower glumes of the sessile spikelets glabrous or scabrous; pedicels ciliate on 1 edge morphology Schizachyrium sanguineum var. sanguineum 1. Lower glumes of the sessile spikelets pubescent to hirsute; pedicels ciliate on both edges morphology Schizachyrium sanguineum var. hirtiflorum
+1721,morphology,key,fna,4516,morphology,140,,,"Leaves mostly opposite; petiole 2–5 mm; blades oval to elliptic, 15–30 × 10–18 mm. Capsule: valves smooth; horns weakly developed or absent."
+2321,key,morphology,bc,587,key,54,,,1b. Corollas pink……………………………………………………………………………....3   
+1027,key,taxon_identification,bc,1620,key,70,,, 4a. Connective transversely rugose………………………………..…………...…………………………5   
+2495,morphology,key,fna,5728,morphology,170,,,Leaves: apex generally callous. Inflorescences spikelike or umbellate. Flowers in glomerules. Seeds usually without tuft of hairs; caruncle conspicuous to barely visible.
+1907,key,morphology,budds,171,key,303,101.0,,"4. Panicle open, with branches spreading
+
+and drooping; spikelets few at ends of
+
+branches S. richardsonii
+
+Panicle narrow with appressed branches 5
+
+5. Callus blunt; collar and lower nodes of
+
+panicle villose S. viridula
+
+Callus sharp-pointed; collar and lower
+
+nodes of panicle glabrous S. columbiana "
+282,key,morphology,budds,85,key,312,75.0,,"1. Plants stoloniferous, rooting at the nodes
+
+of prostrate culms E. hypnoides
+
+Plants not stoloniferous, with culms erect
+
+or decumbent 2
+
+2. Palea long ciliate on the keels; spikelets
+
+mostly 1.5-2 cm long, 15- to
+
+40-flowered E. cilianensis
+
+Palea scabrous; spikelets shorter, 8- to
+
+15-flowered E. poaeoides "
+600,key,morphology,budds,125,key,133,168.0,,"Winter buds covered by one scale; bracts
+below flowers entire, not fringed; stamens
+2-10; one or more glands below each
+flower Salix
+"
+1384,key,morphology,fna,2787,key,7643,,,"1 Flowers subsessile; petals clawed, claws connate at least basally; stamens epipetalous. morphology 2 1 Flowers distinctly pedicellate; petals neither clawed nor connate; stamens free. morphology 6 2 Leaves 2-ranked, bases oblique, cuneate; blade usually variegated; sepals connate basally morphology 30 Tradescantia zebrina 2 Leaves spirally arranged, bases symmetric, rounded to broadly cuneate; blade not variegated; sepals distinct. morphology 3 3 Leaves narrowly lanceolate, apex acuminate; stamen filaments glabrous morphology 29 Tradescantia leiandra 3 Leaves lanceolate-elliptic to oblong-elliptic or ovate, apex obtuse to abruptly acute-apiculate; stamen filaments glabrous or bearded. morphology 4 4 Leaves oblong-elliptic to lanceolate-elliptic, mostly 7–15 cm; peduncle (3.5–)4–13 cm; leaves usually purplish violet morphology 28 Tradescantia pallida 4 Leaves oblong-elliptic to ovate, mostly 3–7 cm; peduncle 1–5(–6) cm; leaves green. morphology 5 5 Filaments and ovary glabrous; flowering June to October morphology 26 Tradescantia brevifolia 5 Filaments bearded, ovary densely bearded; flowering February to May morphology 27 Tradescantia buckleyi 6 Sprawling to decumbent plants rooting at nodes; leaves lanceolate to lanceolate-elliptic or lanceolate-oblong to ovate-lanceolate or ovate-elliptic. morphology 7 6 Erect or ascending plants, rarely rooting at nodes; leaves mostly linear-lanceolate to lanceolate-oblong. morphology 8 7 Leaves lanceolate-elliptic to ovate-lanceolate, to 5  2 cm; cyme pairs usually 1–2 per shoot; bracts all or mostly foliaceous, occasionally reduced morphology 24 Tradescantia fluminensis 7 Leaves lanceolate-oblong to ovate-elliptic, to 10  3.5 cm; cyme pairs 2–4 per shoot; bracts, especially those of axillary inflorescences, usually reduced morphology 25 Tradescantia crassula 8 Inflorescences all or chiefly axillary. morphology 9 8 Inflorescences terminal, commonly terminal and axillary. morphology 10 9 Inflorescences pedunculate in axils well proximal to shoot apex, enclosed in boat-shaped spathes; leaves glabrous; flowers white morphology 23 Tradescantia spathacea 9 Inflorescences mostly sessile in axils of distal leaves; boat-shaped spathes absent; leaves usually arachnoid-villous; flowers blue to purple morphology 22 Tradescantia crassifolia 10 Distal leaf blades wider than opened, flattened sheaths. morphology 11 10 Distal leaf blades equal to or narrower than opened, flattened sheaths. morphology 14 11 Pedicels 1–1.7 cm; proximal leaves petiolate; stems frequently flexuous; plants flowering mainly May–Sep morphology 1 Tradescantia subaspera 11 Pedicels (1.5–)2–3.2 cm; proximal leaves narrowed directly into sheath; stems not flexuous; plants flowering mainly Feb–May. morphology 12 12 Sepals 9–16 mm, ± inflated, eglandular-pilose; flowers usually deep blue, purple, or rose-red morphology 4 Tradescantia ernestiana 12 Sepals 6–12 mm, not inflated, glandular-pilose or mixed glandular- and eglandular-pubescent; flowers usually white or pale pink to pale lavender. morphology 13 13 Leaves not glaucous; capsules 8–10 mm morphology 2 Tradescantia edwardsiana 13 Leaves ± glaucous; capsules 6–8 mm morphology 3 Tradescantia ozarkana 14 Sepals glabrous or with eglandular hairs only (very rarely a few minute glandular hairs at base). morphology 15 14 Sepals pubescent with glandular and often eglandular hairs. morphology 21 15 Sepals glabrous (or with apical tuft of eglandular hairs or a few minute glandular hairs at base). morphology 16 15 Sepals covered with eglandular hairs. morphology 18 16 Stems 5–18 cm; pedicels, sepal bases often with minute glandular hairs; petals 10 mm morphology 20 Tradescantia wrightii 16 Stems 15–115 cm; pedicels glabrous; sepals glabrous or with apical tuft of eglandular hairs; petals usually 0.8–20 mm. morphology 17 17 Plants distinctly glaucous; leaves 5–45 cm, arcuate, forming acute angle with stem (also see Tradescantia occidentalis var. scopulorum) morphology 5 Tradescantia ohiensis 17 Plants not at all to slightly glaucous; leaves 4–11 cm, straight, forming nearly right angle with stem morphology 6 Tradescantia paludosa 18 Bracts saccate at base, blades reduced, densely, minutely velvety. morphology 7 Tradescantia gigantea 18 Bracts not saccate at base, blades well developed, sparsely to densely pilose. morphology 19 19 Flowering stems 2–7 cm (elongating to 20 cm in fruit), pilose to villous; sepals purple or rose-colored (rarely pale green), not inflated; rocky prairies morphology 8 Tradescantia tharpii 19 Flowering stems 5–50 cm, glabrous to pilose or hirsute; sepals various; habitat various but rarely rocky prairies. morphology 20 20 Roots (1.5–)2–4 mm thick; stems commonly glabrous proximal to inflorescence; sepals usually ± inflated; ne and Appalachian morphology 9 Tradescantia virginiana 20 Roots 1–1.5(–2) mm thick; stems usually pilose to hirsute throughout; sepals not inflated; se morphology 10 Tradescantia hirsutiflora 21 Pedicels 0.8–1 cm, glandular-puberulent; sepals 4–6 mm; petals 9–12 mm; hilum much shorter than seed morphology 21 Tradescantia pinetorum 21 Pedicels (0.8–)1–6 cm, glandular- or eglandular-pubescent; sepals (4–)6–16 mm; petals (6–)10–19 mm; hilum as long as seed. morphology 22 22 Sepals with mostly glandular pubescence. morphology 23 22 Sepals with mixture of glandular, eglandular pubescence. morphology 25 23 Internodes and leaves glabrous morphology 11 Tradescantia occidentalis 23 Internodes pubescent (rarely glabrous in Tradescantia roseolens) morphology 24 24 Pedicels 1–2.8 cm; roots all thin and fibrous; South Carolina to Florida and Alabama morphology 12 Tradescantia roseolens 24 Pedicels 2.5–4.5 cm; at least some roots thick and tuberous; Texas morphology 13 Tradescantia pedicellata 25 Stems, leaves completely glabrous; plants glaucous; sepal hairs mainly glandular (also see Tradescantia roseolens). morphology 11 Tradescantia occidentalis 25 Stems, leaves usually sparsely to densely pubescent, if glabrous then sepal hairs mainly eglandular; plants usually not glaucous (somewhat glaucous in T. roseolens); sepal hairs various. morphology 26 26 Stems densely arachnoid-pubescent; roots thick, brownish-tomentose. morphology 27 26 Stems variously pubescent but not arachnoid-pubescent; roots various but not brownish-tomentose. morphology 28 27 Stems erect or ascending, unbranched or sparsely branched, 30–105 cm morphology 14 Tradescantia reverchonii 27 Stems spreading, diffusely branched, 10–30 cm. morphology 15 Tradescantia subacaulis 28 Plants diffuse, spreading; stems much branched. morphology 16 Tradescantia humilis 28 Plants erect or ascending; stems unbranched or sparsely branched. morphology 29 29 Sepal hairs mainly eglandular, glandular hairs few, inconspicuous morphology 10 Tradescantia hirsutiflora 29 Sepal hairs mainly glandular or eglandular, glandular hairs numerous, conspicuous. morphology 30 30 Sepals puberulent, hairs all less than 1 mm; roots relatively thin, 0.5–1(–2) mm thick morphology 12 Tradescantia roseolens 30 Sepals pilose-puberulent, longer hairs 1.5–6 mm; roots relatively stout, 1–3 mm thick. morphology 31 31 Plants bright green; stems, leaves usually glabrous morphology 17 Tradescantia bracteata 31 Plants dull green; stems, leaves usually pubescent (rarely glabrescent). morphology 32 32 Stems (2–)15–40 cm; pedicels 1.5–3.5 cm; leaves, bracts puberulent, usually sparsely to densely pilose, margins ± densely ciliolate morphology 18 Tradescantia hirsuticaulis 32 Stems 2–10 cm; pedicels (2–)4–6 cm; leaves, bracts pilose but not puberulent, margins sparsely ciliate morphology 19 Tradescantia longipes"
+1992,key,morphology,budds,180,key,105,137.0,,"Fronds short-stalked or stalkless, floating L. minor
+
+Fronds long-stalked, usually submerged L. trisulca
+"
+854,morphology,key,fna,4535,morphology,28,,,"Achenes varnished, glabrous."
+1625,key,morphology,budds,154,key,728,1.0,,"Key to the Families 
+Division: PTERIDOPHYTA — ferns and fern allies 
+
+1. Leaves reduced to scales, whorled at the 
+
+internodes of strongly jointed stems, 
+
+forming a sheath EQUISETACEAE, p. 47 
+
+Leaves reduced to green scales, awl- 
+shaped, or larger, not forming a sheath; 
+stems not strongly jointed 2 
+
+2. Leaves linear, grass-like, sheathing at 
+
+base ISOETACEAE , p. 50 
+
+Leaves not linear or grass-like 3 
+
+3. Leaves scale-like or awl-shaped 4 
+
+Leaves larger and broader 5 
+
+4. Sporangia borne in the upper axils of 
+
+ordinary leaves, or in terminal terete 
+
+strobiles; spores uniform in size LYCOPODIACEAE, p. 51 
+
+Sporangia borne in terminal four-sided 
+
+strobiles; spores of two different sizes SELAGINELLACEAE, p. 55 "
+1287,morphology,key,bc,3187,morphology,64,,Eurybia conspicua,"Fruits Achenes several-nerved, appressed-hairy; pappus whitish. "
+1501,key,morphology,bc,1457,key,106,,Acer glabrum var. douglasii," 5. Leaves 3- to 5-lobed, glabrous to sparsely glandular short-hairy; sepals green.......... A. glabrum   "
+1233,key,morphology,fna,447,key,237,,,1 Stems glabrescent or pubescent; leaf blade margins scabrous to ciliate morphology 2a Aconogonon phytolaccifolium var. phytolaccifolium 1 Stems glabrous; leaf blade margins glabrous morphology 2b Aconogonon phytolaccifolium var. glabrum
+2117,taxon_identification,key,bc,4682,taxon_identification,23,,Draba praealta,Draba praealta Greene  
+1782,key,taxon_identification,bc,1117,key,40,,Sphaeralcea munroana,Key to the Species and Taxonomic Notes  
+2095,taxon_identification,morphology,bc,5397,taxon_identification,20,,Agrostis stolonifera,creeping bentgrass  
+2320,key,morphology,fna,623,key,440,,,"1 Capsule erect, cylindric, straight to slightly arcuate, spores 15-25 µm. morphology 1 Distichium capillaceum 1 Capsule inclined, ovoid to oblong-ovoid, spores more than 25 µm morphology 2 2 Peristome with a yellowish to hyaline basal membrane uniting teeth into 8 separated groups each of 2 teeth. morphology 2 Distichium hagenii 2 Peristome of 16, evenly spaced, irregularly divided or perforate teeth. morphology 3 Distichium inclinatum"
+2614,key,morphology,fna,2308,key,560,,,"1 Inflorescences solitary flowers; sepals similar to bracts; nectary lobes elongate, curved about filament bases; stigmas broadly funnelform, without subtending ring of hairs; capsule segments stout, persistent after seed dispersal. morphology 1 Monotropa uniflora 1 Inflorescences racemes, rarely solitary flowers; sepals not similar to bracts; nectary lobes not elongate or curved about filament bases; stigmas umbilicate, often with subtending ring of hairs; capsule segments thin, often some fall away after seed dispersal. morphology 2 Monotropa hypopitys"
+730,key,taxon_identification,bc,1197,key,40,,Ceratophyllum echinatum,Key to the Species and Taxonomic Notes  
+2002,key,morphology,budds,44,key,210,98.0,,"Second glume much wider than lemma,
+wedge-shaped; panicle dense, spike-like,
+erect S. obtusata
+
+Second glume not much wider than lemma,
+obtuse or acute; panicle not dense or spike-
+like, drooping S. intermedia
+"
+1156,morphology,key,fna,6077,morphology,419,,,"Herbage glabrous. Leaflets: blade lanceolate to ovate. Flowers: sepals accrescent, lanceolate-ovate, 4–8 mm, glabrous; petals usually white, sometimes cream basally, aging or drying pink, obovate, 8–10 mm, 1 times as long as wide (apex recurved), glabrous or with scattered hairs on veins; filaments 3–4 mm; anthers cream to yellow, ± 1 mm; style 2–3 mm. Nutlets 3–4 mm, tuberculate (tubercles relatively low and wide)."
+933,key,morphology,budds,113,key,165,32.0,,"Shrub, usually straggling, with ascending or
+rarely erect stems up to 2 m high T. canadensis
+
+Shrub or small tree with straight trunk, up to
+10 m high T. brevifolia
+"
+2128,morphology,key,bc,3069,morphology,417,,Geum rivale,"Leaves Basal leaves several, long-stalked, interruptedly pinnately cleft, 10-30 cm long, hairy at least beneath, with 7 to 15 cleft and toothed segments, 1 to 3 of them much larger than the others, the terminal segment the largest, to 10 cm long, broadly egg-shaped and 3-lobed; additional much smaller segments remote and variable in shape; stem leaves alternate, 2 to 5, much smaller, variously toothed to 3-lobed. "
+2009,key,morphology,bc,1185,key,94,,Rosa nutkana,1.	Stipules deeply fringed or comb-like; inflorescence multiflowered..........R. multiflora   
+1578,morphology,taxon_identification,budds,324,morphology,68,311.0,,Valuable forage grasses. Many species grow very early in the season.
+429,key,morphology,budds,79,key,405,182.0,,"1. Leaves glabrous; twigs densely glandu-
+
+lar var. neoalaskana (Sarg.) Raup
+
+Leaves pubescent along the nerves below;
+
+twigs not densely glandular 2
+
+2. Pubescence consisting of tufts of hairs in
+
+the axils of the veins; leaves rounded to
+
+truncate at the base var. papyrifera
+
+Pubescence more or less velvety below,
+often also pubescent above; leaves cor-
+date at the base var. cordifolia (Regel) Fern.
+"
+725,taxon_identification,habitat,budds,389,taxon_identification,32,286.0,,Festuca elatior L. meadow fescue
+1916,key,morphology,budds,37,key,427,102.0,,"1. Lemmas awnless, or the awn less than 2
+
+mm long, hidden by the glumes T. wolfii
+
+Lemmas awned, with the awn bent and
+
+exserted 2
+
+2. Panicle open, nodding, with branches
+
+flexuous T. cernuum
+
+Panicle contracted, with branches short,
+
+ascending 3
+
+3. Plants densely tufted; panicles 5-15 cm
+
+long, spike-like T. spicatum
+
+Plants loosely tufted, with culms often
+solitary; panicles 10-25 cm long, nar-
+row, loose T. canescens
+"
+1115,key,taxon_identification,bc,1554,key,18,,,KEY TO LYTHRUM    
+1649,morphology,key,fna,5441,morphology,634,,,"Plants small. Stems sparsely and irregularly pinnate. Stem leaves falcate-secund, ovate or broadly ovate, gradually narrowed to apex, ± strongly concave, 1.1–2.1 × 0.5–0.7 mm; base erect or erectopatent, insertion slightly curved; margins entire or very weakly and obtusely denticulate; apex acuminate, acumen gradually differentiated, furrowed; costa single, ending just below mid leaf to 4/5 leaf length; alar region transversely triangular, transversely short-rectangular, or quadrate, reaching from margin 33–66% distance to costa; ratio of medial laminal cell length (µm) to leaf length (mm) 37.6–45.6. Sexual condition dioicous."
+1272,habitat,morphology,fna,11359,habitat,4,,,Wyo.
+270,key,taxon_identification,bc,372,key,40,,Sorbus sitchensis,Key to the Species and Taxonomic Notes  
+864,key,morphology,budds,95,key,76,166.0,,"Flowers in 1 spiral S. gracilis
+
+Flowers in 2 or 3 spirals S. romanzoffiana
+"
+1852,morphology,key,fna,5047,morphology,142,,,"Leaf blades 10–40(–50) × 10–20 mm, midstem blades mostly 20–40(–50) mm. Peduncles 5–25 mm, pubescent, mostly lacking glandular hairs. 2n = 18."
+553,key,morphology,fna,2779,key,1304,,,"1 Lip with upturned margins giving boat-shaped appearance, especially toward apex; mentum absent; lamellae connate for at least part of length. morphology 2 1 Lip without upturned margins, not giving boat-shaped appearance toward apex; mentum present (although sometimes inconspicuous); lamellae distinct. morphology 3 2 Callus at base of lip less than 1/3 length of lip; flowers chasmogamous. morphology 1 Corallorhiza striata 2 Callus at base of lip greater than 1/3 length of lip; flowers cleistogamous. morphology 2 Corallorhiza bentleyi 3 Lip unlobed; lateral sepals upcurved. morphology 4 3 Lip with 2 small lateral lobes or teeth; lateral sepals spreading or downcurved. morphology 5 4 Dorsal sepal less than 4.5 mm, 1-veined; flowering Aug–Oct. morphology 3 Corallorhiza odontorhiza 4 Dorsal sepal greater than 4.5 mm, 3-veined; flowering Jan–Jul. morphology 4 Corallorhiza wisteriana 5 Sepals 1-veined. morphology 5 Corallorhiza trifida 5 Sepals 3-veined. morphology 6 6 Tip with rounded lateral lobes; mentum obscure, adnate to edge of ovary; dorsal sepal 4.7–15 mm; column 3.3–7.8 mm. morphology 6 Corallorhiza maculata 6 Tip with acute lateral teeth; mentum prominent, protruding backward along but free from ovary; dorsal sepal 6–12 mm; column 5–8.2 mm. morphology 7 Corallorhiza mertensiana"
+1404,key,morphology,fna,2900,key,127,,,1 Ray florets 0 morphology 1a Hazardia whitneyi var. discoidea 1 Ray florets 5–18 morphology 1b Hazardia whitneyi var. whitneyi
+675,key,morphology,budds,116,key,461,83.0,,"1. Lemmas awned; plants not bulbous at
+
+base M. smithii
+
+Lemmas awnless; plants mostly bulbous
+
+at base 2
+
+2. Glumes narrow; lemmas narrow, long
+
+acuminate, pubescent M. subulata
+
+Glumes broad; lemmas broad, acute or
+
+obtuse, glabrous 3
+
+3. Spikelets ascending on stout pedicels; first
+
+glume more than half as long as the
+
+spikelet M. bulbosa
+
+Spikelets spreading on slender flexuous
+pedicels; first glume less than half as
+long as the spikelet M. spectabilis "
+1028,key,taxon_identification,bc,307,key,24,,,KEY TO SYMPHORICARPOS   
+2003,key,morphology,fna,82,key,624,,,"1 Cauline leaves petiolate or obsolete, blades linear-oblanceolate, oblancolate, or narrowly oblong morphology 2 1 Cauline leaves sessile, blades oblong, ovate, or lanceolate morphology 3 2 Petal claws nearly smooth or obscurely papillate, margins entire; gynophores (5-)7-11 mm. morphology 1 Warea cuneifolia 2 Petal claws coarsely papillate to pubescent, margins crisped; gynophores 3-6(-7) mm. morphology 2 Warea carteri 3 Leaf blade base not clasping stem, obtuse to minutely auriculate. morphology 3 Warea sessilifolia 3 Leaf blade base clasping stem, amplexicaul to strongly auriculate. morphology 4 Warea amplexifolia"
+370,key,morphology,budds,164,key,850,68.0,,"1. Awn geniculate, longer than or about as
+
+long as the glumes, usually protruding
+
+from glumes 2
+
+Awn straight, as long as or shorter than
+the glumes, usually not protruding
+from glumes 5
+
+2. Awn longer than the glumes 3
+
+Awn not longer than the glumes 4
+
+3. Panicle open, with the branches spread-
+
+ing; glumes acuminate, glabrous, 4-6
+mm long; callus hairs half as long as
+
+lemma; culms to 40 cm high C. deschampsioides
+
+Panicle narrow, with the branches
+appressed to erect; glumes acute, min-
+utely scabrous, 6-8 mm long; callus
+hairs one-third as long as lemma;
+culms 60-100 cm high C. purpurascens
+
+4. Plants strongly rhizomatous, with culms
+
+often solitary; blades about 2 mm
+
+wide, stiff, involute; collar glabrous C. montanensis
+
+Plants rhizomatous, with culms tufted;
+blades about 4 mm wide, rather lax,
+flat; collar pubescent C. rubescens "
+700,key,morphology,fna,695,key,268,,,"1 Sepals green; stigmas green; capsules relatively thick-walled, opaque. morphology 35a. Linum berlandieri var. berlandieri 1 Sepals grayish or purplish; stigmas dark gray; capsules relatively thin-walled, translucent. morphology 35b. Linum berlandieri var. filifolium"
+1283,key,morphology,bc,368,key,173,,Pinus ponderosa,"4.  Cones sessile or subsessile, 5-25 cm long, cone scales thick, woody, and sometimes remaining closed, seeds wingless or wings short and remaining attached to scale.     "
+2539,morphology,key,fna,3911,morphology,1908,,,"Plants small to large, in dense turfs, green, yellow-green, red-brown, pink, or red. Stems 0.5–4 cm, evenly foliate, not or rarely weakly julaceous, somewhat branched; rhizoids few (many in P. brachyneura), micronemata and macronemata absent from stems or present in clusters on proximal stem. Leaves imbricate to somewhat contorted when dry, erect to erect-spreading when moist, ovate to suborbicular, flat to concave, 0.4–3(–3.5) mm; base decurrent or not; margins plane or sometimes recurved proximally, ± entire, 1–3-stratose, limbidium absent or present; apex obtuse to acute; costa not reaching apex to very short-excurrent, apiculus smooth, guide cells absent or sometimes present proximally; alar cells not differentiated from juxtacostal cells; laminal areolation somewhat heterogeneous; proximal laminal cells usually long-rectangular, 3–5:1; medial and distal cells highly variable, irregularly rhomboidal, sometimes ± quadrate near apex, usually wider than 16 µm, 1–4:1, walls thin or incrassate, not pitted. Specialized asexual reproduction absent or by rhizoidal tubers red, spheric, greater than 200 µm. Sexual condition dioicous or rarely synoicous; perigonia and perichaetia terminal, leaves same size as vegetative leaves or usually larger, not forming rosette, inner leaves little differentiated. Seta single, straight to flexuose or twisted, rarely geniculate. Capsule inclined to suberect, elongate-pyriform, not zygomorphic, 2–4 mm; hypophysis differentiated, often elongate; operculum conic, apiculate or not, not rostrate; peristome double; exostome pale yellow or tan proximally, hyaline distally, teeth lanceolate; endostome separate from exostome or sometimes adherent, basal membrane high, segments rarely longer than exostome, rarely absent, narrowly perforate, cilia absent or sometimes present. Spores shed singly, 11–28 µm, papillose or smooth, pale brown, tan, or yellow-tan."
+655,morphology,key,fna,3525,morphology,386,,,"Culms 10-20 cm, erect. Blades glabrous or puberulent abaxially. Spikes 3-6 cm, exserted or partly included, with 3 spikelets per node. Spikelets in the central position usually with 2 fertile florets, the lateral spikelets usually with rudimentary to awnlike florets. Glume awns 15-50 mm, usually entire; lemma awns of fertile florets 15-30 mm; paleas with or without distinct bristles."
+1711,key,taxon_identification,bc,354,key,40,,Douglasia laevigata,Key to the Species and Taxonomic Notes  
+2135,key,taxon_identification,bc,1217,key,40,,Pinus ponderosa,Key to the Species and Taxonomic Notes  
+1457,key,taxon_identification,bc,1071,key,40,,Myriophyllum pinnatum,Key to the Species and Taxonomic Notes  
+134,key,morphology,fna,1544,key,203,,,1 Calyx glabrous; seeds papillose; petals 6–10 cm; leaves 5–20 cm. morphology 1 Romneya coulteri 1 Calyx appressed-pubescent; seeds smooth; petals 4–8 cm; leaves 3–10 cm. morphology 2 Romneya trichocalyx
+957,morphology,key,bc,2136,morphology,174,,Acer circinatum,"Leaves Opposite, 3-12 cm wide, 7- to 9-lobed, hairy on the lower surface and on the upper surface along the veins, becoming golden to bright red (in full sun) in the autumn. "
+2337,key,morphology,fna,600,key,1267,,,"1 Hypophysis ± globose, ovoid, or turbinate, much wider than urn morphology 2 1 Hypophysis umbrelliform, or if globose or narrowly pyriform, not much wider than urn morphology 3 2 Hypophysis yellow or pink, rarely reddish; leaves narrowly oblong-obovate to long- lanceolate; margins spinose-dentate distally; apices slender-acuminate. morphology 1 Splachnum ampullaceum 2 Hypophysis red-purple when moist; leaves ovate to obovate; margins entire; apices blunt, rounded, or obtuse. morphology 2 Splachnum vasculosum 3 Hypophysis umbrelliform, much wider than urn morphology 4 3 Hypophysis spheric, narrowly pyriform, or obovoid, not much wider than urn morphology 5 4 Hypophysis discoid-umbrelliform, yellow; leaf margins serrate to subentire distally. morphology 3 Splachnum luteum 4 Hypophysis convex-umbrelliform, bright magenta red; leaf margins coarsely serrate distally, toothed nearly to base. morphology 4 Splachnum rubrum 5 Setae longer than 1 cm; hypophysis green, red-brown when dry; leaves broadly obovate; apices abruptly short- to long-acuminate. morphology 5 Splachnum sphaericum 5 Setae shorter than 1 cm; hypophysis greenish, dark red or purplish distally; leaves long- lanceolate; apices slenderly long-acuminate. morphology 6 Splachnum pensylvanicum"
+1293,key,morphology,budds,148,key,291,121.0,,"1. Perigynia 3-3.5 mm long, round; leaves
+
+stiff and scabrous var. digyna Bock.
+
+Perigynia 2-4 mm long, angled; leaves
+
+soft, not scabrous 2
+
+2. Perigynia 2-3 mm long, with the beak
+
+about 0.5 mm long \M.pensylvanica
+
+Perigynia 3-4 long, with the beak more
+
+than 1 mm long var. distans Peck "
+2336,key,morphology,fna,1463,key,9040,,,"1 Branch leaves with denticulate margin along a resorption furrow. morphology 77 Sphagnum molle 1 Branch leaf margins plain and bordered without a resorption furrow morphology 2 2 Stem leaves with broad lacerate to fimbriate apex morphology 3 2 Stem leaves with acute, slightly toothed, notched, erose, or rounded apex morphology 11 3 Stem leaves with broad, lacerate apex equal to or less than one half the width of the leaf morphology 4 3 Stem leaves with broad lacerate apex greater or equal to one half the width of the leaf morphology 7 4 Plants red-pigmented morphology 5 4 Plants brown-pigmented, branch leaves ovate-lanceolate and relatively shallow or moderately concave morphology 6 5 Branch leaves ovate and deeply concave, stem cortex aporose morphology 65 Sphagnum andersonianum 5 Branch leaves ovate-lanceolate and only slightly concave, stem cortex usually porose morphology 81 Sphagnum russowii 6 Branch leaves greater than 1.4 mm. morphology 67 Sphagnum arcticum 6 Branch leaves less than 1.4 mm. morphology 74 Sphagnum fuscum 7 Stem leaves spatulate, fimbriate to lacerate across broad apex and along the margins for one-half or more the length; plants slender with conspicuous terminal bud and frequently with numerous sporophytes. morphology 72 Sphagnum fimbriatum 7 Stem leaves lingulate, fimbriate across the apex; plants small to moderate-sized and rigid, terminal bud if present not conspicuous, sporophytes may or may not be present morphology 8 8 Branch fascicles of three spreading and one to two pendent branches; plants green to variegated green and red or red-brown, sporophytes usually present. morphology 80 Sphagnum rubiginosum 8 Branch fascicles of two spreading and one to two pendent branches; plants green or variegated green and brown or golden brown, sporophytes usually not present morphology 9 9 Surface cells of the stem predominately aporose, but some cells with one elliptical pore at distal cell end; branch leaves longer than 1.4 mm; stem leaves usually longer than 1.2 mm; plants typically brown to dark brown. morphology 67 Sphagnum arcticum 9 Surface cells of the stem usually porose with a single elliptical pore in distal portion of cell, but usually free from the cell end wall; branch leaves shorter than 1.4 mm; most stem leaves shorter than 1.2 mm; plants green to brown morphology 10 10 Stem leaf hyaline cells frequently septate, strongly so along margins in upper half. morphology 72 Sphagnum fimbriatum 10 Stem leaves only occasionally septate. morphology 75 Sphagnum girgensohnii 11 Plants brown colored; stem brown in green forms morphology 12 11 Plants red, purple-red; stem green, yellow-green, red or pink in green forms morphology 18 12 Plants without conspicuous metallic sheen when dry morphology 13 12 Plants with metallic sheen when dry morphology 15 13 Stem leaves lingulate; branch leaves equal to or less than 1.3 mm; plants small morphology 74 Sphagnum fuscum 13 Stem leaves lingulate- triangular, broadly ovate-triangular to sublingulate; branch leaves greater than 1.3 mm, plants moderate in size morphology 14 14 Stem leaves lingulate-triangular, 1.5-2 mm, apex right angled to apiculate, retort cells with conspicuous neck; northeastern North American coastal regions south to Delaware. morphology 73 Sphagnum flavicomans 14 Stem leaves broadly oblong-ovate to sublingulate, 1.2-1.8 mm, apex broadly acute to narrowly truncate and toothed; branch leaves loosely arranged and spreading, abruptly involute-acuminate in distal third of leaf from ovate to elliptic base, 1.3-2 mm; retort cells with very short or no noticeable neck; one known locality, in British Columbia. morphology 76 Sphagnum junghuhnianum 15 Branch leaves 5-ranked; stem leaves with rounded apices frequently fimbriate, plants very dark brown morphology 16 15 Stem leaves unranked, with hyaline cells rarely more than once septate and apices rarely fimbriate morphology 17 16 Plants with purplish tinge; stem leaves lingulate, hyaline cells in middle of leaf 0-1-septate. morphology 69 Sphagnum beothuk 16 Plants with deep red tinge; stem leaves triangular-lingulate, hyaline cells in middle of leaf 1-2-septate morphology 70 Sphagnum bergianum 17 Stem leaves lingulate-triangular to lingulate, 1-1.5 mm, apex broadly rounded to obtusely angled, and sometimes apiculate, border strongly broadened at base; branch leaves 1.2-1.7 mm, ovate-lanceolate and short-pointed; plants yellowish brown to dark brown. morphology 83 Sphagnum subfulvum 17 Stem leaves oblong-triangular, 1.3-1.7 mm, apex broadly acute and usually narrowed to a concave cuspidate point, border slightly broadened at based; branch leaves 1.5-2 mm, narrow-lanceolate, apex recurved when dry; plants yellow-brown and tinged with pink to purplish red morphology 84 Sphagnum subnitens 18 Branch leaf hyaline cells in apical region of abaxial surface with very small (less than 2 µm), round, strongly ringed pores; branch leaves strongly 5-ranked. morphology 88 Sphagnum warnstorfii 18 Branch leaf hyaline cells in apical region on abaxial surface with moderate to large (more than 3 µm) pores, with moderate to no observable rings; branch leaves variously ranked morphology 19 19 Stem leaves triangular to triangular-lingulate morphology 20 19 Stem leaves variously shaped, but not triangular to triangular-lingulate, border thickness various at base morphology 22 20 Branch leaves strongly 5-ranked. morphology 78 Sphagnum quinquefarium 20 Branch leaves unranked morphology 21 21 Stem leaves not strongly bordered basally, 1 hanging branch per fascicle morphology 82 Sphagnum sitchense 21 Stem leaves strongly bordered basally, 2 hanging branches per fascicle. morphology 85 Sphagnum subtile 22 Stem leaves lingulate to spatulate, broadest above middle, toothed across broad truncate apex; branch leaves oblong-ovate to elliptic, 1.3-2 mm, with 6-12 teeth across broad apex morphology 66 Sphagnum angermanicum 22 Stem leaves variously shaped, broadest at base; branch leaves with few or no teeth across narrow apex morphology 23 23 Outer stem cortical cells porose. morphology 81 Sphagnum russowii 23 Outer stem cortical cells aporose morphology 24 24 Branch leaves 5-ranked morphology 25 24 Branch leaves unranked morphology 28 25 Stem leaves usually less than 1.1 mm. morphology 86 Sphagnum talbotianum 25 Stem leaves usually more than 1.1 mm morphology 26 26 Stem leaves broadly triangular to triangular-lingulate; branch leaves straight. morphology 89 Sphagnum wilfii 26 Stem leaves lingulate to lingulate-triangular; branch leaves straight to subsecund morphology 27 27 Stem leaves narrowly lingulate-triangular, 1.2-1.8 mm, margins nearly parallel for 3/4 the length of the leaf, apex acute to apiculate, weakly to moderately broadened border at base with the total stem leaf border width less than 0.2 mm; stem leaf hyaline cells rhombic in shape and 0-1-septate; branch leaves narrowly ovate-lanceolate and nearly all straight. morphology 68 Sphagnum bartlettianum 27 Stem leaves lingulate to lingulate-triangular, 1.2-1.5 mm, margins not strictly parallel in proximal portion of leaf, apex broadly rounded, acute in hemiisophyllous forms, strongly bordered at base with the total stem leaf border width usually greater than 0.2 mm; stem leaf hyaline cells rhombic in shape and with at least some in the middle of leaf 2-septate; branch leaves ovate to ovate-lanceolate and falcate-secund on at least some branches. morphology 79 Sphagnum rubellum 28 Branch fascicles with nearly all having two spreading and one pendent branch; branch leaves small, usually less than 1.1 mm, ovate and concave; stem leaves lingulate, usually less than 1.2 mm, apex rounded to slightly apiculate; capitulum diameter usually less than 2.8 mm. morphology 65 Sphagnum andersonianum 28 Branch fascicles of two spreading and two pendent branches, some fascicles with a single pendent branch; branch leaves moderate in size, longer than 1.1 mm, ovate to ovate-lanceolate, not particularly strongly concave; stem leaves elongate triangular-lingulate, usually longer than 1.2 mm, apex acute and usually toothed; capitulum diameter usually greater than 3 mm morphology 29 29 Plants with conspicuous metallic sheen when dry. morphology 84 Sphagnum subnitens 29 Plants lacking conspicuous metallic sheen when dry morphology 30 30 Stem leaves variously fibrillose or efibrillose, triangular- lingulate, small to moderate in size (1.2-1.4 mm, 0.5-0.8 mm wide at base), border at base moderately broadened with a total border width of 0.15-0.25 mm; branch leaves ovate-lanceolate, 1.1-1.4 mm, large round pores restricted to proximal sides and portions of adaxial surface. morphology 71 Sphagnum capillifolium 30 Stem leaves usually fibrillose throughout, elongate-triangular to elongate triangular-ovate, moderate in size (1.3-1.7 mm, 0.3-0.4 mm wide at base), border at base only slightly broadened with total border width of 0.15 mm or less; branch leaves ovate, 1.2-1.7 mm, large round pores throughout adaxial surface. morphology 87 Sphagnum tenerum"
+1365,morphology,key,fna,5845,morphology,399,,,"Shrubs, 0.5–1.5 m. Stems erect, ascending, or spreading; branchlets gray to grayish brown. Leaf blades of fascicled and non-fascicled leaves flat to ± cupped, widely obovate to orbiculate, 4–10 × 4–6 mm, length usually less than 2 times width, margins 5–9-toothed, apex rounded to truncate. Flowers: sepals, petals, and nectary usually pale to deep blue, rarely white. Capsules 5–6 mm wide. 2n = 24."
+76,morphology,key,bc,2555,morphology,70,,Ambrosia chamissonis,Fruits Achenes enclosed within the involucral bracts; pappus lacking. 
+954,key,morphology,budds,142,key,415,3.0,,"Division: SPERMATOPHYTA — seed-bearing plants 
+Subdivision: GYM NOS PER MAE — plants with naked seeds 
+
+1. Cones reduced to a single ovule, fruit a 
+
+one-seeded berry TAXACEAE, p. 56 
+
+Cones many-seeded, fleshy or woody 2 
+
+2. Leaves scale-like or awl-shaped, often 
+
+overlapping; opposite or whorled CUPRESSACEAE, p. 60 
+
+Leaves linear or needle-shaped, not over- 
+lapping; alternate or clustered PINACEAE, p. 56 
+"
+11,key,morphology,budds,81,key,153,90.0,,"Perennial with rhizomes; panicles narrow;
+outer glumes not winged P. arundinacea
+
+Annual; panicles spike-like, ovate; outer
+glumes winged P. canariensis
+"
+1004,key,morphology,budds,7,key,293,31.0,,"1. Leaves acute, not bristle-tipped, rootlets
+
+few S. selaginoides
+
+Leaves bristle-tipped, rootlets many 2
+
+2. Plants blue green, glaucous, loosely
+
+tufted S. wallacei
+
+Plants green, densely tufted 3
+
+3. Bristle 1.0-2.0 mm, conspicuous S. densa
+
+Bristle 0.3-0.5 mm, inconspicuous S. rupestris "
+2487,morphology,key,fna,4908,morphology,2345,,,"Plants forming mats, cushions, or loosely caespitose, dull yellow or green to dark green. Stems 1–5(–8) cm, erect, simple or sparingly branched; sparsely tomentose or radiculose proximally. Leaves straight, not secund, more or less strongly and irregularly contorted or crisped with incurved apices when dry, the limb concave and erect-spreading to squarrose from an erect base when wet, narrowly to broadly oblong- or ovate-lanceolate or ligulate; apex acute to rounded-obtuse; margins involute-tubulose to plane or strongly recurved, rarely 2-stratose, distally irregularly and abruptly serrulate-dentate, with narrow, fragile decurrencies; apex acute to rounded-obtuse; costa narrow or broad, subpercurrent, sharply mammillose or densely covered with horned (columnar) papillae on both surfaces to nearly smooth, not rhizoidiferous, guide cells in 1 row, often individual cells in pairs, stereid bands 2 proximal to midleaf, adaxial band less developed, abaxial band strong, adaxial and abaxial epidermis distinct; all cells not pitted; medial laminal cells rounded-quadrate to short-rectangular, 1(–2):1, sharply to bluntly mammillose on both surfaces or merely convex near apex, or densely covered with horned (columnar) papillae on both surfaces, sometimes 2-stratose near costa, walls evenly thickened; alar cells not differentiated in size or color; basal cells rectangular, 3(–5):1. Specialized asexual reproduction occasional, by multicellular gemmae borne on branching stalks in leaf axils. Sexual condition autoicous or dioicous; perigonial buds below the perichaetium and sessile or terminal on male plants, perigonial leaves ovate, concave, short-acuminate; perichaetial leaves similar to distal cauline leaves. Seta single, yellow at first, becoming red-brown, 4–20 mm, erect. Capsule erect to weakly inclined, exserted, oblong-ovate, straight, arcuate to zygomorphic, with or without struma, smooth or irregularly furrowed-rugose when dry; operculum obliquely long-rostrate, usually as long as urn; basal membrane low, projecting above the mouth; peristome teeth 16, divided to the middle into 2 divisions, dark red, vertically pitted-striolate basally, papillose distally; annulus none. Calyptra cucullate, somewhat roughened at apex, covering capsule to just below the mouth. Spores 12–18(–20) µm, smooth or minutely papillose."
+1790,taxon_identification,morphology,bc,5109,taxon_identification,44,,Dichanthelium acuminatum,western witchgrass (tapered rosette grass)  
+1453,morphology,key,fna,4636,morphology,632,,,"Rhizomes shallowly set, 1–2 cm thick. Stems arching, angled, 1–12 dm, sparsely hirsute distally; sheathing bract cauline, papery, caducous. Leaves short-petiolate, 7–12.5 × 3–7 cm; blade elliptic-lanceolate to ovate, glabrous adaxially, minutely hairy or pilose on abaxial veins, apex abruptly acuminate; prominent veins 3–9. Inflorescences in most leaf axils except distalmost and proximal 2–4; peduncle reflexed, axillary 2–3(–4)-flowered. Flowers: perianth whitish, tipped with green, tube 10–18 mm, distinct tips 3 mm; stamens inserted near middle of perianth tube; filaments glabrous or sparsely downy. Berries 6–9 mm. 2n = 20."
+2050,key,morphology,budds,9,key,235,35.0,,"Branchlets not hairy; cones falling the first
+
+winter; cones oblong-cylindric, often over 3
+
+cm long P. glauca
+
+Branchlets somewhat hairy; cones remaining
+
+on tree for several years; cones oval or
+
+ovoid, not over 3 cm long P. mariana "
