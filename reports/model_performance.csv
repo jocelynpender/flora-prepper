@@ -1,0 +1,7 @@
+﻿Model,Accuracy,Order
+Raw DTM,98%,1
+Raw TFIDF,91%,2
+Clean DTM,92%,3
+Clean TFIDF,86%,4
+Raw DTM + text length,98%,5
+Raw DTM + top 2000 words,95%,6

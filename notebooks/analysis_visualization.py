@@ -31,7 +31,7 @@ import src.features as features
 # In[2]:
 
 
-flora_data_frame = pd.read_csv("../data/processed/flora_data_frame.csv", index_col=0)
+flora_data_frame = pd.read_csv("../data/processed/flora_data_frame_full.csv", index_col=0)
 flora_data_frame['dataset_name'].value_counts().plot.bar()
 plt.show()
 flora_data_frame[['classification', 'dataset_name', 'text']] .groupby(['classification', 'dataset_name']).count().plot.bar()
@@ -46,7 +46,7 @@ flora_data_frame[['classification', 'dataset_name', 'text']] .groupby(['classifi
 
 tokenized_stop_words = features.prepare_stop_words(custom_stop_words=["unknown", "accepted", "synonym",
                                                              "basionym", "source",
-                                                             "note", "notes", "morphology"])  # Find a way to keep numbers and elipses!
+                                                             "note", "notes", "morphology", "fna_id"])  # Find a way to keep numbers and elipses!
 # morphology word is an artefact of the FNA xml key statements. 
 # TODO Return to this and fix
 text = " ".join(text_string for text_string in flora_data_frame.text)
@@ -193,12 +193,12 @@ plt.show()
 
 
 # ==== DTM =====
-dtm_text_counts = build_dtm_text_counts(features.flora_tokenizer, tokenized_stop_words, flora_data_frame)
-dtm_y_test, dtm_predictions = run_model(dtm_text_counts, flora_data_frame)
+custom_vec, dtm_text_counts = build_dtm_text_counts(features.flora_tokenizer, tokenized_stop_words, flora_data_frame)
+dtm_y_test, dtm_predictions = run_model(dtm_text_counts, flora_data_frame, feature_rank=True, custom_vec)
 
 # ==== TFIDF =====
-tfidf_text_counts = build_tfidf_text_counts(features.flora_tokenizer, tokenized_stop_words, flora_data_frame)
-tfidf_y_test, tfidf_predictions = run_model(tfidf_text_counts, flora_data_frame)
+custom_vec, tfidf_text_counts = build_tfidf_text_counts(features.flora_tokenizer, tokenized_stop_words, flora_data_frame)
+tfidf_y_test, tfidf_predictions = run_model(tfidf_text_counts, flora_data_frame, feature_rank=True, custom_vec)
 
 
 # #### View classified statements
@@ -220,7 +220,7 @@ results_flora_data_frame
 
 incorrect = results[results.classification != results.predictions]
 incorrect_data_frame = results_flora_data_frame.iloc[incorrect.index]
-incorrect_data_frame.to_csv(path_or_buf = "incorrect_dtm_clean.csv")
+incorrect_data_frame.to_csv(path_or_buf = "../reports/incorrect_dtm_clean.csv")
 incorrect_data_frame
 
 
@@ -230,12 +230,12 @@ incorrect_data_frame
 
 
 # ==== DTM =====
-dtm_text_counts = build_dtm_text_counts(features.flora_tokenizer_clean, tokenized_stop_words_clean, flora_data_frame)
-dtm_y_test, dtm_predictions = run_model(dtm_text_counts, flora_data_frame)
+custom_vec, dtm_text_counts = build_dtm_text_counts(features.flora_tokenizer_clean, tokenized_stop_words_clean, flora_data_frame)
+dtm_y_test, dtm_predictions = run_model(dtm_text_counts, flora_data_frame, feature_rank=True, custom_vec)
 
 # ==== TFIDF =====
-tfidf_text_counts = build_tfidf_text_counts(features.flora_tokenizer_clean, tokenized_stop_words_clean, flora_data_frame)
-tfidf_y_test, tfidf_predictions = run_model(tfidf_text_counts, flora_data_frame)
+custom_vec, tfidf_text_counts = build_tfidf_text_counts(features.flora_tokenizer_clean, tokenized_stop_words_clean, flora_data_frame)
+tfidf_y_test, tfidf_predictions = run_model(tfidf_text_counts, flora_data_frame, feature_rank=True, custom_vec)
 
 
 # In[20]:
@@ -255,7 +255,7 @@ results_flora_data_frame
 
 incorrect = results[results.classification != results.predictions]
 incorrect_data_frame = results_flora_data_frame.iloc[incorrect.index]
-incorrect_data_frame.to_csv(path_or_buf = "incorrect_dtm_dirty.csv")
+incorrect_data_frame.to_csv(path_or_buf = "../reports/incorrect_dtm_dirty.csv")
 incorrect_data_frame
 
 
@@ -267,13 +267,31 @@ incorrect_data_frame
 # Process text, remove stopwords. Remove empty cells.
 length_processed_flora_data_frame = features.process_length_in_place(flora_data_frame, tokenized_stop_words)
 
-plot = length_processed_flora_data_frame['length'].hist(by=length_processed_flora_data_frame['classification'])
-plt.show()
+
+# In[23]:
+
+
+length_processed_flora_data_frame.head()
+
+
+# In[24]:
+
+
+classifications = length_processed_flora_data_frame.groupby(by=length_processed_flora_data_frame['classification'])
+for group in classifications.groups:
+#   print(group)
+    group_df = length_processed_flora_data_frame[length_processed_flora_data_frame.classification == group]
+    group_text_length = group_df['length']
+    fig = plt.hist(group_text_length)
+    file_name = group + "_text_length.png"
+    print(file_name)
+    plt.savefig(file_name)
+    plt.show()
 
 
 # It looks like discussion should be removed from the dataset. It is curiously short in length. This may be an artifact from the bc dataset.
 
-# In[23]:
+# In[27]:
 
 
 length_custom_vec = CountVectorizer(lowercase=True, tokenizer=features.flora_tokenizer, stop_words=tokenized_stop_words,
@@ -282,15 +300,7 @@ length_text_counts = length_custom_vec.fit_transform(length_processed_flora_data
 
 length_model_sparse = features.prepare_length_features(length_text_counts, length_custom_vec, length_processed_flora_data_frame)
 
-X_test, predicted = run_model(length_model_sparse, length_processed_flora_data_frame)
-
-
-# In[24]:
-
-
-#fig,ax = plt.subplots(figsize=(5,5))
-#plt.boxplot(df_train_1.phrase_len)
-#plt.show()
+X_test, predicted = run_model(length_model_sparse, length_processed_flora_data_frame, feature_rank=False)
 
 
 # To do plots:
@@ -298,7 +308,7 @@ X_test, predicted = run_model(length_model_sparse, length_processed_flora_data_f
 
 # ## Run a model with only the most frequently occurring words
 
-# In[25]:
+# In[28]:
 
 
 all_text = " ".join(text_string for text_string in flora_data_frame.text)
@@ -308,11 +318,72 @@ top_words_flora_data_frame = features.filter_data_frame_top_words(flora_data_fra
 top_words_flora_data_frame
 
 
-# In[26]:
+# In[30]:
 
 
 all_text_custom_vec = CountVectorizer(lowercase=True, tokenizer=features.flora_tokenizer, stop_words=tokenized_stop_words,
                                  ngram_range=(1, 1))
 all_text_counts = all_text_custom_vec.fit_transform(top_words_flora_data_frame['text'])
-X_test, predicted = run_model(all_text_counts, top_words_flora_data_frame)
+X_test, predicted = run_model(all_text_counts, top_words_flora_data_frame, feature_rank=False)
+
+
+# ## Do models work well on previously unseen floras?
+
+# In[42]:
+
+
+custom_vec, dtm_text_counts = build_dtm_text_counts(features.flora_tokenizer, tokenized_stop_words, flora_data_frame)
+
+
+# In[45]:
+
+
+dtm_text_counts.toarray()
+print(dtm_text_counts.shape)
+print(flora_data_frame.shape)
+
+
+# In[59]:
+
+
+train_indices = flora_data_frame[(flora_data_frame['dataset_name'] =="bc") | (flora_data_frame['dataset_name'] == "fna")].index
+X_train = dtm_text_counts[train_indices]
+y_train = flora_data_frame.iloc[train_indices].classification
+print(X_train.shape)
+print(len(y_train))
+test_indices = flora_data_frame[flora_data_frame['dataset_name'] =="budds"].index
+print(len(test_indices))
+X_test = dtm_text_counts[test_indices]
+y_test = flora_data_frame.iloc[test_indices].classification
+
+
+# In[60]:
+
+
+clf = MultinomialNB().fit(X_train, y_train)
+predicted = clf.predict(X_test)
+print("MultinomialNB Accuracy:", metrics.accuracy_score(y_test, predicted))
+print(classification_report(y_test, predicted))
+class_labels = clf.classes_
+print_top10(custom_vec, clf, class_labels)
+
+
+# In[63]:
+
+
+dtm_y_test_df = pd.DataFrame(y_test).reset_index()
+dtm_predictions_series = pd.Series(predicted)
+results = pd.concat([dtm_y_test_df, dtm_predictions_series], axis=1)
+results.rename(columns={0: 'predictions'}, inplace=True)
+results = results.set_index('index')
+results_flora_data_frame = pd.concat([results, flora_data_frame], axis=1, join='inner')
+results_flora_data_frame
+
+
+# ### Running a baseline model!
+
+# In[ ]:
+
+
+
 
