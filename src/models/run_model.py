@@ -30,6 +30,16 @@ def run_model(text_counts, flora_data_frame, feature_rank=False, custom_vec=None
 
     return y_test, predicted
 
+
+def zero_rule_algorithm_classification(train, test): # A baseline model. Compare performance of NB to this model
+    output_values = [row[-1] for row in train] # [-1] is useful when you don’t have the length of the container,
+    # and want to reference a position relative to the last index without having to calculate the length.
+    prediction = max(set(output_values), key=output_values.count) # returns the class value that has the highest
+    # count of observed values in the list of class values observed in the training dataset.
+    predicted = [prediction for i in range(len(test))]
+    return predicted
+
+
 # other things to try: 1-gram vs. 2-gram
 
 # fna_nb_classifier <- naiveBayes(fna_train, fna_train_labels, laplace = 1, CV = 10)  # laplace=1: dig down

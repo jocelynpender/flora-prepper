@@ -288,6 +288,11 @@ for group in classifications.groups:
     plt.savefig(file_name)
     plt.show()
 
+    
+    # TO DO 
+    
+    # redo these as overlapping hist with four colours!!!
+
 
 # It looks like discussion should be removed from the dataset. It is curiously short in length. This may be an artifact from the bc dataset.
 
@@ -385,5 +390,12 @@ results_flora_data_frame
 # In[ ]:
 
 
+baseprediction = zero_rule_algorithm_classification(line_features, labels)  # get predictions for baseline
 
+    if baseprediction[0] == 0:
+        baseline = (len(baseprediction) - np.count_nonzero(labels)) / (len(baseprediction))
+    else:
+        baseline = (len(baseprediction) - len(np.where(labels == 0))) / (len(baseprediction))
+
+    print(f"Baseline score: {baseline}")
 
