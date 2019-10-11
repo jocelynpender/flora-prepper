@@ -49,7 +49,7 @@ def process_string_with_cleaning_regime(string):
               len(word) > 3]  # remove short words (less than 3 char), e.g., mm, cm, s left over from 's
     table = str.maketrans('', '',
                           string_module.punctuation)  # https://machinelearningmastery.com/clean-text-machine-learning-python/
-    string = [word.translate(table) for word in string]
+    string = [word.translate(table) for word in string] # Remove punctuation
     porter = PorterStemmer()
     string = [porter.stem(word) for word in string]
     lemmatizer = WordNetLemmatizer()
