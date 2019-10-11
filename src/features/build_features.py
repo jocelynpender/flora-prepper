@@ -9,14 +9,14 @@ def build_dtm_text_counts(flora_tokenizer, tokenized_stop_words, data_frame):
     custom_vec = CountVectorizer(lowercase=True, tokenizer=flora_tokenizer, stop_words=tokenized_stop_words,
                                  ngram_range=(1, 1))
     text_counts = custom_vec.fit_transform(data_frame['text'])  # Build Document-Term-Matrix
-    return text_counts
+    return custom_vec, text_counts
 
 
 def build_tfidf_text_counts(flora_tokenizer, tokenized_stop_words, data_frame):
     custom_vec = TfidfVectorizer(lowercase=True, tokenizer=flora_tokenizer, stop_words=tokenized_stop_words,
                                  ngram_range=(1, 1))
     text_counts = custom_vec.fit_transform(data_frame['text'])  # Build TF-IDF Matrix
-    return text_counts
+    return custom_vec, text_counts
 
 
 def build_train_test_split(text_counts, data_frame):
