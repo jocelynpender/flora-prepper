@@ -78,11 +78,11 @@ habitat = " ".join(text_string for text_string in flora_data_frame[flora_data_fr
 
 # Taxon identification
 
-# In[6]:
+# In[75]:
 
 
-visualize_words(taxon_identification, tokenized_stop_words, color="blue")
-visualize_words(taxon_identification, tokenized_stop_words_clean, cleanup=True, color="blue")
+visualize_words(taxon_identification, tokenized_stop_words, color="purple")
+visualize_words(taxon_identification, tokenized_stop_words_clean, cleanup=True, color="purple")
 
 
 # Morphology
@@ -105,11 +105,11 @@ visualize_words(key, tokenized_stop_words_clean, cleanup=True, color="yellow")
 
 # Habitat
 
-# In[9]:
+# In[74]:
 
 
-visualize_words(habitat, tokenized_stop_words, color="purple")
-visualize_words(habitat, tokenized_stop_words_clean, cleanup=True, color="purple")
+visualize_words(habitat, tokenized_stop_words, color="blue")
+visualize_words(habitat, tokenized_stop_words_clean, cleanup=True, color="blue")
 
 
 # ### Word clouds by flora source
@@ -268,25 +268,31 @@ incorrect_data_frame
 length_processed_flora_data_frame = features.process_length_in_place(flora_data_frame, tokenized_stop_words)
 
 
-# In[23]:
+# In[72]:
 
 
-length_processed_flora_data_frame.head()
+length_processed_flora_data_frame.to_csv(path_or_buf = "../data/interim/length_processed_flora_data_frame.csv")
 
 
-# In[24]:
+# In[71]:
 
 
 classifications = length_processed_flora_data_frame.groupby(by=length_processed_flora_data_frame['classification'])
+
+#bins = np.linspace(-10, 10, 100)
+
 for group in classifications.groups:
 #   print(group)
     group_df = length_processed_flora_data_frame[length_processed_flora_data_frame.classification == group]
     group_text_length = group_df['length']
-    fig = plt.hist(group_text_length)
-    file_name = group + "_text_length.png"
-    print(file_name)
-    plt.savefig(file_name)
-    plt.show()
+    plt.hist(group_text_length, label=group)
+#file_name = group + "_text_length.png"
+#print(file_name)
+#plt.savefig(file_name)
+plt.xlim(0, 15000)
+plt.ylim(0, 4000)
+plt.legend(loc='upper right')
+plt.show()
 
     
     # TO DO 
