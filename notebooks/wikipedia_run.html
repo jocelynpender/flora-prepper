@@ -13088,6 +13088,7 @@ div#notebook {
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">wikipedia</span>
 
 <span class="c1"># Import custom modelling code</span>
 <span class="n">module_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;../&#39;</span><span class="p">))</span>
@@ -13097,6 +13098,8 @@ div#notebook {
 <span class="kn">from</span> <span class="nn">src.models.run_model</span> <span class="k">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">src.visualization.visualize</span> <span class="k">import</span> <span class="o">*</span>
 <span class="kn">import</span> <span class="nn">src.features</span> <span class="k">as</span> <span class="nn">features</span>
+
+<span class="c1"># pip install git+https://github.com/lucasdnd/Wikipedia.git --upgrade</span>
 </pre></div>
 
     </div>
@@ -13144,8 +13147,140 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">page</span> <span class="o">=</span> <span class="n">wikipedia</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="s2">&quot;Cirsium arvense&quot;</span><span class="p">)</span>
+<span class="n">page_sections</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">sections</span>
+<span class="n">parsed_page</span> <span class="o">=</span> <span class="p">[(</span><span class="n">page_section_name</span><span class="p">,</span> <span class="n">page</span><span class="o">.</span><span class="n">section</span><span class="p">(</span><span class="n">page_section_name</span><span class="p">))</span> <span class="k">for</span> <span class="n">page_section_name</span> <span class="ow">in</span> <span class="n">page_sections</span><span class="p">]</span>
+<span class="n">wiki_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">parsed_page</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;classification&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">])</span>
+<span class="n">wiki_data</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[3]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>classification</th>
+      <th>text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>Alternative names</td>
+      <td>A number of other names are used in other area...</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Description</td>
+      <td>Cirsium arvense is a C3 carbon fixation plant....</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Underground network</td>
+      <td>Its underground structure consists of four typ...</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Shoots and leaves</td>
+      <td>Stems are 30–150 cm, slender green, and freely...</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Flowers and seeds</td>
+      <td>The inflorescence is 10–22 mm (0.39–0.87 in) i...</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Varieties</td>
+      <td>Variation in leaf characters (texture, vestitu...</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Ecology</td>
+      <td>The seeds are an important food for the goldfi...</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Status as a weed</td>
+      <td>The species is widely considered a weed even w...</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>Control</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>Organic</td>
+      <td>Control methods include cutting at flower stem...</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>Chemical</td>
+      <td>Applying herbicide: Herbicides dominated by ph...</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>Uses</td>
+      <td>Like other Cirsium species, the roots are edib...</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>References</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>External links</td>
+      <td>Tiley, G.E.D. "Biological Flora of the British...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Import of Wikipedia dataset</span>
-<span class="n">wiki</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/raw/cirsium_arvense_wikipedia.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="c1"># wiki = pd.read_csv(&quot;../data/raw/cirsium_arvense_wikipedia.csv&quot;, index_col=None)</span>
+<span class="n">wiki</span> <span class="o">=</span> <span class="n">wiki_data</span>
 <span class="n">test_indices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">flora_data_frame</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">flora_data_frame</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">wiki</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 <span class="n">flora_data_frame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">flora_data_frame</span><span class="p">,</span> <span class="n">wiki</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">flora_data_frame</span>
@@ -13165,21 +13300,21 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>/Users/jocelynpender/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/ipykernel_launcher.py:4: FutureWarning: Sorting because non-concatenation axis is not aligned. A future version
+<pre>/Users/jocelynpender/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/ipykernel_launcher.py:5: FutureWarning: Sorting because non-concatenation axis is not aligned. A future version
 of pandas will change to not sort by default.
 
 To accept the future behavior, pass &#39;sort=False&#39;.
 
 To retain the current behavior and silence the warning, pass &#39;sort=True&#39;.
 
-  after removing the cwd from sys.path.
+  &#34;&#34;&#34;
 </pre>
 </div>
 </div>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[3]:</div>
+    <div class="prompt output_prompt">Out[4]:</div>
 
 
 
@@ -13273,58 +13408,58 @@ To retain the current behavior and silence the warning, pass &#39;sort=True&#39;
       <td>...</td>
     </tr>
     <tr>
-      <td>19262</td>
-      <td>morphology</td>
-      <td>wikipedia</td>
+      <td>19271</td>
+      <td>Organic</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>Cirsium arvense is a perennial species of flow...</td>
+      <td>NaN</td>
+      <td>Control methods include cutting at flower stem...</td>
     </tr>
     <tr>
-      <td>19263</td>
-      <td>morphology</td>
-      <td>wikipedia</td>
+      <td>19272</td>
+      <td>Chemical</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>The standard English name in its native area i...</td>
+      <td>NaN</td>
+      <td>Applying herbicide: Herbicides dominated by ph...</td>
     </tr>
     <tr>
-      <td>19264</td>
-      <td>morphology</td>
-      <td>wikipedia</td>
+      <td>19273</td>
+      <td>Uses</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>It is also commonly known as Canada thistle an...</td>
+      <td>NaN</td>
+      <td>Like other Cirsium species, the roots are edib...</td>
     </tr>
     <tr>
-      <td>19265</td>
-      <td>morphology</td>
-      <td>wikipedia</td>
+      <td>19274</td>
+      <td>References</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>The plant is beneficial for pollinators that r...</td>
+      <td>NaN</td>
+      <td></td>
     </tr>
     <tr>
-      <td>19266</td>
-      <td>morphology</td>
-      <td>wikipedia</td>
+      <td>19275</td>
+      <td>External links</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>It also was a top producer of nectar sugar in ...</td>
+      <td>NaN</td>
+      <td>Tiley, G.E.D. "Biological Flora of the British...</td>
     </tr>
   </tbody>
 </table>
-<p>19267 rows × 7 columns</p>
+<p>19276 rows × 7 columns</p>
 </div>
 </div>
 
@@ -13336,7 +13471,7 @@ To retain the current behavior and silence the warning, pass &#39;sort=True&#39;
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Customize stop words for model</span>
@@ -13346,8 +13481,6 @@ To retain the current behavior and silence the warning, pass &#39;sort=True&#39;
 <span class="c1"># Build DTM</span>
 <span class="n">custom_vec</span><span class="p">,</span> <span class="n">dtm_text_counts</span> <span class="o">=</span> <span class="n">build_dtm_text_counts</span><span class="p">(</span><span class="n">features</span><span class="o">.</span><span class="n">flora_tokenizer</span><span class="p">,</span> <span class="n">tokenized_stop_words</span><span class="p">,</span> <span class="n">flora_data_frame</span><span class="p">)</span>
 <span class="n">dtm_text_counts</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">dtm_text_counts</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">flora_data_frame</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13377,8 +13510,8 @@ To retain the current behavior and silence the warning, pass &#39;sort=True&#39;
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>(19267, 40548)
-(19267, 7)
+<pre>(19276, 40712)
+(19276, 7)
 </pre>
 </div>
 </div>
@@ -13389,7 +13522,7 @@ To retain the current behavior and silence the warning, pass &#39;sort=True&#39;
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Prepare data for the model</span>
@@ -13406,7 +13539,7 @@ To retain the current behavior and silence the warning, pass &#39;sort=True&#39;
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">MultinomialNB</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
@@ -13430,7 +13563,7 @@ To retain the current behavior and silence the warning, pass &#39;sort=True&#39;
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[6]:</div>
+    <div class="prompt output_prompt">Out[7]:</div>
 
 
 
@@ -13467,51 +13600,159 @@ To retain the current behavior and silence the warning, pass &#39;sort=True&#39;
   <tbody>
     <tr>
       <td>19263</td>
-      <td>morphology</td>
-      <td>taxon_identification</td>
-      <td>morphology</td>
-      <td>wikipedia</td>
+      <td>Description</td>
+      <td>key</td>
+      <td>Description</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>The standard English name in its native area i...</td>
+      <td>NaN</td>
+      <td>Cirsium arvense is a C3 carbon fixation plant....</td>
     </tr>
     <tr>
       <td>19264</td>
+      <td>Underground network</td>
       <td>morphology</td>
-      <td>habitat</td>
-      <td>morphology</td>
-      <td>wikipedia</td>
+      <td>Underground network</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>It is also commonly known as Canada thistle an...</td>
+      <td>NaN</td>
+      <td>Its underground structure consists of four typ...</td>
     </tr>
     <tr>
       <td>19265</td>
+      <td>Shoots and leaves</td>
       <td>morphology</td>
-      <td>taxon_identification</td>
-      <td>morphology</td>
-      <td>wikipedia</td>
+      <td>Shoots and leaves</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>The plant is beneficial for pollinators that r...</td>
+      <td>NaN</td>
+      <td>Stems are 30–150 cm, slender green, and freely...</td>
     </tr>
     <tr>
       <td>19266</td>
+      <td>Flowers and seeds</td>
       <td>morphology</td>
+      <td>Flowers and seeds</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>The inflorescence is 10–22 mm (0.39–0.87 in) i...</td>
+    </tr>
+    <tr>
+      <td>19267</td>
+      <td>Varieties</td>
+      <td>key</td>
+      <td>Varieties</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Variation in leaf characters (texture, vestitu...</td>
+    </tr>
+    <tr>
+      <td>19268</td>
+      <td>Ecology</td>
+      <td>taxon_identification</td>
+      <td>Ecology</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>The seeds are an important food for the goldfi...</td>
+    </tr>
+    <tr>
+      <td>19269</td>
+      <td>Status as a weed</td>
+      <td>habitat</td>
+      <td>Status as a weed</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>The species is widely considered a weed even w...</td>
+    </tr>
+    <tr>
+      <td>19270</td>
+      <td>Control</td>
       <td>morphology</td>
+      <td>Control</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>19271</td>
+      <td>Organic</td>
+      <td>habitat</td>
+      <td>Organic</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Control methods include cutting at flower stem...</td>
+    </tr>
+    <tr>
+      <td>19272</td>
+      <td>Chemical</td>
+      <td>habitat</td>
+      <td>Chemical</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Applying herbicide: Herbicides dominated by ph...</td>
+    </tr>
+    <tr>
+      <td>19273</td>
+      <td>Uses</td>
+      <td>habitat</td>
+      <td>Uses</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Like other Cirsium species, the roots are edib...</td>
+    </tr>
+    <tr>
+      <td>19274</td>
+      <td>References</td>
       <td>morphology</td>
-      <td>wikipedia</td>
+      <td>References</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>It also was a top producer of nectar sugar in ...</td>
+      <td>NaN</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>19275</td>
+      <td>External links</td>
+      <td>taxon_identification</td>
+      <td>External links</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Tiley, G.E.D. "Biological Flora of the British...</td>
     </tr>
   </tbody>
 </table>
