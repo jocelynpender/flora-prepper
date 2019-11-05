@@ -41,22 +41,4 @@ def zero_rule_algorithm_classification(train, test): # A baseline model. Compare
 
 
 # other things to try: 1-gram vs. 2-gram
-
-# fna_nb_classifier <- naiveBayes(fna_train, fna_train_labels, laplace = 1, CV = 10)  # laplace=1: dig down
-# saveRDS(fna_nb_classifier, file = "models/budds_classifier.Rds")
-# fna_nb_classifier <- readRDS(file = 'classifier.Rds')
-
-# fna_test_pred_nb <- predict(fna_nb_classifier, newdata = fna_test)
-# saveRDS(fna_test_pred_nb, file = "models/prediction.Rds")
-
-# Missed = fna_test[which(fna_test_pred_nb != fna_test_labels), ]
-# Succesful = fna_test[which(fna_test_pred_nb == fna_test_labels), ]
-
-# saveRDS(fna_test, file = "data/interim/r_studio_fna_test.Rds")
-
-# save.image("models/budds_classifier_data.RData")
-
-# OCT 1st
-# WORK with morphology, keys and habitat/distribution text.
-
 # Test bigrams/unigrams

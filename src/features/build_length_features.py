@@ -1,7 +1,7 @@
 import pandas as pd
 from scipy import sparse
-from data.misc import is_blank
-from features.process_text import process_text_tokenize_detokenize
+from src.data.misc import is_blank
+from src.features.process_text import process_text_tokenize_detokenize
 import numpy as np
 
 

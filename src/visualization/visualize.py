@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 from nltk import FreqDist
 from wordcloud import WordCloud
-from features.process_text import process_text
+from src.features.process_text import process_text
 import numpy as np
 
 def blue_color_func(word, font_size, position,orientation,random_state=None, **kwargs):
