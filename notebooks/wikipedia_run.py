@@ -35,14 +35,37 @@ flora_data_frame = pd.read_csv("../data/processed/flora_data_frame_full.csv", in
 train_indices = list(range(0, flora_data_frame.shape[0]))
 
 
-# In[3]:
+# In[39]:
 
 
-page = wikipedia.page("Cirsium arvense")
-page_sections = page.sections
-parsed_page = [(page_section_name, page.section(page_section_name)) for page_section_name in page_sections]
-wiki_data = pd.DataFrame(parsed_page, columns = ['classification', 'text'])
-wiki_data
+species_list = list(flora_data_frame.species.unique())
+species_list = [species for species in species_list if str(species) != 'nan'] # Remove nan species names
+
+
+# In[ ]:
+
+
+def extract_wiki_page(species_name):
+    try:
+        page = wikipedia.page(species_name)
+    except:
+        page = None
+    return page
+
+
+test = [extract_wiki_page(species_name) for species_name in species_list]
+test
+
+
+# In[ ]:
+
+
+def extract_wiki_page_data(species_name):
+
+    page_sections = page.sections
+    parsed_page = [(page_section_name, page.section(page_section_name)) for page_section_name in page_sections]
+    wiki_data = pd.DataFrame(parsed_page, columns = ['classification', 'text'])
+    return wiki_data
 
 
 # In[4]:
@@ -53,6 +76,14 @@ wiki_data
 wiki = wiki_data
 test_indices = list(range(flora_data_frame.shape[0] + 1, flora_data_frame.shape[0] + wiki.shape[0]))
 flora_data_frame = pd.concat([flora_data_frame, wiki], ignore_index=True)
+flora_data_frame
+
+
+# In[20]:
+
+
+# Get rid of key classification
+flora_data_frame.classification[flora_data_frame.classification == "key"] = "morphology"
 flora_data_frame
 
 

@@ -13144,131 +13144,54 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">page</span> <span class="o">=</span> <span class="n">wikipedia</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="s2">&quot;Cirsium arvense&quot;</span><span class="p">)</span>
-<span class="n">page_sections</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">sections</span>
-<span class="n">parsed_page</span> <span class="o">=</span> <span class="p">[(</span><span class="n">page_section_name</span><span class="p">,</span> <span class="n">page</span><span class="o">.</span><span class="n">section</span><span class="p">(</span><span class="n">page_section_name</span><span class="p">))</span> <span class="k">for</span> <span class="n">page_section_name</span> <span class="ow">in</span> <span class="n">page_sections</span><span class="p">]</span>
-<span class="n">wiki_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">parsed_page</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;classification&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">])</span>
-<span class="n">wiki_data</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">species_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">flora_data_frame</span><span class="o">.</span><span class="n">species</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="n">species_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">species</span> <span class="k">for</span> <span class="n">species</span> <span class="ow">in</span> <span class="n">species_list</span> <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">species</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">&#39;nan&#39;</span><span class="p">]</span> <span class="c1"># Remove nan species names</span>
 </pre></div>
 
     </div>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">extract_wiki_page</span><span class="p">(</span><span class="n">species_name</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">page</span> <span class="o">=</span> <span class="n">wikipedia</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">species_name</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">page</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">page</span>
 
 
-<div class="output_area">
+<span class="n">test</span> <span class="o">=</span> <span class="p">[</span><span class="n">extract_wiki_page</span><span class="p">(</span><span class="n">species_name</span><span class="p">)</span> <span class="k">for</span> <span class="n">species_name</span> <span class="ow">in</span> <span class="n">species_list</span><span class="p">]</span>
+<span class="n">test</span>
+</pre></div>
 
-    <div class="prompt output_prompt">Out[3]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>classification</th>
-      <th>text</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>0</td>
-      <td>Alternative names</td>
-      <td>A number of other names are used in other area...</td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>Description</td>
-      <td>Cirsium arvense is a C3 carbon fixation plant....</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Underground network</td>
-      <td>Its underground structure consists of four typ...</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>Shoots and leaves</td>
-      <td>Stems are 30–150 cm, slender green, and freely...</td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>Flowers and seeds</td>
-      <td>The inflorescence is 10–22 mm (0.39–0.87 in) i...</td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td>Varieties</td>
-      <td>Variation in leaf characters (texture, vestitu...</td>
-    </tr>
-    <tr>
-      <td>6</td>
-      <td>Ecology</td>
-      <td>The seeds are an important food for the goldfi...</td>
-    </tr>
-    <tr>
-      <td>7</td>
-      <td>Status as a weed</td>
-      <td>The species is widely considered a weed even w...</td>
-    </tr>
-    <tr>
-      <td>8</td>
-      <td>Control</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>9</td>
-      <td>Organic</td>
-      <td>Control methods include cutting at flower stem...</td>
-    </tr>
-    <tr>
-      <td>10</td>
-      <td>Chemical</td>
-      <td>Applying herbicide: Herbicides dominated by ph...</td>
-    </tr>
-    <tr>
-      <td>11</td>
-      <td>Uses</td>
-      <td>Like other Cirsium species, the roots are edib...</td>
-    </tr>
-    <tr>
-      <td>12</td>
-      <td>References</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>13</td>
-      <td>External links</td>
-      <td>Tiley, G.E.D. "Biological Flora of the British...</td>
-    </tr>
-  </tbody>
-</table>
+    </div>
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">extract_wiki_page_data</span><span class="p">(</span><span class="n">species_name</span><span class="p">):</span>
 
+    <span class="n">page_sections</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">sections</span>
+    <span class="n">parsed_page</span> <span class="o">=</span> <span class="p">[(</span><span class="n">page_section_name</span><span class="p">,</span> <span class="n">page</span><span class="o">.</span><span class="n">section</span><span class="p">(</span><span class="n">page_section_name</span><span class="p">))</span> <span class="k">for</span> <span class="n">page_section_name</span> <span class="ow">in</span> <span class="n">page_sections</span><span class="p">]</span>
+    <span class="n">wiki_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">parsed_page</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;classification&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">wiki_data</span>
+</pre></div>
+
+    </div>
 </div>
 </div>
 
@@ -13315,6 +13238,196 @@ To retain the current behavior and silence the warning, pass &#39;sort=True&#39;
 <div class="output_area">
 
     <div class="prompt output_prompt">Out[4]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>classification</th>
+      <th>dataset_name</th>
+      <th>length</th>
+      <th>row</th>
+      <th>row_id</th>
+      <th>species</th>
+      <th>text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>habitat</td>
+      <td>bc</td>
+      <td>267.0</td>
+      <td>NaN</td>
+      <td>5721.0</td>
+      <td>Festuca saximontana var. saximontana</td>
+      <td>Mesic to dry meadows, grasslands, rocky slopes...</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>habitat</td>
+      <td>fna</td>
+      <td>78.0</td>
+      <td>NaN</td>
+      <td>9819.0</td>
+      <td>NaN</td>
+      <td>Rock, outcrops, calcareous and volcanic boulde...</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>morphology</td>
+      <td>bc</td>
+      <td>27.0</td>
+      <td>NaN</td>
+      <td>2305.0</td>
+      <td>Epilobium glaberrimum</td>
+      <td>Blooming Period Mid Summer</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>taxon_identification</td>
+      <td>fna</td>
+      <td>251.0</td>
+      <td>NaN</td>
+      <td>6636.0</td>
+      <td>NaN</td>
+      <td>asteraceae family Martinov unknown senecioneae...</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>habitat</td>
+      <td>bc</td>
+      <td>194.0</td>
+      <td>NaN</td>
+      <td>7239.0</td>
+      <td>Aquilegia formosa</td>
+      <td>Mesic to moist meadows, rocky slopes, thickets...</td>
+    </tr>
+    <tr>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <td>19271</td>
+      <td>Organic</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Control methods include cutting at flower stem...</td>
+    </tr>
+    <tr>
+      <td>19272</td>
+      <td>Chemical</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Applying herbicide: Herbicides dominated by ph...</td>
+    </tr>
+    <tr>
+      <td>19273</td>
+      <td>Uses</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Like other Cirsium species, the roots are edib...</td>
+    </tr>
+    <tr>
+      <td>19274</td>
+      <td>References</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>19275</td>
+      <td>External links</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Tiley, G.E.D. "Biological Flora of the British...</td>
+    </tr>
+  </tbody>
+</table>
+<p>19276 rows × 7 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Get rid of key classification</span>
+<span class="n">flora_data_frame</span><span class="o">.</span><span class="n">classification</span><span class="p">[</span><span class="n">flora_data_frame</span><span class="o">.</span><span class="n">classification</span> <span class="o">==</span> <span class="s2">&quot;key&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;morphology&quot;</span>
+<span class="n">flora_data_frame</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/Users/jocelynpender/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/ipykernel_launcher.py:2: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[20]:</div>
 
 
 
