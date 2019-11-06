@@ -15,11 +15,11 @@ def read_bc_csv(bc_filepath, first_col_index=False):
 
 
 def merge_bc_columns(bc):
-    """Input:
+    """:param:
         Idiosyncractic E-Flora BC data frame with scraped data (i.e., three columns holding content:
     content, morphology_content, morphology_content_misc).
 
-    Returns:
+    :return:
         A data frame with collapsed text, with the three content columns removed, replaced by a column named text.
         Replace NA values with whitespace. (Could be improved).
         Due to string collapse, some elements may contain two whitespaces and nothing else."""
@@ -38,9 +38,9 @@ def make_bc_data_frame(bc_filepath="data/external/eflora-bc-full_no-id.csv", fra
                        balance_categories=True, categories_to_keep=["key", "morphology", "taxon_identification",
                                                                     "habitat", "discussion"]):
     """Perform requisite import tasks for E-Flora BC Data.
-    Input:
+    :param:
         File path
-    Returns:
+    :return:
         Data frame with correctly named columns, trimmed and balanced dataset, and text length added to the dataframe
         for use in model building."""
     bc = read_bc_csv(bc_filepath)  # , first_col_index=True)

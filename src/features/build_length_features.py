@@ -19,7 +19,7 @@ def process_length_in_place(flora_data_frame, tokenized_stop_words):
     """Process text using the same text processing procedure as was used in the DTM/TFIDF models, and recreate the
     length column with the cleaned text strings. This results in a more accurate length metric.
 
-    Returns:
+    :return:
     flora_data_frame with revised text length column and rows with only blanks or empty text
     strings removed."""
     before_process_length = flora_data_frame.text.apply(len)

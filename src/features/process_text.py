@@ -13,9 +13,9 @@ def flora_tokenizer(string, numbers=False, short_words=False, punctuation=False,
     """Apply custom tokenization to fna strings. This function is deployed in a number of different model variations.
     It does not do any preprocessing except to tokenize strings.
 
-    Input:
+    :param:
         A string
-    Returns:
+    :return:
         A list with tokens from string
     """
     assert type(string) == str, 'Text column not string format'
@@ -29,9 +29,9 @@ def flora_tokenizer_clean(string):
     """Apply custom tokenization to fna strings. This function is deployed in a number of different model variations.
     When punctuation is set = True, removes brackets, semi-colons, apostrophes.
 
-    Input:
+    :param:
         A string
-    Returns:
+    :return:
         A list with tokens from string
     """
     assert type(string) == str, 'Text column not string format'

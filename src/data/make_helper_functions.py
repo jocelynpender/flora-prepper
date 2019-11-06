@@ -3,10 +3,10 @@ import pandas as pd
 
 def trim_categories(flora, categories_to_keep):
     """Only keep categories relevant to global model
-    Input:
-        A Pandas data frame of flora data, with the column of interest named "classification" and of type category.
+    :param:
+        A pandas data frame of flora data, with the column of interest named "classification" and of type category.
         A set of categories to keep of type list.
-    Output:
+    :return:
         A pandas data frame with rows belonging to unwanted categories dropped.
     """
     flora_reset = flora.copy()
@@ -20,9 +20,9 @@ def trim_categories(flora, categories_to_keep):
 def sample_flora(flora, frac_to_sample, balance_categories):
     """Trim down the dataset for development purposes with seed.
 
-    Input:
-        A Pandas data frame of flora data, with the column of interest named "classification".
-    Output:
+    :param:
+        A pandas data frame of flora data, with the column of interest named "classification".
+    :return:
         A pandas data frame, shuffled, sampled & balanced."""
     if balance_categories:  # https://stackoverflow.com/questions/45839316/pandas-balancing-data
         groups = flora.groupby('classification')
@@ -39,9 +39,9 @@ def sample_flora(flora, frac_to_sample, balance_categories):
 
 def add_length_to_data_frame(data_frame):
     """Returns a data frame with length of the text column calculated.
-    Input:
-        A Pandas data frame of flora data, with the text column named "text".
-    Returns:
+    :param:
+        A pandas data frame of flora data, with the text column named "text".
+    :return:
         The data frame with a new column: 'length'."""
     length = data_frame['text'].apply(len)
     data_frame_with_length = pd.concat([data_frame, length.rename('length')], axis=1)

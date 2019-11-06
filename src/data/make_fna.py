@@ -5,9 +5,9 @@ import pandas as pd
 
 def read_fna_csv(fna_filepath):
     """Import Flora of North America (FNA) data for model training and perform processing tasks.
-    Input:
+    :param:
         Filepath
-    Output:
+    :return:
         Pandas data frame."""
     fna = pd.read_csv(fna_filepath, index_col=0,
                       dtype={"classification": "category", "text": np.object, "length": "int64"})

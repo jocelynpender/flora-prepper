@@ -5,9 +5,9 @@ from src.data.make_helper_functions import *
 
 
 def return_text_series(tree, path):
-    """Input:
+    """:param:
         A parsed etree from an XML file and the desired node path to extract text from
-    Returns:
+    :return:
         A nicely formatted pandas Series containing text data extracted from the node."""
     assert len(path) > 0, "Path not valid"
     text_list = [element.text for element in tree.findall(path)] # Extract text from all XML nodes
@@ -19,9 +19,9 @@ def return_text_series(tree, path):
 
 def extract_classification_text(tree):
     """Run extraction on all classification types that exist in the Budds flora XML file.
-    Input:
+    :param:
         A parsed etree from an XML file.
-    Returns:
+    :return:
         Four pandas Series based on the four classifications."""
     taxon_identification = return_text_series(tree, "//taxon_identification")
     key = return_text_series(tree, "//key")
@@ -32,9 +32,9 @@ def extract_classification_text(tree):
 def make_budds_data_frame(budds_file_path, frac_to_sample=1, balance_categories=True):
     """Parse the Budds Flora XML file, extract classification text data, and concatenate it all together in a pandas DataFrame.
     Run sampling and balancing if desired.
-    Input:
+    :param:
         File path to XML file.
-    Returns:
+    :return:
         Data frame with text data parsed, length added, trimming and balancing performed."""
     tree = etree.parse(budds_file_path)
     assert type(tree) == lxml.etree._ElementTree, 'Tree not parsed properly'
