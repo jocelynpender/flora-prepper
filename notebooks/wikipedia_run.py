@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[113]:
 
 
 # Auto update of packages within the notebook
@@ -23,6 +23,7 @@ if module_path not in sys.path:
 from src.models.run_model import *
 from src.visualization.visualize import *
 import src.features as features
+from src.data.make_wikipedia import *
 
 # pip install git+https://github.com/lucasdnd/Wikipedia.git --upgrade
 
@@ -35,37 +36,20 @@ flora_data_frame = pd.read_csv("../data/processed/flora_data_frame_full.csv", in
 train_indices = list(range(0, flora_data_frame.shape[0]))
 
 
-# In[39]:
+# In[89]:
 
 
 species_list = list(flora_data_frame.species.unique())
 species_list = [species for species in species_list if str(species) != 'nan'] # Remove nan species names
 
 
-# In[ ]:
+# In[117]:
 
 
-def extract_wiki_page(species_name):
-    try:
-        page = wikipedia.page(species_name)
-    except:
-        page = None
-    return page
-
-
-test = [extract_wiki_page(species_name) for species_name in species_list]
-test
-
-
-# In[ ]:
-
-
-def extract_wiki_page_data(species_name):
-
-    page_sections = page.sections
-    parsed_page = [(page_section_name, page.section(page_section_name)) for page_section_name in page_sections]
-    wiki_data = pd.DataFrame(parsed_page, columns = ['classification', 'text'])
-    return wiki_data
+batches = [species_list[i: i+10] for i in range(0, len(species_list), 10)]
+for num, batch in enumerate(batches):
+    print(num)
+    make_wiki_data_frame(batch)
 
 
 # In[4]:

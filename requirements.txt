@@ -1,3 +1,6 @@
+wikipedia
+# use pip install git+https://github.com/lucasdnd/Wikipedia.git
+# issue flagged and resolved via https://stackoverflow.com/questions/34869597/wikipedia-api-for-python/35122688#35122688
 wordcloud
 lxml
 certifi==2019.9.11
