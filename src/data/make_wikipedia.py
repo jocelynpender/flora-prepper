@@ -1,3 +1,5 @@
+import sys
+
 import pandas as pd
 import wikipedia
 import glob
@@ -64,22 +66,28 @@ def batch_download(species_list, batch_start=1):
         make_wiki_data_frame(batch)
 
 
-def main():
+def main(batch_start=1):
     """
     Develop a csv to store the page data from Wikipedia based on a species list from the Illustrated Flora of BC
     (species column from the flora_data_frame)
+    :param
+        batch_start = option to begin running of the script with any of the batches
     :return: combined.csv
     """
     flora_data_frame = pd.read_csv("../../data/processed/flora_data_frame_full.csv", index_col=0)
     species_list = list(flora_data_frame.species.unique())
     species_list = [species for species in species_list if str(species) != 'nan']  # Remove nan species names
-    batch_download(species_list)
+    batch_download(species_list, batch_start)
 
     all_filenames = [name for name in glob.glob('../../data/interim/wiki_data/*.{}'.format('csv'))]
     combined_csv = pd.concat([pd.read_csv(file) for file in all_filenames], ignore_index=True)
     combined_csv = combined_csv.dropna(subset=['text']) # a little data cleaning. Remove rows with text = NaN
-    combined_csv.to_csv("../../data/processed/combined_7-nov-2019.csv", index=False, encoding='utf-8-sig') # export to csv
+    combined_csv.to_csv("../../data/processed/combined_wikidata.csv", index=False, encoding='utf-8-sig') # export to csv
 
 
 if __name__ == '__main__':
-    main()
+    if len(sys.argv) == 2:
+        user_batch_start = sys.argv[1]
+        main(int(user_batch_start))
+    else:
+        main()
