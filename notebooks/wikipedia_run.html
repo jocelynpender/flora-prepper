@@ -13076,7 +13076,7 @@ div#notebook {
 
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[113]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Auto update of packages within the notebook</span>
@@ -13116,9 +13116,10 @@ div#notebook {
     <div class="prompt"></div>
 
 
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>The autoreload extension is already loaded. To reload it, use:
-  %reload_ext autoreload
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>[nltk_data] Downloading package wordnet to
+[nltk_data]     /Users/jocelynpender/nltk_data...
+[nltk_data]   Package wordnet is already up-to-date!
 </pre>
 </div>
 </div>
@@ -13144,338 +13145,16 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[89]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">species_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">flora_data_frame</span><span class="o">.</span><span class="n">species</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
-<span class="n">species_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">species</span> <span class="k">for</span> <span class="n">species</span> <span class="ow">in</span> <span class="n">species_list</span> <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">species</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">&#39;nan&#39;</span><span class="p">]</span> <span class="c1"># Remove nan species names</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[89]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>2065</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[117]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">batches</span> <span class="o">=</span> <span class="p">[</span><span class="n">species_list</span><span class="p">[</span><span class="n">i</span><span class="p">:</span> <span class="n">i</span><span class="o">+</span><span class="mi">10</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">species_list</span><span class="p">),</span> <span class="mi">10</span><span class="p">)]</span>
-<span class="k">for</span> <span class="n">num</span><span class="p">,</span> <span class="n">batch</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">batches</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
-    <span class="n">make_wiki_data_frame</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>0
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>/Users/jocelynpender/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/wikipedia/wikipedia.py:389: UserWarning: No parser was explicitly specified, so I&#39;m using the best available HTML parser for this system (&#34;lxml&#34;). This usually isn&#39;t a problem, but if you run this code on another system, or in a different virtual environment, it may use a different parser and behave differently.
-
-The code that caused this warning is on line 389 of the file /Users/jocelynpender/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/wikipedia/wikipedia.py. To get rid of this warning, pass the additional argument &#39;features=&#34;lxml&#34;&#39; to the BeautifulSoup constructor.
-
-  lis = BeautifulSoup(html).find_all(&#39;li&#39;)
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>35
-36
-37
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">TimeoutError</span>                              Traceback (most recent call last)
-<span class="ansi-green-fg">~/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/urllib3/connection.py</span> in <span class="ansi-cyan-fg">_new_conn</span><span class="ansi-blue-fg">(self)</span>
-<span class="ansi-green-intense-fg ansi-bold">    158</span>             conn = connection.create_connection(
-<span class="ansi-green-fg">--&gt; 159</span><span class="ansi-red-fg">                 (self._dns_host, self.port), self.timeout, **extra_kw)
-</span><span class="ansi-green-intense-fg ansi-bold">    160</span> 
-
-<span class="ansi-green-fg">~/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/urllib3/util/connection.py</span> in <span class="ansi-cyan-fg">create_connection</span><span class="ansi-blue-fg">(address, timeout, source_address, socket_options)</span>
-<span class="ansi-green-intense-fg ansi-bold">     79</span>     <span class="ansi-green-fg">if</span> err <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">---&gt; 80</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">raise</span> err
-<span class="ansi-green-intense-fg ansi-bold">     81</span> 
-
-<span class="ansi-green-fg">~/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/urllib3/util/connection.py</span> in <span class="ansi-cyan-fg">create_connection</span><span class="ansi-blue-fg">(address, timeout, source_address, socket_options)</span>
-<span class="ansi-green-intense-fg ansi-bold">     69</span>                 sock<span class="ansi-blue-fg">.</span>bind<span class="ansi-blue-fg">(</span>source_address<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">---&gt; 70</span><span class="ansi-red-fg">             </span>sock<span class="ansi-blue-fg">.</span>connect<span class="ansi-blue-fg">(</span>sa<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     71</span>             <span class="ansi-green-fg">return</span> sock
-
-<span class="ansi-red-fg">TimeoutError</span>: [Errno 60] Operation timed out
-
-During handling of the above exception, another exception occurred:
-
-<span class="ansi-red-fg">NewConnectionError</span>                        Traceback (most recent call last)
-<span class="ansi-green-fg">~/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/urllib3/connectionpool.py</span> in <span class="ansi-cyan-fg">urlopen</span><span class="ansi-blue-fg">(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, **response_kw)</span>
-<span class="ansi-green-intense-fg ansi-bold">    599</span>                                                   body<span class="ansi-blue-fg">=</span>body<span class="ansi-blue-fg">,</span> headers<span class="ansi-blue-fg">=</span>headers<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-fg">--&gt; 600</span><span class="ansi-red-fg">                                                   chunked=chunked)
-</span><span class="ansi-green-intense-fg ansi-bold">    601</span> 
-
-<span class="ansi-green-fg">~/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/urllib3/connectionpool.py</span> in <span class="ansi-cyan-fg">_make_request</span><span class="ansi-blue-fg">(self, conn, method, url, timeout, chunked, **httplib_request_kw)</span>
-<span class="ansi-green-intense-fg ansi-bold">    342</span>         <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 343</span><span class="ansi-red-fg">             </span>self<span class="ansi-blue-fg">.</span>_validate_conn<span class="ansi-blue-fg">(</span>conn<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    344</span>         <span class="ansi-green-fg">except</span> <span class="ansi-blue-fg">(</span>SocketTimeout<span class="ansi-blue-fg">,</span> BaseSSLError<span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">as</span> e<span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">~/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/urllib3/connectionpool.py</span> in <span class="ansi-cyan-fg">_validate_conn</span><span class="ansi-blue-fg">(self, conn)</span>
-<span class="ansi-green-intense-fg ansi-bold">    838</span>         <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> getattr<span class="ansi-blue-fg">(</span>conn<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;sock&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>  <span class="ansi-red-fg"># AppEngine might not have  `.sock`</span>
-<span class="ansi-green-fg">--&gt; 839</span><span class="ansi-red-fg">             </span>conn<span class="ansi-blue-fg">.</span>connect<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    840</span> 
-
-<span class="ansi-green-fg">~/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/urllib3/connection.py</span> in <span class="ansi-cyan-fg">connect</span><span class="ansi-blue-fg">(self)</span>
-<span class="ansi-green-intense-fg ansi-bold">    300</span>         <span class="ansi-red-fg"># Add certificate verification</span>
-<span class="ansi-green-fg">--&gt; 301</span><span class="ansi-red-fg">         </span>conn <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>_new_conn<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    302</span>         hostname <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>host
-
-<span class="ansi-green-fg">~/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/urllib3/connection.py</span> in <span class="ansi-cyan-fg">_new_conn</span><span class="ansi-blue-fg">(self)</span>
-<span class="ansi-green-intense-fg ansi-bold">    167</span>             raise NewConnectionError(
-<span class="ansi-green-fg">--&gt; 168</span><span class="ansi-red-fg">                 self, &#34;Failed to establish a new connection: %s&#34; % e)
-</span><span class="ansi-green-intense-fg ansi-bold">    169</span> 
-
-<span class="ansi-red-fg">NewConnectionError</span>: &lt;urllib3.connection.VerifiedHTTPSConnection object at 0x1a276f2850&gt;: Failed to establish a new connection: [Errno 60] Operation timed out
-
-During handling of the above exception, another exception occurred:
-
-<span class="ansi-red-fg">MaxRetryError</span>                             Traceback (most recent call last)
-<span class="ansi-green-fg">~/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/requests/adapters.py</span> in <span class="ansi-cyan-fg">send</span><span class="ansi-blue-fg">(self, request, stream, timeout, verify, cert, proxies)</span>
-<span class="ansi-green-intense-fg ansi-bold">    448</span>                     retries<span class="ansi-blue-fg">=</span>self<span class="ansi-blue-fg">.</span>max_retries<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-fg">--&gt; 449</span><span class="ansi-red-fg">                     </span>timeout<span class="ansi-blue-fg">=</span>timeout
-<span class="ansi-green-intense-fg ansi-bold">    450</span>                 )
-
-<span class="ansi-green-fg">~/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/urllib3/connectionpool.py</span> in <span class="ansi-cyan-fg">urlopen</span><span class="ansi-blue-fg">(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, **response_kw)</span>
-<span class="ansi-green-intense-fg ansi-bold">    637</span>             retries = retries.increment(method, url, error=e, _pool=self,
-<span class="ansi-green-fg">--&gt; 638</span><span class="ansi-red-fg">                                         _stacktrace=sys.exc_info()[2])
-</span><span class="ansi-green-intense-fg ansi-bold">    639</span>             retries<span class="ansi-blue-fg">.</span>sleep<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">~/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/urllib3/util/retry.py</span> in <span class="ansi-cyan-fg">increment</span><span class="ansi-blue-fg">(self, method, url, response, error, _pool, _stacktrace)</span>
-<span class="ansi-green-intense-fg ansi-bold">    398</span>         <span class="ansi-green-fg">if</span> new_retry<span class="ansi-blue-fg">.</span>is_exhausted<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 399</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">raise</span> MaxRetryError<span class="ansi-blue-fg">(</span>_pool<span class="ansi-blue-fg">,</span> url<span class="ansi-blue-fg">,</span> error <span class="ansi-green-fg">or</span> ResponseError<span class="ansi-blue-fg">(</span>cause<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    400</span> 
-
-<span class="ansi-red-fg">MaxRetryError</span>: HTTPSConnectionPool(host=&#39;en.wikipedia.org&#39;, port=443): Max retries exceeded with url: /w/api.php?prop=extracts%7Crevisions&amp;explaintext=&amp;rvprop=ids&amp;titles=List+of+flora+of+Greenland&amp;format=json&amp;action=query (Caused by NewConnectionError(&#39;&lt;urllib3.connection.VerifiedHTTPSConnection object at 0x1a276f2850&gt;: Failed to establish a new connection: [Errno 60] Operation timed out&#39;))
-
-During handling of the above exception, another exception occurred:
-
-<span class="ansi-red-fg">ConnectionError</span>                           Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-117-139b09526cd8&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span> <span class="ansi-green-fg">for</span> num<span class="ansi-blue-fg">,</span> batch <span class="ansi-green-fg">in</span> enumerate<span class="ansi-blue-fg">(</span>batches<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span>     print<span class="ansi-blue-fg">(</span>num<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">----&gt; 4</span><span class="ansi-red-fg">     </span>make_wiki_data_frame<span class="ansi-blue-fg">(</span>batch<span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">~/flora-prepper/src/data/make_wikipedia.py</span> in <span class="ansi-cyan-fg">make_wiki_data_frame</span><span class="ansi-blue-fg">(species_list)</span>
-<span class="ansi-green-intense-fg ansi-bold">     37</span> <span class="ansi-green-fg">def</span> make_wiki_data_frame<span class="ansi-blue-fg">(</span>species_list<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">     38</span>     wiki_pages <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span>extract_wiki_page<span class="ansi-blue-fg">(</span>species_name<span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">for</span> species_name <span class="ansi-green-fg">in</span> species_list<span class="ansi-blue-fg">]</span>
-<span class="ansi-green-fg">---&gt; 39</span><span class="ansi-red-fg">     </span>wiki_data <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span>extract_wiki_page_data<span class="ansi-blue-fg">(</span>page<span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">for</span> page <span class="ansi-green-fg">in</span> wiki_pages <span class="ansi-green-fg">if</span> page <span class="ansi-blue-fg">!=</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">]</span>  <span class="ansi-red-fg"># Remove pages not returned</span>
-<span class="ansi-green-intense-fg ansi-bold">     40</span>     wiki_data <span class="ansi-blue-fg">=</span> pd<span class="ansi-blue-fg">.</span>concat<span class="ansi-blue-fg">(</span>wiki_data<span class="ansi-blue-fg">,</span> ignore_index<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">True</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     41</span>     wiki_data<span class="ansi-blue-fg">.</span>to_csv<span class="ansi-blue-fg">(</span>path_or_buf<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#34;../data/interim/wiki_data/&#34;</span> <span class="ansi-blue-fg">+</span> species_list<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">-</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">+</span> <span class="ansi-blue-fg">&#34;.csv&#34;</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">~/flora-prepper/src/data/make_wikipedia.py</span> in <span class="ansi-cyan-fg">&lt;listcomp&gt;</span><span class="ansi-blue-fg">(.0)</span>
-<span class="ansi-green-intense-fg ansi-bold">     37</span> <span class="ansi-green-fg">def</span> make_wiki_data_frame<span class="ansi-blue-fg">(</span>species_list<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">     38</span>     wiki_pages <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span>extract_wiki_page<span class="ansi-blue-fg">(</span>species_name<span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">for</span> species_name <span class="ansi-green-fg">in</span> species_list<span class="ansi-blue-fg">]</span>
-<span class="ansi-green-fg">---&gt; 39</span><span class="ansi-red-fg">     </span>wiki_data <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span>extract_wiki_page_data<span class="ansi-blue-fg">(</span>page<span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">for</span> page <span class="ansi-green-fg">in</span> wiki_pages <span class="ansi-green-fg">if</span> page <span class="ansi-blue-fg">!=</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">]</span>  <span class="ansi-red-fg"># Remove pages not returned</span>
-<span class="ansi-green-intense-fg ansi-bold">     40</span>     wiki_data <span class="ansi-blue-fg">=</span> pd<span class="ansi-blue-fg">.</span>concat<span class="ansi-blue-fg">(</span>wiki_data<span class="ansi-blue-fg">,</span> ignore_index<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">True</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     41</span>     wiki_data<span class="ansi-blue-fg">.</span>to_csv<span class="ansi-blue-fg">(</span>path_or_buf<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#34;../data/interim/wiki_data/&#34;</span> <span class="ansi-blue-fg">+</span> species_list<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">-</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">+</span> <span class="ansi-blue-fg">&#34;.csv&#34;</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">~/flora-prepper/src/data/make_wikipedia.py</span> in <span class="ansi-cyan-fg">extract_wiki_page_data</span><span class="ansi-blue-fg">(page)</span>
-<span class="ansi-green-intense-fg ansi-bold">     28</span>     Put all of this into a dataframe for downstream model usage. Return a pandas dataframe &#34;&#34;&#34;
-<span class="ansi-green-intense-fg ansi-bold">     29</span>     page_sections <span class="ansi-blue-fg">=</span> page<span class="ansi-blue-fg">.</span>sections
-<span class="ansi-green-fg">---&gt; 30</span><span class="ansi-red-fg">     </span>parsed_page <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">(</span>page_section_name<span class="ansi-blue-fg">,</span> page<span class="ansi-blue-fg">.</span>section<span class="ansi-blue-fg">(</span>page_section_name<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> page<span class="ansi-blue-fg">.</span>title<span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">for</span> page_section_name <span class="ansi-green-fg">in</span> page_sections<span class="ansi-blue-fg">]</span>
-<span class="ansi-green-intense-fg ansi-bold">     31</span>     wiki_data <span class="ansi-blue-fg">=</span> pd<span class="ansi-blue-fg">.</span>DataFrame<span class="ansi-blue-fg">(</span>parsed_page<span class="ansi-blue-fg">,</span> columns<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;classification&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;text&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;species&#39;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     32</span>     page_summary <span class="ansi-blue-fg">=</span> pd<span class="ansi-blue-fg">.</span>Series<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#34;Summary&#34;</span><span class="ansi-blue-fg">,</span> page<span class="ansi-blue-fg">.</span>summary<span class="ansi-blue-fg">,</span> page<span class="ansi-blue-fg">.</span>title<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span> index<span class="ansi-blue-fg">=</span>wiki_data<span class="ansi-blue-fg">.</span>columns<span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">~/flora-prepper/src/data/make_wikipedia.py</span> in <span class="ansi-cyan-fg">&lt;listcomp&gt;</span><span class="ansi-blue-fg">(.0)</span>
-<span class="ansi-green-intense-fg ansi-bold">     28</span>     Put all of this into a dataframe for downstream model usage. Return a pandas dataframe &#34;&#34;&#34;
-<span class="ansi-green-intense-fg ansi-bold">     29</span>     page_sections <span class="ansi-blue-fg">=</span> page<span class="ansi-blue-fg">.</span>sections
-<span class="ansi-green-fg">---&gt; 30</span><span class="ansi-red-fg">     </span>parsed_page <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">(</span>page_section_name<span class="ansi-blue-fg">,</span> page<span class="ansi-blue-fg">.</span>section<span class="ansi-blue-fg">(</span>page_section_name<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> page<span class="ansi-blue-fg">.</span>title<span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">for</span> page_section_name <span class="ansi-green-fg">in</span> page_sections<span class="ansi-blue-fg">]</span>
-<span class="ansi-green-intense-fg ansi-bold">     31</span>     wiki_data <span class="ansi-blue-fg">=</span> pd<span class="ansi-blue-fg">.</span>DataFrame<span class="ansi-blue-fg">(</span>parsed_page<span class="ansi-blue-fg">,</span> columns<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;classification&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;text&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;species&#39;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     32</span>     page_summary <span class="ansi-blue-fg">=</span> pd<span class="ansi-blue-fg">.</span>Series<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#34;Summary&#34;</span><span class="ansi-blue-fg">,</span> page<span class="ansi-blue-fg">.</span>summary<span class="ansi-blue-fg">,</span> page<span class="ansi-blue-fg">.</span>title<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span> index<span class="ansi-blue-fg">=</span>wiki_data<span class="ansi-blue-fg">.</span>columns<span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">~/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/wikipedia/wikipedia.py</span> in <span class="ansi-cyan-fg">section</span><span class="ansi-blue-fg">(self, section_title)</span>
-<span class="ansi-green-intense-fg ansi-bold">    667</span>     section <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">u&#34;== {} ==&#34;</span><span class="ansi-blue-fg">.</span>format<span class="ansi-blue-fg">(</span>section_title<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    668</span>     <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 669</span><span class="ansi-red-fg">       </span>index <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>content<span class="ansi-blue-fg">.</span>index<span class="ansi-blue-fg">(</span>section<span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">+</span> len<span class="ansi-blue-fg">(</span>section<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    670</span>     <span class="ansi-green-fg">except</span> ValueError<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    671</span>       <span class="ansi-green-fg">return</span> <span class="ansi-green-fg">None</span>
-
-<span class="ansi-green-fg">~/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/wikipedia/wikipedia.py</span> in <span class="ansi-cyan-fg">content</span><span class="ansi-blue-fg">(self)</span>
-<span class="ansi-green-intense-fg ansi-bold">    473</span>       <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    474</span>          query_params<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;pageids&#39;</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>pageid
-<span class="ansi-green-fg">--&gt; 475</span><span class="ansi-red-fg">       </span>request <span class="ansi-blue-fg">=</span> _wiki_request<span class="ansi-blue-fg">(</span>query_params<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    476</span>       self<span class="ansi-blue-fg">.</span>_content     <span class="ansi-blue-fg">=</span> request<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;query&#39;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;pages&#39;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">[</span>self<span class="ansi-blue-fg">.</span>pageid<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;extract&#39;</span><span class="ansi-blue-fg">]</span>
-<span class="ansi-green-intense-fg ansi-bold">    477</span>       self<span class="ansi-blue-fg">.</span>_revision_id <span class="ansi-blue-fg">=</span> request<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;query&#39;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;pages&#39;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">[</span>self<span class="ansi-blue-fg">.</span>pageid<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;revisions&#39;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;revid&#39;</span><span class="ansi-blue-fg">]</span>
-
-<span class="ansi-green-fg">~/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/wikipedia/wikipedia.py</span> in <span class="ansi-cyan-fg">_wiki_request</span><span class="ansi-blue-fg">(params)</span>
-<span class="ansi-green-intense-fg ansi-bold">    737</span>     time<span class="ansi-blue-fg">.</span>sleep<span class="ansi-blue-fg">(</span>int<span class="ansi-blue-fg">(</span>wait_time<span class="ansi-blue-fg">.</span>total_seconds<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    738</span> 
-<span class="ansi-green-fg">--&gt; 739</span><span class="ansi-red-fg">   </span>r <span class="ansi-blue-fg">=</span> requests<span class="ansi-blue-fg">.</span>get<span class="ansi-blue-fg">(</span>API_URL<span class="ansi-blue-fg">,</span> params<span class="ansi-blue-fg">=</span>params<span class="ansi-blue-fg">,</span> headers<span class="ansi-blue-fg">=</span>headers<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    740</span> 
-<span class="ansi-green-intense-fg ansi-bold">    741</span>   <span class="ansi-green-fg">if</span> RATE_LIMIT<span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">~/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/requests/api.py</span> in <span class="ansi-cyan-fg">get</span><span class="ansi-blue-fg">(url, params, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">     73</span> 
-<span class="ansi-green-intense-fg ansi-bold">     74</span>     kwargs<span class="ansi-blue-fg">.</span>setdefault<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;allow_redirects&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-green-fg">True</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">---&gt; 75</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">return</span> request<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;get&#39;</span><span class="ansi-blue-fg">,</span> url<span class="ansi-blue-fg">,</span> params<span class="ansi-blue-fg">=</span>params<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     76</span> 
-<span class="ansi-green-intense-fg ansi-bold">     77</span> 
-
-<span class="ansi-green-fg">~/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/requests/api.py</span> in <span class="ansi-cyan-fg">request</span><span class="ansi-blue-fg">(method, url, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">     58</span>     <span class="ansi-red-fg"># cases, and look like a memory leak in others.</span>
-<span class="ansi-green-intense-fg ansi-bold">     59</span>     <span class="ansi-green-fg">with</span> sessions<span class="ansi-blue-fg">.</span>Session<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">as</span> session<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">---&gt; 60</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">return</span> session<span class="ansi-blue-fg">.</span>request<span class="ansi-blue-fg">(</span>method<span class="ansi-blue-fg">=</span>method<span class="ansi-blue-fg">,</span> url<span class="ansi-blue-fg">=</span>url<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     61</span> 
-<span class="ansi-green-intense-fg ansi-bold">     62</span> 
-
-<span class="ansi-green-fg">~/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/requests/sessions.py</span> in <span class="ansi-cyan-fg">request</span><span class="ansi-blue-fg">(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)</span>
-<span class="ansi-green-intense-fg ansi-bold">    531</span>         }
-<span class="ansi-green-intense-fg ansi-bold">    532</span>         send_kwargs<span class="ansi-blue-fg">.</span>update<span class="ansi-blue-fg">(</span>settings<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">--&gt; 533</span><span class="ansi-red-fg">         </span>resp <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>send<span class="ansi-blue-fg">(</span>prep<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>send_kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    534</span> 
-<span class="ansi-green-intense-fg ansi-bold">    535</span>         <span class="ansi-green-fg">return</span> resp
-
-<span class="ansi-green-fg">~/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/requests/sessions.py</span> in <span class="ansi-cyan-fg">send</span><span class="ansi-blue-fg">(self, request, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">    666</span> 
-<span class="ansi-green-intense-fg ansi-bold">    667</span>         <span class="ansi-red-fg"># Resolve redirects if allowed.</span>
-<span class="ansi-green-fg">--&gt; 668</span><span class="ansi-red-fg">         </span>history <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span>resp <span class="ansi-green-fg">for</span> resp <span class="ansi-green-fg">in</span> gen<span class="ansi-blue-fg">]</span> <span class="ansi-green-fg">if</span> allow_redirects <span class="ansi-green-fg">else</span> <span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">]</span>
-<span class="ansi-green-intense-fg ansi-bold">    669</span> 
-<span class="ansi-green-intense-fg ansi-bold">    670</span>         <span class="ansi-red-fg"># Shuffle things around if there&#39;s history.</span>
-
-<span class="ansi-green-fg">~/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/requests/sessions.py</span> in <span class="ansi-cyan-fg">&lt;listcomp&gt;</span><span class="ansi-blue-fg">(.0)</span>
-<span class="ansi-green-intense-fg ansi-bold">    666</span> 
-<span class="ansi-green-intense-fg ansi-bold">    667</span>         <span class="ansi-red-fg"># Resolve redirects if allowed.</span>
-<span class="ansi-green-fg">--&gt; 668</span><span class="ansi-red-fg">         </span>history <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span>resp <span class="ansi-green-fg">for</span> resp <span class="ansi-green-fg">in</span> gen<span class="ansi-blue-fg">]</span> <span class="ansi-green-fg">if</span> allow_redirects <span class="ansi-green-fg">else</span> <span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">]</span>
-<span class="ansi-green-intense-fg ansi-bold">    669</span> 
-<span class="ansi-green-intense-fg ansi-bold">    670</span>         <span class="ansi-red-fg"># Shuffle things around if there&#39;s history.</span>
-
-<span class="ansi-green-fg">~/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/requests/sessions.py</span> in <span class="ansi-cyan-fg">resolve_redirects</span><span class="ansi-blue-fg">(self, resp, req, stream, timeout, verify, cert, proxies, yield_requests, **adapter_kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">    245</span>                     proxies<span class="ansi-blue-fg">=</span>proxies<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    246</span>                     allow_redirects<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">False</span><span class="ansi-blue-fg">,</span>
-<span class="ansi-green-fg">--&gt; 247</span><span class="ansi-red-fg">                     </span><span class="ansi-blue-fg">**</span>adapter_kwargs
-<span class="ansi-green-intense-fg ansi-bold">    248</span>                 )
-<span class="ansi-green-intense-fg ansi-bold">    249</span> 
-
-<span class="ansi-green-fg">~/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/requests/sessions.py</span> in <span class="ansi-cyan-fg">send</span><span class="ansi-blue-fg">(self, request, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">    644</span> 
-<span class="ansi-green-intense-fg ansi-bold">    645</span>         <span class="ansi-red-fg"># Send the request</span>
-<span class="ansi-green-fg">--&gt; 646</span><span class="ansi-red-fg">         </span>r <span class="ansi-blue-fg">=</span> adapter<span class="ansi-blue-fg">.</span>send<span class="ansi-blue-fg">(</span>request<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    647</span> 
-<span class="ansi-green-intense-fg ansi-bold">    648</span>         <span class="ansi-red-fg"># Total elapsed time of the request (approximately)</span>
-
-<span class="ansi-green-fg">~/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/requests/adapters.py</span> in <span class="ansi-cyan-fg">send</span><span class="ansi-blue-fg">(self, request, stream, timeout, verify, cert, proxies)</span>
-<span class="ansi-green-intense-fg ansi-bold">    514</span>                 <span class="ansi-green-fg">raise</span> SSLError<span class="ansi-blue-fg">(</span>e<span class="ansi-blue-fg">,</span> request<span class="ansi-blue-fg">=</span>request<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    515</span> 
-<span class="ansi-green-fg">--&gt; 516</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">raise</span> ConnectionError<span class="ansi-blue-fg">(</span>e<span class="ansi-blue-fg">,</span> request<span class="ansi-blue-fg">=</span>request<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    517</span> 
-<span class="ansi-green-intense-fg ansi-bold">    518</span>         <span class="ansi-green-fg">except</span> ClosedPoolError <span class="ansi-green-fg">as</span> e<span class="ansi-blue-fg">:</span>
-
-<span class="ansi-red-fg">ConnectionError</span>: HTTPSConnectionPool(host=&#39;en.wikipedia.org&#39;, port=443): Max retries exceeded with url: /w/api.php?prop=extracts%7Crevisions&amp;explaintext=&amp;rvprop=ids&amp;titles=List+of+flora+of+Greenland&amp;format=json&amp;action=query (Caused by NewConnectionError(&#39;&lt;urllib3.connection.VerifiedHTTPSConnection object at 0x1a276f2850&gt;: Failed to establish a new connection: [Errno 60] Operation timed out&#39;))</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Import of Wikipedia dataset</span>
-<span class="c1"># wiki = pd.read_csv(&quot;../data/raw/cirsium_arvense_wikipedia.csv&quot;, index_col=None)</span>
-<span class="n">wiki</span> <span class="o">=</span> <span class="n">wiki_data</span>
+<span class="n">wiki</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/processed/combined.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="n">test_indices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">flora_data_frame</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">flora_data_frame</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">wiki</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 <span class="n">flora_data_frame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">flora_data_frame</span><span class="p">,</span> <span class="n">wiki</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">flora_data_frame</span>
+
+<span class="c1"># Get rid of key classification</span>
+<span class="n">flora_data_frame</span><span class="o">.</span><span class="n">classification</span><span class="p">[</span><span class="n">flora_data_frame</span><span class="o">.</span><span class="n">classification</span> <span class="o">==</span> <span class="s2">&quot;key&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;morphology&quot;</span>
 </pre></div>
 
     </div>
@@ -13492,21 +13171,21 @@ During handling of the above exception, another exception occurred:
 
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>/Users/jocelynpender/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/ipykernel_launcher.py:5: FutureWarning: Sorting because non-concatenation axis is not aligned. A future version
+<pre>/Users/jocelynpender/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/ipykernel_launcher.py:4: FutureWarning: Sorting because non-concatenation axis is not aligned. A future version
 of pandas will change to not sort by default.
 
 To accept the future behavior, pass &#39;sort=False&#39;.
 
 To retain the current behavior and silence the warning, pass &#39;sort=True&#39;.
 
-  &#34;&#34;&#34;
+  after removing the cwd from sys.path.
 </pre>
 </div>
 </div>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[4]:</div>
+    <div class="prompt output_prompt">Out[6]:</div>
 
 
 
@@ -13529,6 +13208,7 @@ To retain the current behavior and silence the warning, pass &#39;sort=True&#39;
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>Unnamed: 0</th>
       <th>classification</th>
       <th>dataset_name</th>
       <th>length</th>
@@ -13541,6 +13221,7 @@ To retain the current behavior and silence the warning, pass &#39;sort=True&#39;
   <tbody>
     <tr>
       <td>0</td>
+      <td>NaN</td>
       <td>habitat</td>
       <td>bc</td>
       <td>267.0</td>
@@ -13551,6 +13232,7 @@ To retain the current behavior and silence the warning, pass &#39;sort=True&#39;
     </tr>
     <tr>
       <td>1</td>
+      <td>NaN</td>
       <td>habitat</td>
       <td>fna</td>
       <td>78.0</td>
@@ -13561,6 +13243,7 @@ To retain the current behavior and silence the warning, pass &#39;sort=True&#39;
     </tr>
     <tr>
       <td>2</td>
+      <td>NaN</td>
       <td>morphology</td>
       <td>bc</td>
       <td>27.0</td>
@@ -13571,6 +13254,7 @@ To retain the current behavior and silence the warning, pass &#39;sort=True&#39;
     </tr>
     <tr>
       <td>3</td>
+      <td>NaN</td>
       <td>taxon_identification</td>
       <td>fna</td>
       <td>251.0</td>
@@ -13581,6 +13265,7 @@ To retain the current behavior and silence the warning, pass &#39;sort=True&#39;
     </tr>
     <tr>
       <td>4</td>
+      <td>NaN</td>
       <td>habitat</td>
       <td>bc</td>
       <td>194.0</td>
@@ -13598,60 +13283,66 @@ To retain the current behavior and silence the warning, pass &#39;sort=True&#39;
       <td>...</td>
       <td>...</td>
       <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
-      <td>19271</td>
-      <td>Organic</td>
+      <td>59339</td>
+      <td>56.0</td>
+      <td>Varieties</td>
+      <td>wikipedia</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Control methods include cutting at flower stem...</td>
+      <td>Astragalus purshii</td>
+      <td>There are many varieties of Astragalus purshii...</td>
     </tr>
     <tr>
-      <td>19272</td>
-      <td>Chemical</td>
+      <td>59340</td>
+      <td>57.0</td>
+      <td>Cultivation</td>
+      <td>wikipedia</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Applying herbicide: Herbicides dominated by ph...</td>
+      <td>Astragalus purshii</td>
+      <td>Astragalus purshii is cultivated as an ornamen...</td>
     </tr>
     <tr>
-      <td>19273</td>
-      <td>Uses</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Like other Cirsium species, the roots are edib...</td>
-    </tr>
-    <tr>
-      <td>19274</td>
+      <td>59341</td>
+      <td>58.0</td>
       <td>References</td>
+      <td>wikipedia</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>Astragalus purshii</td>
       <td>NaN</td>
-      <td>NaN</td>
-      <td></td>
     </tr>
     <tr>
-      <td>19275</td>
+      <td>59342</td>
+      <td>59.0</td>
       <td>External links</td>
+      <td>wikipedia</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>Astragalus purshii</td>
+      <td>Jepson Manual Treatment — Astragalus purshii\n...</td>
+    </tr>
+    <tr>
+      <td>59343</td>
+      <td>60.0</td>
+      <td>Summary</td>
+      <td>wikipedia</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>Tiley, G.E.D. "Biological Flora of the British...</td>
+      <td>NaN</td>
+      <td>Astragalus purshii</td>
+      <td>Astragalus purshii is a species of milkvetch k...</td>
     </tr>
   </tbody>
 </table>
-<p>19276 rows × 7 columns</p>
+<p>59344 rows × 8 columns</p>
 </div>
 </div>
 
@@ -13663,197 +13354,7 @@ To retain the current behavior and silence the warning, pass &#39;sort=True&#39;
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Get rid of key classification</span>
-<span class="n">flora_data_frame</span><span class="o">.</span><span class="n">classification</span><span class="p">[</span><span class="n">flora_data_frame</span><span class="o">.</span><span class="n">classification</span> <span class="o">==</span> <span class="s2">&quot;key&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;morphology&quot;</span>
-<span class="n">flora_data_frame</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>/Users/jocelynpender/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/ipykernel_launcher.py:2: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame
-
-See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[20]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>classification</th>
-      <th>dataset_name</th>
-      <th>length</th>
-      <th>row</th>
-      <th>row_id</th>
-      <th>species</th>
-      <th>text</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>0</td>
-      <td>habitat</td>
-      <td>bc</td>
-      <td>267.0</td>
-      <td>NaN</td>
-      <td>5721.0</td>
-      <td>Festuca saximontana var. saximontana</td>
-      <td>Mesic to dry meadows, grasslands, rocky slopes...</td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>habitat</td>
-      <td>fna</td>
-      <td>78.0</td>
-      <td>NaN</td>
-      <td>9819.0</td>
-      <td>NaN</td>
-      <td>Rock, outcrops, calcareous and volcanic boulde...</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>morphology</td>
-      <td>bc</td>
-      <td>27.0</td>
-      <td>NaN</td>
-      <td>2305.0</td>
-      <td>Epilobium glaberrimum</td>
-      <td>Blooming Period Mid Summer</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>taxon_identification</td>
-      <td>fna</td>
-      <td>251.0</td>
-      <td>NaN</td>
-      <td>6636.0</td>
-      <td>NaN</td>
-      <td>asteraceae family Martinov unknown senecioneae...</td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>habitat</td>
-      <td>bc</td>
-      <td>194.0</td>
-      <td>NaN</td>
-      <td>7239.0</td>
-      <td>Aquilegia formosa</td>
-      <td>Mesic to moist meadows, rocky slopes, thickets...</td>
-    </tr>
-    <tr>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <td>19271</td>
-      <td>Organic</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Control methods include cutting at flower stem...</td>
-    </tr>
-    <tr>
-      <td>19272</td>
-      <td>Chemical</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Applying herbicide: Herbicides dominated by ph...</td>
-    </tr>
-    <tr>
-      <td>19273</td>
-      <td>Uses</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Like other Cirsium species, the roots are edib...</td>
-    </tr>
-    <tr>
-      <td>19274</td>
-      <td>References</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>19275</td>
-      <td>External links</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Tiley, G.E.D. "Biological Flora of the British...</td>
-    </tr>
-  </tbody>
-</table>
-<p>19276 rows × 7 columns</p>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Customize stop words for model</span>
@@ -13888,14 +13389,21 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    <div class="prompt output_prompt">Out[14]:</div>
 
 
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>(19276, 40712)
-(19276, 7)
-</pre>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[0, 0, 0, ..., 0, 0, 0],
+       [0, 0, 0, ..., 0, 0, 0],
+       [0, 0, 0, ..., 0, 0, 0],
+       ...,
+       [0, 0, 0, ..., 0, 0, 0],
+       [0, 0, 0, ..., 0, 0, 0],
+       [0, 0, 0, ..., 0, 0, 0]])</pre>
 </div>
+
 </div>
 
 </div>
@@ -13904,7 +13412,7 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Prepare data for the model</span>
@@ -13918,10 +13426,57 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">--------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">IndexError</span>                               Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-15-ceef403ae512&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span> X_train <span class="ansi-blue-fg">=</span> dtm_text_counts<span class="ansi-blue-fg">[</span>train_indices<span class="ansi-blue-fg">]</span>
+<span class="ansi-green-intense-fg ansi-bold">      3</span> y_train <span class="ansi-blue-fg">=</span> flora_data_frame<span class="ansi-blue-fg">.</span>iloc<span class="ansi-blue-fg">[</span>train_indices<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">.</span>classification
+<span class="ansi-green-fg">----&gt; 4</span><span class="ansi-red-fg"> </span>X_test <span class="ansi-blue-fg">=</span> dtm_text_counts<span class="ansi-blue-fg">[</span>test_indices<span class="ansi-blue-fg">]</span>
+<span class="ansi-green-intense-fg ansi-bold">      5</span> y_test <span class="ansi-blue-fg">=</span> flora_data_frame<span class="ansi-blue-fg">.</span>iloc<span class="ansi-blue-fg">[</span>test_indices<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">.</span>classification
+
+<span class="ansi-green-fg">~/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/scipy/sparse/_index.py</span> in <span class="ansi-cyan-fg">__getitem__</span><span class="ansi-blue-fg">(self, key)</span>
+<span class="ansi-green-intense-fg ansi-bold">     33</span>     &#34;&#34;&#34;
+<span class="ansi-green-intense-fg ansi-bold">     34</span>     <span class="ansi-green-fg">def</span> __getitem__<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> key<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">---&gt; 35</span><span class="ansi-red-fg">         </span>row<span class="ansi-blue-fg">,</span> col <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>_validate_indices<span class="ansi-blue-fg">(</span>key<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     36</span>         <span class="ansi-red-fg"># Dispatch to specialized methods.</span>
+<span class="ansi-green-intense-fg ansi-bold">     37</span>         <span class="ansi-green-fg">if</span> isinstance<span class="ansi-blue-fg">(</span>row<span class="ansi-blue-fg">,</span> INT_TYPES<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">~/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/scipy/sparse/_index.py</span> in <span class="ansi-cyan-fg">_validate_indices</span><span class="ansi-blue-fg">(self, key)</span>
+<span class="ansi-green-intense-fg ansi-bold">    138</span>                 row <span class="ansi-blue-fg">+=</span> M
+<span class="ansi-green-intense-fg ansi-bold">    139</span>         <span class="ansi-green-fg">elif</span> <span class="ansi-green-fg">not</span> isinstance<span class="ansi-blue-fg">(</span>row<span class="ansi-blue-fg">,</span> slice<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 140</span><span class="ansi-red-fg">             </span>row <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>_asindices<span class="ansi-blue-fg">(</span>row<span class="ansi-blue-fg">,</span> M<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    141</span> 
+<span class="ansi-green-intense-fg ansi-bold">    142</span>         <span class="ansi-green-fg">if</span> isintlike<span class="ansi-blue-fg">(</span>col<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">~/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/scipy/sparse/_index.py</span> in <span class="ansi-cyan-fg">_asindices</span><span class="ansi-blue-fg">(self, idx, length)</span>
+<span class="ansi-green-intense-fg ansi-bold">    170</span>         max_indx <span class="ansi-blue-fg">=</span> x<span class="ansi-blue-fg">.</span>max<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    171</span>         <span class="ansi-green-fg">if</span> max_indx <span class="ansi-blue-fg">&gt;=</span> length<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 172</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">raise</span> IndexError<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;index (%d) out of range&#39;</span> <span class="ansi-blue-fg">%</span> max_indx<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    173</span> 
+<span class="ansi-green-intense-fg ansi-bold">    174</span>         min_indx <span class="ansi-blue-fg">=</span> x<span class="ansi-blue-fg">.</span>min<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-red-fg">IndexError</span>: index (59343) out of range</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">MultinomialNB</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
@@ -13936,213 +13491,6 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[7]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>classification</th>
-      <th>predictions</th>
-      <th>classification</th>
-      <th>dataset_name</th>
-      <th>length</th>
-      <th>row</th>
-      <th>row_id</th>
-      <th>species</th>
-      <th>text</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>19263</td>
-      <td>Description</td>
-      <td>key</td>
-      <td>Description</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Cirsium arvense is a C3 carbon fixation plant....</td>
-    </tr>
-    <tr>
-      <td>19264</td>
-      <td>Underground network</td>
-      <td>morphology</td>
-      <td>Underground network</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Its underground structure consists of four typ...</td>
-    </tr>
-    <tr>
-      <td>19265</td>
-      <td>Shoots and leaves</td>
-      <td>morphology</td>
-      <td>Shoots and leaves</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Stems are 30–150 cm, slender green, and freely...</td>
-    </tr>
-    <tr>
-      <td>19266</td>
-      <td>Flowers and seeds</td>
-      <td>morphology</td>
-      <td>Flowers and seeds</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>The inflorescence is 10–22 mm (0.39–0.87 in) i...</td>
-    </tr>
-    <tr>
-      <td>19267</td>
-      <td>Varieties</td>
-      <td>key</td>
-      <td>Varieties</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Variation in leaf characters (texture, vestitu...</td>
-    </tr>
-    <tr>
-      <td>19268</td>
-      <td>Ecology</td>
-      <td>taxon_identification</td>
-      <td>Ecology</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>The seeds are an important food for the goldfi...</td>
-    </tr>
-    <tr>
-      <td>19269</td>
-      <td>Status as a weed</td>
-      <td>habitat</td>
-      <td>Status as a weed</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>The species is widely considered a weed even w...</td>
-    </tr>
-    <tr>
-      <td>19270</td>
-      <td>Control</td>
-      <td>morphology</td>
-      <td>Control</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>19271</td>
-      <td>Organic</td>
-      <td>habitat</td>
-      <td>Organic</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Control methods include cutting at flower stem...</td>
-    </tr>
-    <tr>
-      <td>19272</td>
-      <td>Chemical</td>
-      <td>habitat</td>
-      <td>Chemical</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Applying herbicide: Herbicides dominated by ph...</td>
-    </tr>
-    <tr>
-      <td>19273</td>
-      <td>Uses</td>
-      <td>habitat</td>
-      <td>Uses</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Like other Cirsium species, the roots are edib...</td>
-    </tr>
-    <tr>
-      <td>19274</td>
-      <td>References</td>
-      <td>morphology</td>
-      <td>References</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>19275</td>
-      <td>External links</td>
-      <td>taxon_identification</td>
-      <td>External links</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Tiley, G.E.D. "Biological Flora of the British...</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
 </div>
 </div>
 

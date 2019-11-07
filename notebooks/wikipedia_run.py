@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[113]:
+# In[1]:
 
 
 # Auto update of packages within the notebook
@@ -36,42 +36,19 @@ flora_data_frame = pd.read_csv("../data/processed/flora_data_frame_full.csv", in
 train_indices = list(range(0, flora_data_frame.shape[0]))
 
 
-# In[89]:
-
-
-species_list = list(flora_data_frame.species.unique())
-species_list = [species for species in species_list if str(species) != 'nan'] # Remove nan species names
-
-
-# In[117]:
-
-
-batches = [species_list[i: i+10] for i in range(0, len(species_list), 10)]
-for num, batch in enumerate(batches):
-    print(num)
-    make_wiki_data_frame(batch)
-
-
-# In[4]:
+# In[6]:
 
 
 # Import of Wikipedia dataset
-# wiki = pd.read_csv("../data/raw/cirsium_arvense_wikipedia.csv", index_col=None)
-wiki = wiki_data
+wiki = pd.read_csv("../data/processed/combined.csv", index_col=None)
 test_indices = list(range(flora_data_frame.shape[0] + 1, flora_data_frame.shape[0] + wiki.shape[0]))
 flora_data_frame = pd.concat([flora_data_frame, wiki], ignore_index=True)
-flora_data_frame
-
-
-# In[20]:
-
 
 # Get rid of key classification
 flora_data_frame.classification[flora_data_frame.classification == "key"] = "morphology"
-flora_data_frame
 
 
-# In[5]:
+# In[14]:
 
 
 # Customize stop words for model
@@ -83,7 +60,7 @@ custom_vec, dtm_text_counts = build_dtm_text_counts(features.flora_tokenizer, to
 dtm_text_counts.toarray()
 
 
-# In[6]:
+# In[15]:
 
 
 # Prepare data for the model
@@ -93,7 +70,7 @@ X_test = dtm_text_counts[test_indices]
 y_test = flora_data_frame.iloc[test_indices].classification
 
 
-# In[7]:
+# In[ ]:
 
 
 clf = MultinomialNB().fit(X_train, y_train)
