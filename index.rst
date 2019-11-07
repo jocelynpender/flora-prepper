@@ -1,20 +1,16 @@
-.. flora-prepper documentation master file, created by
-   sphinx-quickstart.
+.. Flora Prepper documentation master file, created by
+   sphinx-quickstart on Thu Nov  7 13:32:08 2019.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-flora-prepper documentation!
-==============================================
-
-Contents:
+Welcome to Flora Prepper's documentation!
+=========================================
 
 .. toctree::
    :maxdepth: 2
+   :caption: Contents:
 
-   getting-started
-   commands
 
-.. automodule:: data.make_budds
 
 Indices and tables
 ==================
