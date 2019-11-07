@@ -15,7 +15,7 @@ def read_fna_csv(fna_filepath):
     return fna
 
 
-def make_fna_data_frame(fna_filepath="data/external/fna_with_habitat.csv",
+def make_fna_data_frame(fna_filepath="data/raw/fna_with_habitat.csv",
                         frac_to_sample=0.1, balance_categories=False,
                         categories_to_keep=["key", "morphology", "taxon_identification", "distribution", "habitat"],
                         rename_habitat=True):

@@ -34,7 +34,7 @@ def merge_bc_columns(bc):
     assert len(bc.columns) == 3, 'Reformatted data frame does not have three columns'
     return bc # BC data frame has artefacts of the scrape. TODO deal with this.
 
-def make_bc_data_frame(bc_filepath="data/external/eflora-bc-full_no-id.csv", frac_to_sample=1,
+def make_bc_data_frame(bc_filepath="data/raw/eflora_bc.csv", frac_to_sample=1,
                        balance_categories=True, categories_to_keep=["key", "morphology", "taxon_identification",
                                                                     "habitat", "discussion"]):
     """Perform requisite import tasks for E-Flora BC Data.

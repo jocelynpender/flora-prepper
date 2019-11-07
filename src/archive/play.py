@@ -18,13 +18,13 @@ from src.visualization.visualize import *
 from src.features.build_features import *
 import numpy as np
 
-fna = make_fna_data_frame(fna_filepath="../data/external/fna_with_habitat.csv", frac_to_sample=0.1, balance_categories=True,
+fna = make_fna_data_frame(fna_filepath="../data/raw/fna_with_habitat.csv", frac_to_sample=0.1, balance_categories=True,
                           categories_to_keep=["key", "morphology", "taxon_identification",
                                               "distribution", "discussion", "habitat"])
-bc = make_bc_data_frame(bc_filepath="../data/external/eflora-bc-full_no-id.csv",
+bc = make_bc_data_frame(bc_filepath="../data/raw/eflora_bc.csv",
                         frac_to_sample=0.13, balance_categories=True,
                         categories_to_keep=["key", "morphology", "taxon_identification", "habitat", "discussion"])
-budds = make_budds_data_frame(budds_file_path="../data/external/buddsfloraofcana00otta_djvu.xml", frac_to_sample=1,
+budds = make_budds_data_frame(budds_file_path="../data/raw/buddsfloraofcana00otta_djvu.xml", frac_to_sample=1,
                               balance_categories=True)
 flora_data_frame = pd.concat([fna, bc, budds], keys=['fna', 'bc', 'budds'], names=['dataset_name', 'row_id'])
 
