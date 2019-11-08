@@ -6,7 +6,13 @@ import numpy as np
 
 
 def print_top10(vectorizer, clf, class_labels): # https://stackoverflow.com/questions/11116697/how-to-get-most-informative-features-for-scikit-learn-classifiers
-    """Prints features with the highest coefficient values, per class"""
+    """Prints features with the highest coefficient values, per class
+
+    :param vectorizer:
+    :param clf:
+    :param class_labels:
+    :return:
+    """
     feature_names = vectorizer.get_feature_names()
     for i, class_label in enumerate(class_labels):
         top10 = np.argsort(clf.coef_[i])[-10:]
@@ -15,8 +21,15 @@ def print_top10(vectorizer, clf, class_labels): # https://stackoverflow.com/ques
 
 
 def run_model(text_counts, flora_data_frame, feature_rank=False, custom_vec=None):
-    """Builds training and testing set using flora_data_frame classification and runs model on text counts (
-    features). """
+    """
+    Builds training and testing set using flora_data_frame classification and runs model on text counts (
+    features).
+    :param text_counts:
+    :param flora_data_frame:
+    :param feature_rank:
+    :param custom_vec:
+    :return:
+    """
     X_train, X_test, y_train, y_test = build_train_test_split(text_counts, flora_data_frame)
     clf = MultinomialNB().fit(X_train, y_train)
     predicted = clf.predict(X_test)
@@ -32,6 +45,12 @@ def run_model(text_counts, flora_data_frame, feature_rank=False, custom_vec=None
 
 
 def zero_rule_algorithm_classification(train, test): # A baseline model. Compare performance of NB to this model
+    """
+
+    :param train:
+    :param test:
+    :return:
+    """
     output_values = [row[-1] for row in train] # [-1] is useful when you don’t have the length of the container,
     # and want to reference a position relative to the last index without having to calculate the length.
     prediction = max(set(output_values), key=output_values.count) # returns the class value that has the highest
@@ -42,3 +61,8 @@ def zero_rule_algorithm_classification(train, test): # A baseline model. Compare
 
 # other things to try: 1-gram vs. 2-gram
 # Test bigrams/unigrams
+
+#def main():
+ #   custom_vec, dtm_text_counts = build_dtm_text_counts(features.flora_tokenizer, tokenized_stop_words,
+  #                                                      flora_data_frame)
+   # dtm_y_test, dtm_predictions = run_model(dtm_text_counts, flora_data_frame, feature_rank=True, custom_vec)

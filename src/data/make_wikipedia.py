@@ -74,7 +74,7 @@ def main(batch_start=1):
         batch_start = option to begin running of the script with any of the batches
     :return: combined.csv
     """
-    flora_data_frame = pd.read_csv("../../data/processed/flora_data_frame_full.csv", index_col=0)
+    flora_data_frame = pd.read_csv("../../data/processed/flora_data_frame.csv", index_col=0)
     species_list = list(flora_data_frame.species.unique())
     species_list = [species for species in species_list if str(species) != 'nan']  # Remove nan species names
     batch_download(species_list, batch_start)

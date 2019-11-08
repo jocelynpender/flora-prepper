@@ -26,8 +26,8 @@ def flora_tokenizer(string, numbers=False, short_words=False, punctuation=False,
 
 
 def flora_tokenizer_clean(string):
-    """Apply custom tokenization to fna strings. This function is deployed in a number of different model variations.
-    When punctuation is set = True, removes brackets, semi-colons, apostrophes.
+    """Apply custom tokenization to fna strings, as opposed to the flora_tokenizer function.
+    This function is deployed in a number of different model variations.
 
     :param:
         A string
@@ -42,6 +42,14 @@ def flora_tokenizer_clean(string):
 
 
 def process_string_with_cleaning_regime(string):
+    """Used for development of the clean flora tokenizer.
+    Removes,
+    numbers, short words, punctuation, stems and lemmatizes words
+    :param string:
+    Input is a tokenized string as a list format
+    :return:
+    a tokenized and cleaned string
+    """
     assert type(string) == list, 'Input not list format'
     string = [word for word in string if not word.isdigit()]  # https://stackoverflow.com/questions
     # /12199757/python-ternary-operator-without-else/51261735
@@ -59,7 +67,7 @@ def process_string_with_cleaning_regime(string):
 
 def process_text(text, tokenized_stop_words, to_lower=False, top_words=None, clean=False):
     """This function is used to mimic nltk processing when visualizing or otherwise viewing data. This is not linked
-    to the nltk vectorizer object"""
+    to the nltk vectorizer objects, build_dtm_text_counts and build_tfidf_text_counts"""
     if clean:
         processed_text = flora_tokenizer_clean(text)  # Tokenize and clean
     else:
