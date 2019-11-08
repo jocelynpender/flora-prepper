@@ -28,7 +28,7 @@ You can build your own using:
 
 #### (Optional) Wikipedia library for Wikipedia page scraping
 
-One library requirement may require manual intervention. Section titles are not properly extracted using the latest release of the Wikipedia Python library. Therefore, to download your Wikipedia library, use
+Installing the Wikipedia library may require manual intervention. Section titles are not properly extracted using the latest release of the Wikipedia Python library. Therefore, to download your Wikipedia library, use
 
 Use `pip install git+https://github.com/lucasdnd/Wikipedia.git`
 This issue has been flagged and resolved via https://stackoverflow.com/questions/34869597/wikipedia-api-for-python/35122688#35122688
@@ -37,6 +37,12 @@ This issue has been flagged and resolved via https://stackoverflow.com/questions
 
 To deploy the latest version of the model, run:
 
+
+#### Run full data pipeline (optional)
+
+If you want to build the model from scratch, I've created some make commands that run the default dataset build, feature builds and model training. 
+
+Most of the parameters I've decided to use for my default model are hard-coded as custom function parameters. You'll have to consult the code to see what is being run.
 
 ## Project organization
 

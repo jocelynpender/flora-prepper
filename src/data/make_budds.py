@@ -1,7 +1,8 @@
 import lxml
 from lxml import etree
 import pandas as pd
-from src.data.make_helper_functions import *
+
+from make_helper_functions import *
 
 
 def return_text_series(tree, path):

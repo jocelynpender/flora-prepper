@@ -1,4 +1,4 @@
-from src.data.make_helper_functions import *
+from make_helper_functions import *
 import numpy as np
 import pandas as pd
 
