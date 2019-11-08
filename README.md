@@ -10,7 +10,7 @@ The goal is to:
 1. Prepare flora documents for more fine-grained parsing and data integration by annotating data types ("classifications")
 
 ## Read the poster for details
-https://github.com/jocelynpender/flora-prepper/blob/master/reports/TDWG2019%20Poster%20PenderJ.pdf
+![flora-prepper](reports/TDWG2019%20Poster%20PenderJ.pdf)
 
 ## Getting started
 
@@ -33,16 +33,16 @@ Installing the Wikipedia library may require manual intervention. Section titles
 Use `pip install git+https://github.com/lucasdnd/Wikipedia.git`
 This issue has been flagged and resolved via https://stackoverflow.com/questions/34869597/wikipedia-api-for-python/35122688#35122688
 
-### Install
+### Run the model
 
-First, test your environment:
+First, test your environment using:
 `make requirements`
 
 To deploy the latest version of the model, you'll need:
-Your test dataset file, in CSV format, e.g., `test_dataset.csv`
-The name of the column containing text, e.g., `dataset_column_name_containing_text`
+* A test dataset file, in CSV format, e.g., `test_dataset.csv`
+* The name of the column containing text, e.g., `dataset_column_name_containing_text`
 
-The run:
+The run this one-liner in your terminal:
 `python3 src/predict_model.py test_dataset.csv dataset_column_name_containing_text models/classifier_model models/custom_vec reports/`
 
 #### Run full data pipeline (optional)
@@ -51,10 +51,10 @@ If you want to build the model from scratch, I've created some make commands tha
 
 Most of the parameters I've decided to use for my default model are hard-coded as custom function parameters. You'll have to consult the code to see what is being run.
 
-`make data`: This builds the training dataset from raw to processed. 
-`make features`: This command constructs the requisite vectorizer and document-term-matrix to build the Naive Bayes model.
-`make model`: The model is built using the vectorizer and document-term-matrix from above.
-`make predict`: Runs a model prediction on Wikipedia page strings.
+* `make data`: This builds the training dataset from raw to processed. 
+* `make features`: This command constructs the requisite vectorizer and document-term-matrix to build the Naive Bayes model.
+* `make model`: The model is built using the vectorizer and document-term-matrix from above.
+* `make predict`: Runs a model prediction on Wikipedia page strings.
 
 ## Project organization
 
@@ -122,9 +122,12 @@ Most of the parameters I've decided to use for my default model are hard-coded a
 
 ## License
 
+![flora-prepper](LICENSE)
+
 ## People first
 
 ### Collaborations
+If you have a use case for this project, and would like to contribute or collaborate, please contact me at pender.jocelyn@gmail.com
 
 ### Data credits
 The training data is currently not included in this repository. However, I would like to credit the data providers nonetheless.
