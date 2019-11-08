@@ -8,7 +8,7 @@ import joblib
 
 import pandas as pd
 
-from features import build_dtm_text_counts, flora_tokenizer, prepare_stop_words
+from features import prepare_stop_words
 
 
 def main(test_file_path, col_name, model_path, custom_vec_path, results_path):

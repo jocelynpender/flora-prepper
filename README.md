@@ -10,7 +10,7 @@ The goal is to:
 1. Prepare flora documents for more fine-grained parsing and data integration by annotating data types ("classifications")
 
 ## Read the poster for details
-![flora-prepper](reports/TDWG2019%20Poster%20PenderJ.pdf)
+[Poster](reports/TDWG2019%20Poster%20PenderJ.pdf)
 
 ## Getting started
 
@@ -40,12 +40,12 @@ First, test your environment using:
 
 To deploy the latest version of the model, you'll need:
 * A test dataset file, in CSV format, e.g., `test_dataset.csv`
-* The name of the column containing text, e.g., `dataset_column_name_containing_text`
+* The name of the column containing text, e.g., `dataset_column_text`
 
 The run this one-liner in your terminal:
-`python3 src/predict_model.py test_dataset.csv dataset_column_name_containing_text models/classifier_model models/custom_vec reports/`
+`python3 src/predict_model.py test_dataset.csv dataset_column_text models/classifier_model models/custom_vec reports/`
 
-#### Run full data pipeline (optional)
+#### (Optional) Run full data pipeline
 
 If you want to build the model from scratch, I've created some make commands that run the default dataset build, feature builds and model training. 
 
@@ -122,7 +122,7 @@ Most of the parameters I've decided to use for my default model are hard-coded a
 
 ## License
 
-![flora-prepper](LICENSE)
+[License](LICENSE)
 
 ## People first
 
