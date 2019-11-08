@@ -13091,7 +13091,7 @@ div#notebook {
 <span class="kn">import</span> <span class="nn">wikipedia</span>
 
 <span class="c1"># Import custom modelling code</span>
-<span class="n">module_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;../&#39;</span><span class="p">))</span>
+<span class="n">module_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;../../&#39;</span><span class="p">))</span>
 <span class="k">if</span> <span class="n">module_path</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
     <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">module_path</span><span class="p">)</span>
 
@@ -13134,7 +13134,7 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Import model training data</span>
-<span class="n">flora_data_frame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/processed/flora_data_frame_full.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">flora_data_frame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../../data/processed/flora_data_frame_full.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">train_indices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">flora_data_frame</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 </pre></div>
 
@@ -13145,11 +13145,11 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Import of Wikipedia dataset</span>
-<span class="n">wiki</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/processed/combined.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">wiki</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../../data/processed/combined_wikidata.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="n">test_indices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">flora_data_frame</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">flora_data_frame</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">wiki</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 <span class="n">flora_data_frame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">flora_data_frame</span><span class="p">,</span> <span class="n">wiki</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
@@ -13179,173 +13179,13 @@ To accept the future behavior, pass &#39;sort=False&#39;.
 To retain the current behavior and silence the warning, pass &#39;sort=True&#39;.
 
   after removing the cwd from sys.path.
+/Users/jocelynpender/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/ipykernel_launcher.py:7: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  import sys
 </pre>
 </div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[6]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Unnamed: 0</th>
-      <th>classification</th>
-      <th>dataset_name</th>
-      <th>length</th>
-      <th>row</th>
-      <th>row_id</th>
-      <th>species</th>
-      <th>text</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>0</td>
-      <td>NaN</td>
-      <td>habitat</td>
-      <td>bc</td>
-      <td>267.0</td>
-      <td>NaN</td>
-      <td>5721.0</td>
-      <td>Festuca saximontana var. saximontana</td>
-      <td>Mesic to dry meadows, grasslands, rocky slopes...</td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>NaN</td>
-      <td>habitat</td>
-      <td>fna</td>
-      <td>78.0</td>
-      <td>NaN</td>
-      <td>9819.0</td>
-      <td>NaN</td>
-      <td>Rock, outcrops, calcareous and volcanic boulde...</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>NaN</td>
-      <td>morphology</td>
-      <td>bc</td>
-      <td>27.0</td>
-      <td>NaN</td>
-      <td>2305.0</td>
-      <td>Epilobium glaberrimum</td>
-      <td>Blooming Period Mid Summer</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>NaN</td>
-      <td>taxon_identification</td>
-      <td>fna</td>
-      <td>251.0</td>
-      <td>NaN</td>
-      <td>6636.0</td>
-      <td>NaN</td>
-      <td>asteraceae family Martinov unknown senecioneae...</td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>NaN</td>
-      <td>habitat</td>
-      <td>bc</td>
-      <td>194.0</td>
-      <td>NaN</td>
-      <td>7239.0</td>
-      <td>Aquilegia formosa</td>
-      <td>Mesic to moist meadows, rocky slopes, thickets...</td>
-    </tr>
-    <tr>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <td>59339</td>
-      <td>56.0</td>
-      <td>Varieties</td>
-      <td>wikipedia</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Astragalus purshii</td>
-      <td>There are many varieties of Astragalus purshii...</td>
-    </tr>
-    <tr>
-      <td>59340</td>
-      <td>57.0</td>
-      <td>Cultivation</td>
-      <td>wikipedia</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Astragalus purshii</td>
-      <td>Astragalus purshii is cultivated as an ornamen...</td>
-    </tr>
-    <tr>
-      <td>59341</td>
-      <td>58.0</td>
-      <td>References</td>
-      <td>wikipedia</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Astragalus purshii</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <td>59342</td>
-      <td>59.0</td>
-      <td>External links</td>
-      <td>wikipedia</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Astragalus purshii</td>
-      <td>Jepson Manual Treatment — Astragalus purshii\n...</td>
-    </tr>
-    <tr>
-      <td>59343</td>
-      <td>60.0</td>
-      <td>Summary</td>
-      <td>wikipedia</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Astragalus purshii</td>
-      <td>Astragalus purshii is a species of milkvetch k...</td>
-    </tr>
-  </tbody>
-</table>
-<p>59344 rows × 8 columns</p>
-</div>
-</div>
-
 </div>
 
 </div>
@@ -13354,7 +13194,7 @@ To retain the current behavior and silence the warning, pass &#39;sort=True&#39;
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Customize stop words for model</span>
@@ -13389,7 +13229,7 @@ To retain the current behavior and silence the warning, pass &#39;sort=True&#39;
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[14]:</div>
+    <div class="prompt output_prompt">Out[4]:</div>
 
 
 
@@ -13412,7 +13252,7 @@ To retain the current behavior and silence the warning, pass &#39;sort=True&#39;
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Prepare data for the model</span>
@@ -13426,57 +13266,10 @@ To retain the current behavior and silence the warning, pass &#39;sort=True&#39;
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">--------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">IndexError</span>                               Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-15-ceef403ae512&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span> X_train <span class="ansi-blue-fg">=</span> dtm_text_counts<span class="ansi-blue-fg">[</span>train_indices<span class="ansi-blue-fg">]</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span> y_train <span class="ansi-blue-fg">=</span> flora_data_frame<span class="ansi-blue-fg">.</span>iloc<span class="ansi-blue-fg">[</span>train_indices<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">.</span>classification
-<span class="ansi-green-fg">----&gt; 4</span><span class="ansi-red-fg"> </span>X_test <span class="ansi-blue-fg">=</span> dtm_text_counts<span class="ansi-blue-fg">[</span>test_indices<span class="ansi-blue-fg">]</span>
-<span class="ansi-green-intense-fg ansi-bold">      5</span> y_test <span class="ansi-blue-fg">=</span> flora_data_frame<span class="ansi-blue-fg">.</span>iloc<span class="ansi-blue-fg">[</span>test_indices<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">.</span>classification
-
-<span class="ansi-green-fg">~/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/scipy/sparse/_index.py</span> in <span class="ansi-cyan-fg">__getitem__</span><span class="ansi-blue-fg">(self, key)</span>
-<span class="ansi-green-intense-fg ansi-bold">     33</span>     &#34;&#34;&#34;
-<span class="ansi-green-intense-fg ansi-bold">     34</span>     <span class="ansi-green-fg">def</span> __getitem__<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> key<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">---&gt; 35</span><span class="ansi-red-fg">         </span>row<span class="ansi-blue-fg">,</span> col <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>_validate_indices<span class="ansi-blue-fg">(</span>key<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     36</span>         <span class="ansi-red-fg"># Dispatch to specialized methods.</span>
-<span class="ansi-green-intense-fg ansi-bold">     37</span>         <span class="ansi-green-fg">if</span> isinstance<span class="ansi-blue-fg">(</span>row<span class="ansi-blue-fg">,</span> INT_TYPES<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">~/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/scipy/sparse/_index.py</span> in <span class="ansi-cyan-fg">_validate_indices</span><span class="ansi-blue-fg">(self, key)</span>
-<span class="ansi-green-intense-fg ansi-bold">    138</span>                 row <span class="ansi-blue-fg">+=</span> M
-<span class="ansi-green-intense-fg ansi-bold">    139</span>         <span class="ansi-green-fg">elif</span> <span class="ansi-green-fg">not</span> isinstance<span class="ansi-blue-fg">(</span>row<span class="ansi-blue-fg">,</span> slice<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 140</span><span class="ansi-red-fg">             </span>row <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>_asindices<span class="ansi-blue-fg">(</span>row<span class="ansi-blue-fg">,</span> M<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    141</span> 
-<span class="ansi-green-intense-fg ansi-bold">    142</span>         <span class="ansi-green-fg">if</span> isintlike<span class="ansi-blue-fg">(</span>col<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">~/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/scipy/sparse/_index.py</span> in <span class="ansi-cyan-fg">_asindices</span><span class="ansi-blue-fg">(self, idx, length)</span>
-<span class="ansi-green-intense-fg ansi-bold">    170</span>         max_indx <span class="ansi-blue-fg">=</span> x<span class="ansi-blue-fg">.</span>max<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    171</span>         <span class="ansi-green-fg">if</span> max_indx <span class="ansi-blue-fg">&gt;=</span> length<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 172</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">raise</span> IndexError<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;index (%d) out of range&#39;</span> <span class="ansi-blue-fg">%</span> max_indx<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    173</span> 
-<span class="ansi-green-intense-fg ansi-bold">    174</span>         min_indx <span class="ansi-blue-fg">=</span> x<span class="ansi-blue-fg">.</span>min<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-red-fg">IndexError</span>: index (59343) out of range</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">MultinomialNB</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
@@ -13487,7 +13280,7 @@ To retain the current behavior and silence the warning, pass &#39;sort=True&#39;
 <span class="n">results</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;predictions&#39;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">results</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;index&#39;</span><span class="p">)</span>
 <span class="n">results_flora_data_frame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">results</span><span class="p">,</span> <span class="n">flora_data_frame</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">join</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
-<span class="n">results_flora_data_frame</span>
+<span class="n">results_flora_data_frame</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">path_or_buf</span> <span class="o">=</span> <span class="s2">&quot;../../reports/csv/wikidata_results.csv&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
