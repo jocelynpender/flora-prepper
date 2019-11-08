@@ -1,8 +1,20 @@
+from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import MultinomialNB
 from sklearn import metrics
-from src.features.build_features import *
 from sklearn.metrics import classification_report
 import numpy as np
+
+
+def build_train_test_split(text_counts, data_frame):
+    """
+    Build the training and test sets with some default arguments.
+    :param text_counts: The csr_matrix DTM or TFIDF object
+    :param data_frame: The entire flora_data_frame with a classification column
+    :return: the training/testing split objects
+    """
+    X_train, X_test, y_train, y_test = train_test_split(
+        text_counts, data_frame['classification'], test_size=0.3, random_state=1)
+    return X_train, X_test, y_train, y_test
 
 
 def print_top10(vectorizer, clf, class_labels): # https://stackoverflow.com/questions/11116697/how-to-get-most-informative-features-for-scikit-learn-classifiers
@@ -41,7 +53,7 @@ def run_model(text_counts, flora_data_frame, feature_rank=False, custom_vec=None
     if feature_rank:
         print_top10(custom_vec, clf, class_labels)
 
-    return y_test, predicted
+    return clf, y_test, predicted
 
 
 def zero_rule_algorithm_classification(train, test): # A baseline model. Compare performance of NB to this model
@@ -61,8 +73,3 @@ def zero_rule_algorithm_classification(train, test): # A baseline model. Compare
 
 # other things to try: 1-gram vs. 2-gram
 # Test bigrams/unigrams
-
-#def main():
- #   custom_vec, dtm_text_counts = build_dtm_text_counts(features.flora_tokenizer, tokenized_stop_words,
-  #                                                      flora_data_frame)
-   # dtm_y_test, dtm_predictions = run_model(dtm_text_counts, flora_data_frame, feature_rank=True, custom_vec)

@@ -20,7 +20,7 @@ module_path = os.path.abspath(os.path.join('../../'))
 if module_path not in sys.path:
     sys.path.append(module_path)
 
-from src.models.run_model import *
+from src.models.build_model import *
 from src.visualization.visualize import *
 import src.features as features
 from src.data.make_wikipedia import *

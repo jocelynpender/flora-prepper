@@ -2,7 +2,7 @@ from nltk import word_tokenize
 from nltk.corpus import stopwords
 
 #from src.features.process_text import process_string_with_cleaning_regime
-from process_text import process_string_with_cleaning_regime
+from features.process_text import process_string_with_cleaning_regime
 
 def build_nltk_stop_words(stop_words):
     """

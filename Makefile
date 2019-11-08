@@ -25,13 +25,13 @@ requirements: test_environment
 
 ## Make Dataset
 data: requirements
-	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw/fna_with_habitat.csv data/raw/eflora_bc.csv data/raw/buddsfloraofcana00otta_djvu.xml data/processed/flora_data_frame.csv
+	$(PYTHON_INTERPRETER) src/make_dataset.py data/raw/fna_with_habitat.csv data/raw/eflora_bc.csv data/raw/buddsfloraofcana00otta_djvu.xml data/processed/flora_data_frame_test.csv
 
 features:
-	$(PYTHON_INTERPRETER) src/features/build_features.py data/processed/flora_data_frame.csv models/
+	$(PYTHON_INTERPRETER) src/run_features.py data/processed/flora_data_frame.csv models/
 
-train:
-	$(PYTHON_INTERPRETER) src/data/make_dataset.py 
+model:
+	$(PYTHON_INTERPRETER) src/run_model.py data/processed/flora_data_frame.csv models/dtm_text_counts models/
 
 predict:
 	$(PYTHON_INTERPRETER) src/data/make_dataset.py 

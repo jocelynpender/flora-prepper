@@ -2,7 +2,7 @@ from src.data.make_bc import make_bc_data_frame
 from src.data.make_budds import make_budds_data_frame
 from src.data.make_fna import make_fna_data_frame
 from src.features.build_features import *
-from src.models.run_model import run_model
+from src.models.build_model import run_model
 import pandas as pd
 
 def main():
@@ -22,7 +22,7 @@ def main():
 
 
     dtm_text_counts = build_dtm_text_counts(flora_tokenizer, tokenized_stop_words, flora_data_frame)
-    X_test, predictions = run_model(dtm_text_counts, flora_data_frame)
+    clf, X_test, predictions = run_model(dtm_text_counts, flora_data_frame)
 
 if __name__ == '__main__':
     main()

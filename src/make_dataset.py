@@ -3,9 +3,9 @@ import logging
 import sys
 import pandas as pd
 
-from make_bc import make_bc_data_frame
-from make_budds import make_budds_data_frame
-from make_fna import make_fna_data_frame
+from data.make_bc import make_bc_data_frame
+from data.make_budds import make_budds_data_frame
+from data.make_fna import make_fna_data_frame
 
 
 def main(fna_filepath, bc_filepath, budds_file_path, output_filepath):

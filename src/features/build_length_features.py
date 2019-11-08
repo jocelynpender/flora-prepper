@@ -1,8 +1,9 @@
 import pandas as pd
 from scipy import sparse
-from src.data.misc import is_blank
-from src.features.process_text import process_text_tokenize_detokenize
 import numpy as np
+
+from data.misc import is_blank
+from features.process_text import process_text_tokenize_detokenize
 
 
 def locate_empty_strings(flora_data_frame_text):

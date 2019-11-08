@@ -1,7 +1,7 @@
 from src.data.make_fna import *
 from src.data.make_bc import *
 from src.data.make_budds import *
-from src.models.run_model import *
+from src.models.build_model import *
 from src.visualization.visualize import *
 from nltk import word_tokenize
 from nltk.corpus import stopwords
@@ -69,7 +69,7 @@ clf = MultinomialNB().fit(X_train, y_train)
 predicted = clf.predict(X_test)
 print("MultinomialNB Accuracy:", metrics.accuracy_score(y_test, predicted))
 
-X_test, predicted = run_model(length_model_sparse, length_processed_flora_data_frame)
+clf, X_test, predicted = run_model(length_model_sparse, length_processed_flora_data_frame)
 
 #predictions = run_model(length_processed_flora_data_frame.length, length_processed_flora_data_frame)
 

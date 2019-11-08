@@ -1,7 +1,7 @@
 import pandas as pd # Required
 import numpy as np
 
-from make_helper_functions import *
+from data.make_helper_functions import *
 
 
 def read_bc_csv(bc_filepath, first_col_index=False):

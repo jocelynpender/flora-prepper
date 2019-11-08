@@ -13,7 +13,7 @@ if module_path not in sys.path:
 from src.data.make_fna import *
 from src.data.make_bc import *
 from src.data.make_budds import *
-from src.models.run_model import *
+from src.models.build_model import *
 from src.visualization.visualize import *
 from src.features.build_features import *
 import numpy as np
@@ -38,11 +38,11 @@ tokenized_stop_words = prepare_stop_words(custom_stop_words=["unknown", "accepte
 
 # ==== DTM =====
 dtm_text_counts = build_dtm_text_counts(flora_tokenizer, tokenized_stop_words, flora_data_frame)
-dtm_X_test, dtm_predictions = run_model(dtm_text_counts, flora_data_frame)
+clf, dtm_X_test, dtm_predictions = run_model(dtm_text_counts, flora_data_frame)
 
 # ==== TFIDF =====
 tfidf_text_counts = build_tfidf_text_counts(flora_tokenizer, tokenized_stop_words, flora_data_frame)
-tfidf_X_test, tfidf_predictions = run_model(tfidf_text_counts, flora_data_frame)
+clf, tfidf_X_test, tfidf_predictions = run_model(tfidf_text_counts, flora_data_frame)
 
 taxon_identification = " ".join(
     text_string for text_string in flora_data_frame[flora_data_frame.classification == "taxon_identification"].text)
