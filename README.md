@@ -35,14 +35,26 @@ This issue has been flagged and resolved via https://stackoverflow.com/questions
 
 ### Install
 
-To deploy the latest version of the model, run:
+First, test your environment:
+`make requirements`
 
+To deploy the latest version of the model, you'll need:
+Your test dataset file, in CSV format, e.g., `test_dataset.csv`
+The name of the column containing text, e.g., `dataset_column_name_containing_text`
+
+The run:
+`python3 src/predict_model.py test_dataset.csv dataset_column_name_containing_text models/classifier_model models/custom_vec reports/`
 
 #### Run full data pipeline (optional)
 
 If you want to build the model from scratch, I've created some make commands that run the default dataset build, feature builds and model training. 
 
 Most of the parameters I've decided to use for my default model are hard-coded as custom function parameters. You'll have to consult the code to see what is being run.
+
+`make data`: This builds the training dataset from raw to processed. 
+`make features`: This command constructs the requisite vectorizer and document-term-matrix to build the Naive Bayes model.
+`make model`: The model is built using the vectorizer and document-term-matrix from above.
+`make predict`: Runs a model prediction on Wikipedia page strings.
 
 ## Project organization
 

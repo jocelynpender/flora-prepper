@@ -27,14 +27,14 @@ requirements: test_environment
 data: requirements
 	$(PYTHON_INTERPRETER) src/make_dataset.py data/raw/fna_with_habitat.csv data/raw/eflora_bc.csv data/raw/buddsfloraofcana00otta_djvu.xml data/processed/flora_data_frame_test.csv
 
-features:
+features: requirements
 	$(PYTHON_INTERPRETER) src/run_features.py data/processed/flora_data_frame.csv models/
 
-model:
+model: requirements
 	$(PYTHON_INTERPRETER) src/run_model.py data/processed/flora_data_frame.csv models/dtm_text_counts models/
 
-predict:
-	$(PYTHON_INTERPRETER) src/predict_model.py data/processed/combined_wikidata.csv models/classifier_model models/custom_vec reports/
+predict: requirements
+	$(PYTHON_INTERPRETER) src/predict_model.py data/processed/combined_wikidata.csv text models/classifier_model models/custom_vec reports/
 
 
 

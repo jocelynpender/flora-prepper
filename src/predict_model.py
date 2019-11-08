@@ -11,7 +11,7 @@ import pandas as pd
 from features import build_dtm_text_counts, flora_tokenizer, prepare_stop_words
 
 
-def main(test_file_path, model_path, custom_vec_path, results_path):
+def main(test_file_path, col_name, model_path, custom_vec_path, results_path):
     """
 
     :param test_file_path:
@@ -30,7 +30,7 @@ def main(test_file_path, model_path, custom_vec_path, results_path):
                                                                  "note", "notes", "morphology", "fna_id"])
     custom_vec = joblib.load(custom_vec_path)
 
-    X_test = custom_vec.transform(test_data['text'])
+    X_test = custom_vec.transform(test_data[col_name])
     # X_test =
 
     clf = joblib.load(model_path)
@@ -50,7 +50,8 @@ if __name__ == '__main__':
     log_fmt = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
     logging.basicConfig(level=logging.INFO, format=log_fmt)
     test_file_path = sys.argv[1]
-    model_path = sys.argv[2]
-    custom_vec_path =  sys.argv[3]
-    results_path = sys.argv[4]
-    main(test_file_path, model_path, custom_vec_path, results_path)
+    col_name = sys.argv[2]
+    model_path = sys.argv[3]
+    custom_vec_path =  sys.argv[4]
+    results_path = sys.argv[5]
+    main(test_file_path, col_name, model_path, custom_vec_path, results_path)
