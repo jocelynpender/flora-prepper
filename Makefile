@@ -34,7 +34,7 @@ model:
 	$(PYTHON_INTERPRETER) src/run_model.py data/processed/flora_data_frame.csv models/dtm_text_counts models/
 
 predict:
-	$(PYTHON_INTERPRETER) src/data/make_dataset.py 
+	$(PYTHON_INTERPRETER) src/predict_model.py data/processed/combined_wikidata.csv models/classifier_model models/custom_vec reports/
 
 
 
