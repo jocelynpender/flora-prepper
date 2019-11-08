@@ -28,7 +28,7 @@ data: requirements
 	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw/fna_with_habitat.csv data/raw/eflora_bc.csv data/raw/buddsfloraofcana00otta_djvu.xml data/processed/flora_data_frame.csv
 
 features:
-	$(PYTHON_INTERPRETER) src/features/build_features.py data/processed/flora_data_frame.csv
+	$(PYTHON_INTERPRETER) src/features/build_features.py data/processed/flora_data_frame.csv models/
 
 train:
 	$(PYTHON_INTERPRETER) src/data/make_dataset.py 
