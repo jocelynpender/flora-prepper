@@ -34,7 +34,7 @@ model: requirements
 	$(PYTHON_INTERPRETER) src/run_model.py data/processed/flora_data_frame.csv models/dtm_text_counts models/
 
 predict: requirements
-	$(PYTHON_INTERPRETER) src/predict_model.py data/processed/combined_wikidata.csv text models/classifier_model models/custom_vec reports/
+	$(PYTHON_INTERPRETER) src/predict_model.py --test_file_path=data/processed/combined_wikidata.csv
 
 
 
