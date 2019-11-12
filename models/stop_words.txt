@@ -1,0 +1,9 @@
+unknown
+accepted
+synonym
+basionym
+source
+note
+notes
+morphology
+fna_id
