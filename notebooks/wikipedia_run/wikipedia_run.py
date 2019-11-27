@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[19]:
 
 
 # Auto update of packages within the notebook
@@ -16,27 +16,31 @@ import pandas as pd
 import wikipedia
 
 # Import custom modelling code
-module_path = os.path.abspath(os.path.join('../../'))
+module_path = os.path.abspath(os.path.join('../../src/'))
 if module_path not in sys.path:
     sys.path.append(module_path)
 
+print(sys.path)
+
 from src.models.build_model import *
 from src.visualization.visualize import *
-import src.features as features
+from src.features.build_features import *
 from src.data.make_wikipedia import *
+from src.features.build_stop_words import *
+from src.features.process_text import *
 
 # pip install git+https://github.com/lucasdnd/Wikipedia.git --upgrade
 
 
-# In[2]:
+# In[3]:
 
 
 # Import model training data
-flora_data_frame = pd.read_csv("../../data/processed/flora_data_frame_full.csv", index_col=0)
+flora_data_frame = pd.read_csv("../../data/processed/flora_data_frame.csv", index_col=0)
 train_indices = list(range(0, flora_data_frame.shape[0]))
 
 
-# In[3]:
+# In[4]:
 
 
 # Import of Wikipedia dataset
@@ -48,19 +52,19 @@ flora_data_frame = pd.concat([flora_data_frame, wiki], ignore_index=True)
 flora_data_frame.classification[flora_data_frame.classification == "key"] = "morphology"
 
 
-# In[4]:
+# In[11]:
 
 
 # Customize stop words for model
-tokenized_stop_words = features.prepare_stop_words(custom_stop_words=["unknown", "accepted", "synonym",
+tokenized_stop_words = prepare_stop_words(custom_stop_words=["unknown", "accepted", "synonym",
                                                              "basionym", "source",
                                                              "note", "notes", "morphology", "fna_id"])
 # Build DTM
-custom_vec, dtm_text_counts = build_dtm_text_counts(features.flora_tokenizer, tokenized_stop_words, flora_data_frame)
+custom_vec, dtm_text_counts = build_dtm_text_counts(flora_tokenizer, tokenized_stop_words, flora_data_frame)
 dtm_text_counts.toarray()
 
 
-# In[5]:
+# In[12]:
 
 
 # Prepare data for the model
@@ -70,7 +74,7 @@ X_test = dtm_text_counts[test_indices]
 y_test = flora_data_frame.iloc[test_indices].classification
 
 
-# In[7]:
+# In[13]:
 
 
 clf = MultinomialNB().fit(X_train, y_train)
@@ -82,6 +86,12 @@ results.rename(columns={0: 'predictions'}, inplace=True)
 results = results.set_index('index')
 results_flora_data_frame = pd.concat([results, flora_data_frame], axis=1, join='inner')
 results_flora_data_frame.to_csv(path_or_buf = "../../reports/csv/wikidata_results.csv")
+
+
+# In[17]:
+
+
+X_test
 
 
 # In[ ]:

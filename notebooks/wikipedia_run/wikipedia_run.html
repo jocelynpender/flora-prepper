@@ -13076,7 +13076,7 @@ div#notebook {
 
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Auto update of packages within the notebook</span>
@@ -13091,14 +13091,18 @@ div#notebook {
 <span class="kn">import</span> <span class="nn">wikipedia</span>
 
 <span class="c1"># Import custom modelling code</span>
-<span class="n">module_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;../../&#39;</span><span class="p">))</span>
+<span class="n">module_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;../../src/&#39;</span><span class="p">))</span>
 <span class="k">if</span> <span class="n">module_path</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
     <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">module_path</span><span class="p">)</span>
 
-<span class="kn">from</span> <span class="nn">src.models.run_model</span> <span class="k">import</span> <span class="o">*</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">src.models.build_model</span> <span class="k">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">src.visualization.visualize</span> <span class="k">import</span> <span class="o">*</span>
-<span class="kn">import</span> <span class="nn">src.features</span> <span class="k">as</span> <span class="nn">features</span>
+<span class="kn">from</span> <span class="nn">src.features.build_features</span> <span class="k">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">src.data.make_wikipedia</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">src.features.build_stop_words</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">src.features.process_text</span> <span class="k">import</span> <span class="o">*</span>
 
 <span class="c1"># pip install git+https://github.com/lucasdnd/Wikipedia.git --upgrade</span>
 </pre></div>
@@ -13116,10 +13120,10 @@ div#notebook {
     <div class="prompt"></div>
 
 
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>[nltk_data] Downloading package wordnet to
-[nltk_data]     /Users/jocelynpender/nltk_data...
-[nltk_data]   Package wordnet is already up-to-date!
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>The autoreload extension is already loaded. To reload it, use:
+  %reload_ext autoreload
+[&#39;/Users/jocelynpender/flora-prepper/notebooks/wikipedia_run&#39;, &#39;/Users/jocelynpender/miniconda3/envs/flora-prepper/lib/python37.zip&#39;, &#39;/Users/jocelynpender/miniconda3/envs/flora-prepper/lib/python3.7&#39;, &#39;/Users/jocelynpender/miniconda3/envs/flora-prepper/lib/python3.7/lib-dynload&#39;, &#39;&#39;, &#39;/Users/jocelynpender/.local/lib/python3.7/site-packages&#39;, &#39;/Users/jocelynpender/miniconda3/envs/flora-prepper/lib/python3.7/site-packages&#39;, &#39;/Users/jocelynpender/miniconda3/envs/flora-prepper/lib/python3.7/site-packages/IPython/extensions&#39;, &#39;/Users/jocelynpender/.ipython&#39;, &#39;/Users/jocelynpender/flora-prepper&#39;, &#39;/Users/jocelynpender/flora-prepper&#39;, &#39;/Users/jocelynpender/flora-prepper/src&#39;]
 </pre>
 </div>
 </div>
@@ -13130,11 +13134,11 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Import model training data</span>
-<span class="n">flora_data_frame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../../data/processed/flora_data_frame_full.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">flora_data_frame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../../data/processed/flora_data_frame.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">train_indices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">flora_data_frame</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 </pre></div>
 
@@ -13145,7 +13149,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Import of Wikipedia dataset</span>
@@ -13194,15 +13198,15 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Customize stop words for model</span>
-<span class="n">tokenized_stop_words</span> <span class="o">=</span> <span class="n">features</span><span class="o">.</span><span class="n">prepare_stop_words</span><span class="p">(</span><span class="n">custom_stop_words</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;unknown&quot;</span><span class="p">,</span> <span class="s2">&quot;accepted&quot;</span><span class="p">,</span> <span class="s2">&quot;synonym&quot;</span><span class="p">,</span>
+<span class="n">tokenized_stop_words</span> <span class="o">=</span> <span class="n">prepare_stop_words</span><span class="p">(</span><span class="n">custom_stop_words</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;unknown&quot;</span><span class="p">,</span> <span class="s2">&quot;accepted&quot;</span><span class="p">,</span> <span class="s2">&quot;synonym&quot;</span><span class="p">,</span>
                                                              <span class="s2">&quot;basionym&quot;</span><span class="p">,</span> <span class="s2">&quot;source&quot;</span><span class="p">,</span>
                                                              <span class="s2">&quot;note&quot;</span><span class="p">,</span> <span class="s2">&quot;notes&quot;</span><span class="p">,</span> <span class="s2">&quot;morphology&quot;</span><span class="p">,</span> <span class="s2">&quot;fna_id&quot;</span><span class="p">])</span>
 <span class="c1"># Build DTM</span>
-<span class="n">custom_vec</span><span class="p">,</span> <span class="n">dtm_text_counts</span> <span class="o">=</span> <span class="n">build_dtm_text_counts</span><span class="p">(</span><span class="n">features</span><span class="o">.</span><span class="n">flora_tokenizer</span><span class="p">,</span> <span class="n">tokenized_stop_words</span><span class="p">,</span> <span class="n">flora_data_frame</span><span class="p">)</span>
+<span class="n">custom_vec</span><span class="p">,</span> <span class="n">dtm_text_counts</span> <span class="o">=</span> <span class="n">build_dtm_text_counts</span><span class="p">(</span><span class="n">flora_tokenizer</span><span class="p">,</span> <span class="n">tokenized_stop_words</span><span class="p">,</span> <span class="n">flora_data_frame</span><span class="p">)</span>
 <span class="n">dtm_text_counts</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
 </pre></div>
 
@@ -13229,7 +13233,7 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[4]:</div>
+    <div class="prompt output_prompt">Out[11]:</div>
 
 
 
@@ -13252,7 +13256,7 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Prepare data for the model</span>
@@ -13269,7 +13273,7 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">MultinomialNB</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
@@ -13284,6 +13288,40 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 </pre></div>
 
     </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X_test</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[17]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;11529x71406 sparse matrix of type &#39;&lt;class &#39;numpy.int64&#39;&gt;&#39;
+	with 629783 stored elements in Compressed Sparse Row format&gt;</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
