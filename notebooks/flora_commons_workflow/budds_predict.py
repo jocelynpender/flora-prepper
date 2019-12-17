@@ -9,10 +9,11 @@
 # 
 # * Import text file by reading the lines
 # * Push the lines into the model pipeline
-# * add the classifications as XML nodes
-# * reformat to input schema
+# * Add the classifications as XML nodes
+# * Reformat to input schema
+# * Break up data into XML documents
 
-# In[2]:
+# In[93]:
 
 
 # Auto update of packages within the notebook
@@ -21,6 +22,7 @@ get_ipython().run_line_magic('autoreload', '2')
 
 import os
 import sys
+import numpy as np
 
 # Import custom modelling code
 module_path = os.path.abspath(os.path.join('../../'))
@@ -98,15 +100,6 @@ budds_results
 for index, row in budds_results.iterrows():
     if index > 0 and index < len(budds_results):
         if budds_results.iloc[index-1].classification == 'key' and budds_results.iloc[index+1].classification == 'key' and row.classification != 'key':
-            print("Working on %s " % index)
-            print(budds_results.iloc[index-1].classification)
-            print(budds_results.iloc[index+1].classification)
-            print(row.classification)
-
-            print("The false index is %s " % budds_results.index[index])
-            print(row.text)
-            print(budds_results.iloc[index])
-            print("=========")
             row.reclassification = 'key'
         else:
             row.reclassification = row.classification
@@ -116,6 +109,68 @@ for index, row in budds_results.iterrows():
 
 
 budds_results.to_csv(path_or_buf="budds_results_to_examine_rekey.csv")
+
+
+# ##### Add XML to classified tags
+
+# In[90]:
+
+
+# schema tags for budds classification:
+# TODO: find schema document from Github
+
+budds_results.reclassification[0] = budds_results.classification[0] # Fix first item
+
+
+# In[95]:
+
+
+# https://stackoverflow.com/questions/14358567/finding-consecutive-segments-in-a-pandas-data-frame
+index_matrix = budds_results.reset_index().groupby('reclassification')['index'].apply(np.array) # Find sequences of classifications
+#index_matrix['key']
+
+
+# In[98]:
+
+
+budds_results['block'] = (budds_results.reclassification.shift(1) != budds_results.reclassification).astype(int).cumsum()
+budds_results
+
+
+# In[101]:
+
+
+# Take the block, paste the text all together, and wrap it in the appropriate XML tag
+# Build a dictionary of tag
+
+# <taxon_identification status="ACCEPTED"></taxon_identification>
+# <description type="morphology"></description>
+# <description type="habitat"></description>
+# <key></key>
+open_tags = {'taxon_identification': '<taxon_identification status="ACCEPTED">',
+             'morphology': '<description type="morphology">',
+             'habitat': '<description type="habitat">',
+             'key': '<key>'
+            }
+close_tags = {'taxon_identification': '</taxon_identification>',
+              'morphology': '</description>',
+              'habitat': '</description>',
+              'key': '</key>'
+    
+}
+
+
+# In[109]:
+
+
+runs = budds_results.groupby('block')['text'].apply(np.array)
+runs
+
+
+# In[118]:
+
+
+'\n'.join(runs.iloc[0])
 
 
 # In[ ]:
