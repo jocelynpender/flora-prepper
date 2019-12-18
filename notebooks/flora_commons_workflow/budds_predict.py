@@ -13,7 +13,7 @@
 # * Reformat to input schema
 # * Break up data into XML documents
 
-# In[93]:
+# In[3]:
 
 
 # Auto update of packages within the notebook
@@ -105,15 +105,17 @@ for index, row in budds_results.iterrows():
             row.reclassification = row.classification
 
 
-# In[87]:
+# In[4]:
 
 
-budds_results.to_csv(path_or_buf="budds_results_to_examine_rekey.csv")
+# budds_results.to_csv(path_or_buf="budds_results_to_examine_rekey.csv")
+budds_results = pd.read_csv("budds_results_to_examine_rekey.csv", index_col=0)
+budds_results
 
 
 # ##### Add XML to classified tags
 
-# In[90]:
+# In[5]:
 
 
 # schema tags for budds classification:
@@ -122,22 +124,18 @@ budds_results.to_csv(path_or_buf="budds_results_to_examine_rekey.csv")
 budds_results.reclassification[0] = budds_results.classification[0] # Fix first item
 
 
-# In[95]:
+# In[6]:
 
 
 # https://stackoverflow.com/questions/14358567/finding-consecutive-segments-in-a-pandas-data-frame
 index_matrix = budds_results.reset_index().groupby('reclassification')['index'].apply(np.array) # Find sequences of classifications
 #index_matrix['key']
 
-
-# In[98]:
-
-
 budds_results['block'] = (budds_results.reclassification.shift(1) != budds_results.reclassification).astype(int).cumsum()
 budds_results
 
 
-# In[101]:
+# In[8]:
 
 
 # Take the block, paste the text all together, and wrap it in the appropriate XML tag
@@ -160,17 +158,34 @@ close_tags = {'taxon_identification': '</taxon_identification>',
 }
 
 
-# In[109]:
+# In[30]:
 
 
-runs = budds_results.groupby('block')['text'].apply(np.array)
+group_blocks = budds_results.groupby('block')
+runs = group_blocks['text'].apply(np.array)
 runs
 
 
-# In[118]:
+# ### Dec. 18th 2019
+
+# In[31]:
 
 
-'\n'.join(runs.iloc[0])
+#'\n'.join(runs.iloc[0])
+strings = runs.apply(lambda x: '\n'.join(x))
+strings
+
+
+# In[32]:
+
+
+group_blocks['reclassification'].take([0])
+
+
+# In[33]:
+
+
+index_matrix
 
 
 # In[ ]:
