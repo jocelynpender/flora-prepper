@@ -89,28 +89,3 @@ def write_documents(strings_classification, open_tags, close_tags, prematter):
     write_docs = [write_file(x, file_names[ind]) for ind, x in enumerate(sep_documents)]
 
     return write_docs
-
-
-# Workflow execution
-budds_results = pd.read_csv("flora_commons_workflow/budds_results_to_examine_rekey.csv", index_col=0)
-budds_results.reclassification[0] = budds_results.classification[0]  # Fix first item
-budds_strings_classification = merge_classification_blocks(budds_results, 2)
-
-# https://github.com/biosemantics/schemas/blob/master/semanticMarkupInput.xsd
-prematter = '<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<bio:treatment ' \
-            'xmlns:bio=\"http://www.github.com/biosemantics\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" ' \
-            'xsi:schemaLocation=\"http://www.github.com/biosemantics http://www.w3.org/2001/XMLSchema-instance\"> '
-
-open_tags = {'taxon_identification': prematter + '\n' + '<taxon_identification status="ACCEPTED">',
-             'morphology': '<description type="morphology">',
-             'habitat': '<description type="habitat">',
-             'key': '<key>'
-             }
-
-close_tags = {'taxon_identification': '</taxon_identification>',
-              'morphology': '</description>',
-              'habitat': '</description>',
-              'key': '</key>'
-              }
-
-write_budds_docs = write_documents(budds_strings_classification, open_tags, close_tags, prematter)

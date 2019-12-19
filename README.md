@@ -79,6 +79,9 @@ Installing the Wikipedia library may require manual intervention. Section titles
 Use `pip install git+https://github.com/lucasdnd/Wikipedia.git`
 This issue has been flagged and resolved via https://stackoverflow.com/questions/34869597/wikipedia-api-for-python/35122688#35122688
 
+#### Optional: Develop within the project
+
+To use the functions independently of pipelines, run `pip install -e .` in the root directory.
 
 ## Versioning
 
