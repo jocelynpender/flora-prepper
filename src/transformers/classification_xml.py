@@ -80,45 +80,37 @@ def write_file(document, file_name):
     text_file.close()
 
 
+def write_documents(strings_classification, open_tags, close_tags, prematter):
+    whole_document = add_schema(strings_classification, open_tags, close_tags)
+
+    # every time you encounter the prematter, split and write a file!
+    sep_documents = whole_document.split(sep=prematter)
+    file_names = [str(x) + ".xml" for x in range(1, len(sep_documents) + 1)]
+    write_docs = [write_file(x, file_names[ind]) for ind, x in enumerate(sep_documents)]
+
+    return write_docs
+
+
+# Workflow execution
 budds_results = pd.read_csv("flora_commons_workflow/budds_results_to_examine_rekey.csv", index_col=0)
 budds_results.reclassification[0] = budds_results.classification[0]  # Fix first item
-
-open_tags = {'taxon_identification': '<taxon_identification status="ACCEPTED">',
-             'morphology': '<description type="morphology">',
-             'habitat': '<description type="habitat">',
-             'key': '<key>'
-             }
-close_tags = {'taxon_identification': '</taxon_identification>',
-              'morphology': '</description>',
-              'habitat': '</description>',
-              'key': '</key>'
-              }
-
 budds_strings_classification = merge_classification_blocks(budds_results, 2)
-budds_document = add_schema(budds_strings_classification, open_tags, close_tags)
-text_file = open("budds_document.txt", "wt")
-n = text_file.write(budds_document)
-text_file.close()
 
 # https://github.com/biosemantics/schemas/blob/master/semanticMarkupInput.xsd
 prematter = '<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<bio:treatment ' \
             'xmlns:bio=\"http://www.github.com/biosemantics\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" ' \
             'xsi:schemaLocation=\"http://www.github.com/biosemantics http://www.w3.org/2001/XMLSchema-instance\"> '
 
-open_tags_mod = {'taxon_identification': '</bio:treatment>\n<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<bio:treatment ' \
-                                         'xmlns:bio=\"http://www.github.com/biosemantics\" '
-                                         'xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" ' \
-                                         'xsi:schemaLocation=\"http://www.github.com/biosemantics '
-                                         'http://www.w3.org/2001/XMLSchema-instance\"> '
-                                         '\n<taxon_identification status="ACCEPTED">',
-                 'morphology': '<description type="morphology">',
-                 'habitat': '<description type="habitat">',
-                 'key': '<key>'
-                 }
+open_tags = {'taxon_identification': prematter + '\n' + '<taxon_identification status="ACCEPTED">',
+             'morphology': '<description type="morphology">',
+             'habitat': '<description type="habitat">',
+             'key': '<key>'
+             }
 
-budds_document = add_schema(budds_strings_classification, open_tags_mod, close_tags)
+close_tags = {'taxon_identification': '</taxon_identification>',
+              'morphology': '</description>',
+              'habitat': '</description>',
+              'key': '</key>'
+              }
 
-# every time you encounter the prematter, split and write a file!
-sep_documents = budds_document.split(sep=prematter)
-file_names = [str(x) + ".xml" for x in range(1, len(sep_documents) + 1)]
-write_files = [write_file(x, file_names[ind]) for ind, x in enumerate(sep_documents)]
+write_budds_docs = write_documents(budds_strings_classification, open_tags, close_tags, prematter)
