@@ -86,6 +86,6 @@ def write_documents(strings_classification, open_tags, close_tags, prematter):
     # every time you encounter the prematter, split and write a file!
     sep_documents = whole_document.split(sep=prematter)
     file_names = [str(x) + ".xml" for x in range(1, len(sep_documents) + 1)]
-    write_docs = [write_file(x, file_names[ind]) for ind, x in enumerate(sep_documents)]
+    write_docs = [write_file(prematter + x, file_names[ind]) for ind, x in enumerate(sep_documents)]
 
     return write_docs
