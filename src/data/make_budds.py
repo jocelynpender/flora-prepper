@@ -5,17 +5,19 @@ import pandas as pd
 from data.make_helper_functions import *
 
 
-def return_text_series(tree, path):
+def return_text_data_frame(tree, path):
     """:param:
         A parsed etree from an XML file and the desired node path to extract text from
     :return:
         A nicely formatted pandas Series containing text data extracted from the node."""
     assert len(path) > 0, "Path not valid"
     text_list = [element.text for element in tree.findall(path)] # Extract text from all XML nodes
+    index_list = [element.getparent().index(element) for element in tree.findall(path)]  # Extract text from all XML nodes
     assert type(text_list) == list, "List comprehension not run"
-    text_series = pd.Series(text_list) # Convert the list into a series for downstream data frame concatenation
-    assert type(text_series) == pd.core.series.Series, "List comprehension not run"
-    return text_series
+    text_df = pd.DataFrame({'text': text_list,
+     'index': index_list}) # Convert the list into a series for downstream data frame concatenation
+    #assert type(text_series) == pd.core.series.Series, "List comprehension not run"
+    return text_df
 
 
 def extract_classification_text(tree):
@@ -24,9 +26,9 @@ def extract_classification_text(tree):
         A parsed etree from an XML file.
     :return:
         Four pandas Series based on the four classifications."""
-    taxon_identification = return_text_series(tree, "//taxon_identification")
-    key = return_text_series(tree, "//key")
-    morphology = return_text_series(tree, "//description")
+    taxon_identification = return_text_data_frame(tree, "//taxon_identification")
+    key = return_text_data_frame(tree, "//key")
+    morphology = return_text_data_frame(tree, "//description")
     return taxon_identification, key, morphology
 
 
@@ -45,7 +47,7 @@ def make_budds_data_frame(budds_file_path, frac_to_sample=1, balance_categories=
                       names=["classification", "row"])
     budds = budds.reset_index()  # Moves names from index into columns in a new data frame
     assert type(budds) == pd.core.frame.DataFrame, "Budds not converted to DataFrame"
-    budds.columns = ["classification", "row", "text"]
+    budds.columns = ["classification", "row", "text", "index"]
     budds_with_length = add_length_to_data_frame(budds)
     sampled_budds = sample_flora(budds_with_length, frac_to_sample, balance_categories)
     return sampled_budds
