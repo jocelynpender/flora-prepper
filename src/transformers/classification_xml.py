@@ -52,23 +52,23 @@ def merge_classification_blocks(classifier_results, classification_results_colum
     return strings_classification
 
 
-def add_tags(row, open_schema_dict, close_schema_dict):
+def add_tags(row, open_schema_dict, close_schema_dict, classification_col):
     """For a given row in a dataframe, wrap it in its corresponding schema opening and closing tags
     :param:
     :return:
     """
-    open = open_schema_dict[row[1]]
-    close = close_schema_dict[row[1]]
+    open = open_schema_dict[row[classification_col]]
+    close = close_schema_dict[row[classification_col]]
     tag_text = row.text.join([open, close])
     return tag_text
 
 
-def add_schema(strings_classification, open_schema_dict, close_schema_dict):
+def add_schema(strings_classification, open_schema_dict, close_schema_dict, classification_col):
     """
     Take classified and merged strings from classification blocks and return a document with tags surrounding the
     strings for all data.
     """
-    single_document = strings_classification.apply(lambda x: add_tags(x, open_schema_dict, close_schema_dict), axis=1)
+    single_document = strings_classification.apply(lambda x: add_tags(x, open_schema_dict, close_schema_dict, classification_col), axis=1)
     single_document = '\n'.join(single_document)
     return single_document
 
@@ -82,8 +82,8 @@ def write_file(document, file_name):
     text_file.close()
 
 
-def write_documents(strings_classification, open_tags, close_tags, prematter, endmatter):
-    whole_document = add_schema(strings_classification, open_tags, close_tags)
+def write_documents(strings_classification, open_tags, close_tags, prematter, endmatter, classification_col=1):
+    whole_document = add_schema(strings_classification, open_tags, close_tags, classification_col)
 
     # every time you encounter the prematter, split and write a file!
     sep_documents = whole_document.split(sep=prematter)
