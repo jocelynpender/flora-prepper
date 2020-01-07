@@ -27,6 +27,8 @@ def build_text_runs(classifier_results):
     return runs, group_blocks
 
 
+# add parameter with the option to concatenate runs or to leave runs as is....
+
 def merge_classification_blocks(classifier_results, classification_results_column):
     """
     With a dataframe of classification results, merge text blocks together and return a dataframe with merged strings
@@ -80,12 +82,12 @@ def write_file(document, file_name):
     text_file.close()
 
 
-def write_documents(strings_classification, open_tags, close_tags, prematter):
+def write_documents(strings_classification, open_tags, close_tags, prematter, endmatter):
     whole_document = add_schema(strings_classification, open_tags, close_tags)
 
     # every time you encounter the prematter, split and write a file!
     sep_documents = whole_document.split(sep=prematter)
     file_names = [str(x) + ".xml" for x in range(1, len(sep_documents) + 1)]
-    write_docs = [write_file(prematter + x, file_names[ind]) for ind, x in enumerate(sep_documents)]
+    write_docs = [write_file(prematter + x + endmatter, file_names[ind]) for ind, x in enumerate(sep_documents)]
 
     return write_docs
