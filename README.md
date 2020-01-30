@@ -1,10 +1,33 @@
-![flora-prepper](reports/figures/poster_title.png)
+# Flora Prepper
 
-==============================
+- [Flora Prepper](#flora-prepper)
+  * [Introduction](#introduction)
+  * [Read the poster for details](#read-the-poster-for-details)
+  * [Getting started](#getting-started)
+    + [Prerequisites](#prerequisites)
+      - [The project was built within a conda environment.](#the-project-was-built-within-a-conda-environment)
+      - [(Optional) Wikipedia library for Wikipedia page scraping](#-optional--wikipedia-library-for-wikipedia-page-scraping)
+    + [Run the model](#run-the-model)
+      - [(Optional) Run full data pipeline](#-optional--run-full-data-pipeline)
+  * [Project organization](#project-organization)
+  * [Versioning](#versioning)
+  * [License](#license)
+  * [People first](#people-first)
+    + [Collaborations](#collaborations)
+    + [Data credits](#data-credits)
+      - [Flora of North America](#flora-of-north-america)
+      - [Budd’s Flora of the Canadian Prairie Provinces](#budd-s-flora-of-the-canadian-prairie-provinces)
+      - [Illustrated Flora of British Columbia](#illustrated-flora-of-british-columbia)
+    + [References](#references)
+    + [Discussion points not included on the poster](#discussion-points-not-included-on-the-poster)
+    + [Acknowledgements](#acknowledgements)
+
+## Introduction
 
 This project:
 1. Cleans training datasets from three floras (Flora of North America, Budd's Flora of the Prairie Provinces, Illustrated Flora of British Columbia)
-2. Builds a multinomial Naive Bayes model to predict the classification of flora strings based on a document-term matrix (i.e., habitat, morphology, name, keys)
+2. Transforms these training datasets into a document-term matrix
+3. Builds a **multinomial Naive Bayes model** to predict the classification of strings (i.e., habitat, morphology, name, keys)
 
 The goal is to:
 1. Prepare flora documents for more fine-grained parsing and data integration by annotating data types ("classifications")
@@ -39,11 +62,11 @@ First, test your environment using:
 `make requirements`
 
 To deploy the latest version of the model, you'll need:
-* A test dataset file, in CSV format, e.g., `test_dataset.csv`
-* The name of the column containing text, e.g., `dataset_column_text`
+* The dataset file you'd like to run the model on, in CSV format, e.g., `test_dataset.csv`
+* The name of the column containing text you'd like to classify, e.g., `text_column`
 
-The run this one-liner in your terminal:
-`python3 src/predict_model.py test_dataset.csv dataset_column_text models/classifier_model models/custom_vec reports/`
+Next, run this in a terminal:
+`python3 src/predict_model.py test_dataset.csv text_column models/classifier_model models/custom_vec reports/`
 
 #### (Optional) Run full data pipeline
 
@@ -55,6 +78,42 @@ Most of the parameters I've decided to use for my default model are hard-coded a
 * `make features`: This command constructs the requisite vectorizer and document-term-matrix to build the Naive Bayes model.
 * `make model`: The model is built using the vectorizer and document-term-matrix from above.
 * `make predict`: Runs a model prediction on Wikipedia page strings.
+
+## Versioning
+
+## License
+
+[License](LICENSE)
+
+## People first
+
+### Collaborations
+If you have a use case for this project, and would like to contribute or collaborate, please contact me at pender.jocelyn@gmail.com
+
+### Data credits
+The training data is currently not included in this repository. However, I would like to credit the data providers nonetheless.
+#### Flora of North America
+The Flora of North America Association has graciously provided Flora of North America data to the Integrated Flora of Canada project. Flora Prepper is part of this project. Copyright on the data is held by the Flora of North America Association for all volumes except Volumes 24 and 25 (Poaceae). Copyright for Volumes 24 and 25 is held by Utah State University. Data was accessed in 2019.
+#### Budd’s Flora of the Canadian Prairie Provinces
+Copyright is held by the Government of Canada. This Flora was accessed through the Biodiversity Heritage Library in 2019: https://www.biodiversitylibrary.org/item/114250
+#### Illustrated Flora of British Columbia
+Copyright is held by the Province of British Columbia. Provisional permission to begin investigations of the use of this data in the Integrated Flora of Canada project was obtained by members of the Illustrated Flora of BC project. Data cannot and will not be shared, except within the scope of data integration experiments, such as the above.
+
+### References
+* Hamann, T. et al. 2014. Detailed mark-up of semi-monographic legacy taxonomic works using FlorML. Taxon 63 (2): 377-393. https://doi.org/10.12705/632.11
+* Sautter, G. et al. 2002 Semi-automated XML markup of biosystematic legacy literature with the GoldenGate editor. Biocomputing 2007. https://doi.org/10.1142/9789812772435_0037
+
+### Discussion points not included on the poster
+The accuracy of the model is unusually high. When the proportion of Flora of North Am. and B.C. data was reduced by dataset trimming, accuracy decreased. Is overfitting occurring?
+
+Keys and morphology text blocks are very similar. How can classification of these two categories be improved?
+Habitat text separates well
+
+This model relies too heavily on artefacts of the training dataset (rank words) to classify taxon identification strings. Instead, they could be annotated using other tools, like gnfinder (github.com/gnames/gnfinder)
+
+### Acknowledgements
+
+<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
 
 ## Project organization
 
@@ -116,40 +175,3 @@ Most of the parameters I've decided to use for my default model are hard-coded a
 
 
 --------
-
-
-## Versioning
-
-## License
-
-[License](LICENSE)
-
-## People first
-
-### Collaborations
-If you have a use case for this project, and would like to contribute or collaborate, please contact me at pender.jocelyn@gmail.com
-
-### Data credits
-The training data is currently not included in this repository. However, I would like to credit the data providers nonetheless.
-#### Flora of North America
-The Flora of North America Association has graciously provided Flora of North America data to the Integrated Flora of Canada project. Flora Prepper is part of this project. Copyright on the data is held by the Flora of North America Association for all volumes except Volumes 24 and 25 (Poaceae). Copyright for Volumes 24 and 25 is held by Utah State University. Data was accessed in 2019.
-#### Budd’s Flora of the Canadian Prairie Provinces
-Copyright is held by the Government of Canada. This Flora was accessed through the Biodiversity Heritage Library in 2019: https://www.biodiversitylibrary.org/item/114250
-#### Illustrated Flora of British Columbia
-Copyright is held by the Province of British Columbia. Provisional permission to begin investigations of the use of this data in the Integrated Flora of Canada project was obtained by members of the Illustrated Flora of BC project. Data cannot and will not be shared, except within the scope of data integration experiments, such as the above.
-
-### References
-Hamann, T. et al. 2014. Detailed mark-up of semi-monographic legacy taxonomic works using FlorML. Taxon 63 (2): 377-393. https://doi.org/10.12705/632.11
-Sautter, G. et al. 2002 Semi-automated XML markup of biosystematic legacy literature with the GoldenGate editor. Biocomputing 2007. https://doi.org/10.1142/9789812772435_0037
-
-### Discussion points not included on the poster
-The accuracy of the model is unusually high. When the proportion of Flora of North Am. and B.C. data was reduced by dataset trimming, accuracy decreased. Is overfitting occurring?
-
-Keys and morphology text blocks are very similar. How can classification of these two categories be improved?
-Habitat text separates well
-
-This model relies too heavily on artefacts of the training dataset (rank words) to classify taxon identification strings. Instead, they could be annotated using other tools, like gnfinder (github.com/gnames/gnfinder)
-
-### Acknowledgements
-
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
