@@ -6,9 +6,9 @@
   * [Getting started](#getting-started)
     + [Prerequisites](#prerequisites)
       - [The project was built within a conda environment.](#the-project-was-built-within-a-conda-environment)
-      - [(Optional) Wikipedia library for Wikipedia page scraping](#-optional--wikipedia-library-for-wikipedia-page-scraping)
     + [Run the model](#run-the-model)
-      - [(Optional) Run full data pipeline](#-optional--run-full-data-pipeline)
+      - [Optional: Run full data pipeline](#optional--run-full-data-pipeline)
+      - [Optional: Wikipedia library for Wikipedia page scraping](#optional--wikipedia-library-for-wikipedia-page-scraping)
   * [Versioning](#versioning)
   * [License](#license)
   * [People first](#people-first)
@@ -49,13 +49,6 @@ See `flora-prepper.yml`. It has been generated with `conda env export > flora-pr
 You can build your own using:
 `conda env create -f flora-prepper.yml`
 
-#### (Optional) Wikipedia library for Wikipedia page scraping
-
-Installing the Wikipedia library may require manual intervention. Section titles are not properly extracted using the latest release of the Wikipedia Python library. Therefore, to download your Wikipedia library, use
-
-Use `pip install git+https://github.com/lucasdnd/Wikipedia.git`
-This issue has been flagged and resolved via https://stackoverflow.com/questions/34869597/wikipedia-api-for-python/35122688#35122688
-
 ### Run the model
 
 First, test your environment using:
@@ -68,7 +61,7 @@ To deploy the latest version of the model, you'll need:
 Next, run this in a terminal:
 `python3 src/predict_model.py test_dataset.csv text_column models/classifier_model models/custom_vec reports/`
 
-#### (Optional) Run full data pipeline
+#### Optional: Run full data pipeline
 
 If you want to build the model from scratch, I've created some make commands that run the default dataset build, feature builds and model training. 
 
@@ -78,6 +71,14 @@ Most of the parameters I've decided to use for my default model are hard-coded a
 * `make features`: This command constructs the requisite vectorizer and document-term-matrix to build the Naive Bayes model.
 * `make model`: The model is built using the vectorizer and document-term-matrix from above.
 * `make predict`: Runs a model prediction on Wikipedia page strings.
+
+#### Optional: Wikipedia library for Wikipedia page scraping
+
+Installing the Wikipedia library may require manual intervention. Section titles are not properly extracted using the latest release of the Wikipedia Python library. Therefore, to download your Wikipedia library, use
+
+Use `pip install git+https://github.com/lucasdnd/Wikipedia.git`
+This issue has been flagged and resolved via https://stackoverflow.com/questions/34869597/wikipedia-api-for-python/35122688#35122688
+
 
 ## Versioning
 
