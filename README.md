@@ -9,7 +9,6 @@
       - [(Optional) Wikipedia library for Wikipedia page scraping](#-optional--wikipedia-library-for-wikipedia-page-scraping)
     + [Run the model](#run-the-model)
       - [(Optional) Run full data pipeline](#-optional--run-full-data-pipeline)
-  * [Project organization](#project-organization)
   * [Versioning](#versioning)
   * [License](#license)
   * [People first](#people-first)
@@ -21,6 +20,7 @@
     + [References](#references)
     + [Discussion points not included on the poster](#discussion-points-not-included-on-the-poster)
     + [Acknowledgements](#acknowledgements)
+  * [Project organization](#project-organization)
 
 ## Introduction
 
