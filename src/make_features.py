@@ -6,11 +6,11 @@ import pandas as pd
 from features import build_dtm_text_counts, prepare_stop_words, flora_tokenizer
 
 
-def main(flora_data_frame_path, dump_path, custom_stop_words_path, reclassify_keys, reclassify_habitat):
+def main(train_file_path, features_save_path, custom_stop_words_path, reclassify_keys, reclassify_habitat):
     """This is my default feature build with no cleaning regime and no length features.
 
-    :param flora_data_frame_path: The training dataset to build features and the model from
-    :param dump_path: Where to save the DTM vectorizer and the classifier model
+    :param train_file_path: The training dataset to build features and the model from
+    :param features_save_path: Where to save the DTM vectorizer and the classifier model
     :param custom_stop_words_path: Where to find custom stop words to be used in the model
     :return: joblib dump of the DTM and the vectorizer objects
     """
@@ -19,7 +19,7 @@ def main(flora_data_frame_path, dump_path, custom_stop_words_path, reclassify_ke
     logger.info('building features using provided data frame and dumping them at the specified path')
 
     # Import the training dataset
-    flora_data_frame = pd.read_csv(flora_data_frame_path, index_col=0)
+    flora_data_frame = pd.read_csv(train_file_path, index_col=0)
     if reclassify_keys == 'yes':
         flora_data_frame.classification[flora_data_frame.classification == "key"] = "morphology"
     if reclassify_habitat == 'yes':
@@ -34,7 +34,7 @@ def main(flora_data_frame_path, dump_path, custom_stop_words_path, reclassify_ke
                                                         flora_data_frame)
 
     # Save the DTM vectorizer and classifier model for later usage
-    file_names = [dump_path + file_name for file_name in ["custom_vec", "dtm_text_counts"]]
+    file_names = [features_save_path + file_name for file_name in ["custom_vec", "dtm_text_counts"]]
     joblib.dump(custom_vec, file_names[0])
     joblib.dump(dtm_text_counts, file_names[1])
 
