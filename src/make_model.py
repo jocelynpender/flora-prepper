@@ -32,6 +32,8 @@ def main(flora_data_frame_path, dtm_text_counts_path, model_path):
     file_name = model_path + "classifier_model"
     joblib.dump(clf, file_name)
 
+    return clf, dtm_y_test, dtm_predictions
+
 
 if __name__ == '__main__':
     log_fmt = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'

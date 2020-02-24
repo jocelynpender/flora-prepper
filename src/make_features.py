@@ -38,6 +38,8 @@ def main(train_file_path, features_save_path, custom_stop_words_path, reclassify
     joblib.dump(custom_vec, file_names[0])
     joblib.dump(dtm_text_counts, file_names[1])
 
+    return custom_vec, dtm_text_counts
+
 
 if __name__ == '__main__':
     log_fmt = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
