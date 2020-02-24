@@ -27,7 +27,7 @@ if module_path not in sys.path:
     sys.path.append(module_path)
 print(sys.path)
 
-from src.predict_model import *
+from src.make_predict import *
 from src.features.build_length_features import locate_empty_strings
 from src.transformers import classification_xml
 
