@@ -8,7 +8,7 @@ from data.make_budds import make_budds_data_frame
 from data.make_flora import make_flora_data_frame
 
 
-def append_flora_data_frame(flora_data_frame, data_to_append, dataset_name_to_append):
+def append_training_datasets_to_flora_data_frame(flora_data_frame, data_to_append, dataset_name_to_append):
     # Concatenate all the component datasets together
     data_to_append = data_to_append.assign(dataset_name = dataset_name_to_append)
     flora_data_frame = flora_data_frame.append(data_to_append, sort=False)
@@ -33,6 +33,7 @@ def main(output_filepath, fna_filepath=None, bc_filepath=None, budds_file_path=N
     :param fna_filepath: path to the Flora of North America raw dataset
     :param bc_filepath: path to the Illustrated Flora of BC raw dataset
     :param budds_file_path: path to the Budds raw xml file
+    :param fm_file_path: path to Flora of Manitoba raw dataset
     :param output_filepath: a filename to store the final flora training dataset
     :return:
     """
@@ -46,23 +47,23 @@ def main(output_filepath, fna_filepath=None, bc_filepath=None, budds_file_path=N
         fna = make_flora_data_frame(fna_filepath, frac_to_sample=1, balance_categories=True,
                               categories_to_keep=["key", "morphology", "taxon_identification",
                                                   "distribution", "habitat"])
-        flora_data_frame = append_flora_data_frame(flora_data_frame, fna, "fna")
+        flora_data_frame = append_training_datasets_to_flora_data_frame(flora_data_frame, fna, "fna")
     if bc_filepath:
         bc = make_bc_data_frame(bc_filepath, frac_to_sample=1, balance_categories=True,
                             categories_to_keep=["key", "morphology", "taxon_identification", "habitat"])
-        flora_data_frame = append_flora_data_frame(flora_data_frame, bc, "bc")
+        flora_data_frame = append_training_datasets_to_flora_data_frame(flora_data_frame, bc, "bc")
     if budds_file_path:
         budds = make_budds_data_frame(budds_file_path, frac_to_sample=1, balance_categories=True)
-        flora_data_frame = append_flora_data_frame(flora_data_frame, budds, "budds")
+        flora_data_frame = append_training_datasets_to_flora_data_frame(flora_data_frame, budds, "budds")
     if fm_file_path:
         fm = make_flora_data_frame(fm_file_path, frac_to_sample=1, balance_categories=False,
                                categories_to_keep=["key", "morphology", "taxon_identification", "distribution"],
                                rename_habitat=False)
-        flora_data_frame = append_flora_data_frame(flora_data_frame, fm, "fm")
+        flora_data_frame = append_training_datasets_to_flora_data_frame(flora_data_frame, fm, "fm")
 
     flora_data_frame = shuffle_drop_reset_flora_data_frame(flora_data_frame)
     flora_data_frame.to_csv(output_filepath)
-    return(flora_data_frame)
+    return flora_data_frame
 
 if __name__ == '__main__':
     log_fmt = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
