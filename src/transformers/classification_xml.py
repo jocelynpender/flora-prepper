@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import re
 
 
 def add_block_column(classifier_results, classification_results_column):
@@ -68,7 +69,8 @@ def add_schema(strings_classification, open_schema_dict, close_schema_dict, clas
     Take classified and merged strings from classification blocks and return a document with tags surrounding the
     strings for all data.
     """
-    single_document = strings_classification.apply(lambda x: add_tags(x, open_schema_dict, close_schema_dict, classification_col), axis=1)
+    single_document = strings_classification.apply(
+        lambda x: add_tags(x, open_schema_dict, close_schema_dict, classification_col), axis=1)
     single_document = '\n'.join(single_document)
     return single_document
 
@@ -82,11 +84,47 @@ def write_file(document, file_name):
     text_file.close()
 
 
+def replace_symbols(sep_documents, symbol_set):
+    """
+    # check for symbols that will break the xml, like & and <
+    :param:
+        symbol_set is a dictionary with the key as the old symbol and the value as the new symbol
+        sep_documents is a list of documents separated by prematter
+    :return:
+
+    """
+    for symbol in symbol_set:
+        sep_documents = [x.replace(symbol, symbol_set[symbol]) for x in
+                         sep_documents]
+
+    return sep_documents
+
+
+def replace_symbols_regex(sep_documents, symbol_set):
+    """
+    # check for symbols that will break the xml, like  <, using regex
+    :param:
+        symbol_set is a dictionary with the key as the old symbol and the value as the new symbol
+        sep_documents is a list of documents separated by prematter
+    :return:
+
+    """
+    for symbol in symbol_set:
+        sep_documents = [re.sub(symbol, symbol_set[symbol], x) for x in
+                         sep_documents]
+
+    return sep_documents
+
+
 def write_documents(strings_classification, open_tags, close_tags, prematter, endmatter, classification_col=1):
     whole_document = add_schema(strings_classification, open_tags, close_tags, classification_col)
 
     # every time you encounter the prematter, split and write a file!
     sep_documents = whole_document.split(sep=prematter)
+    sep_documents = replace_symbols(sep_documents, {'&': '&amp;'})  # , '<': '&lt;'
+    sep_documents = replace_symbols_regex(sep_documents,
+                                          {' <(?=[^/])': ' &lt;'})  # re.sub(r" <(?=[^/])", " &lt;", test)
+
     file_names = [str(x) + ".xml" for x in range(1, len(sep_documents) + 1)]
     write_docs = [write_file(prematter + x + endmatter, file_names[ind]) for ind, x in enumerate(sep_documents)]
 
