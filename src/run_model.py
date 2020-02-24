@@ -13,7 +13,7 @@ def main(flora_data_frame_path, dtm_text_counts_path, model_path):
     Build the classifier model using the training dataset, the DTM text counts (i.e., the features) and save it for
     future use.
     :param flora_data_frame_path: Training dataset
-    :param dtm_text_counts_path: The DTM built in the run_features.py step
+    :param dtm_text_counts_path: The DTM built in the make_features.py step
     :param model_path: Where to store the resulting classifier model
     :return:
     """
