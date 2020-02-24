@@ -10,7 +10,7 @@ module_path = os.path.abspath(os.path.join('../'))
 if module_path not in sys.path:
     sys.path.append(module_path)
 
-from src.data.make_fna import *
+from src.data.make_flora import *
 from src.data.make_bc import *
 from src.data.make_budds import *
 from src.models.build_model import *

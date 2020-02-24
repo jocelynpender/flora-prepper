@@ -6,7 +6,7 @@
 # In[1]:
 
 
-from src.data.make_fna import *
+from src.data.make_flora import *
 from src.data.make_bc import *
 from src.data.make_budds import *
 from src.features.build_features import *

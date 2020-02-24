@@ -1,6 +1,6 @@
 from src.data.make_bc import make_bc_data_frame
 from src.data.make_budds import make_budds_data_frame
-from src.data.make_fna import make_fna_data_frame
+from src.data.make_flora import make_fna_data_frame
 from src.features.build_features import *
 from src.models.build_model import run_model
 import pandas as pd
