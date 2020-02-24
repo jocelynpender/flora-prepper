@@ -8,7 +8,24 @@ from data.make_budds import make_budds_data_frame
 from data.make_flora import make_flora_data_frame
 
 
-def main(fna_filepath, bc_filepath, budds_file_path, fm_file_path, output_filepath):
+def append_flora_data_frame(flora_data_frame, data_to_append, dataset_name_to_append):
+    # Concatenate all the component datasets together
+    data_to_append = data_to_append.assign(dataset_name = dataset_name_to_append)
+    flora_data_frame = flora_data_frame.append(data_to_append, sort=False)
+    return flora_data_frame
+
+
+def shuffle_drop_reset_flora_data_frame(flora_data_frame):
+    # Do some last cleaning steps
+    flora_data_frame = flora_data_frame.sample(frac=1)  # Shuffle the dataset in place
+    flora_data_frame = flora_data_frame.drop(flora_data_frame[flora_data_frame.text == "  "].index)  # drop weirdo
+    # rows with " " text
+    flora_data_frame = flora_data_frame.reset_index()
+    flora_data_frame = flora_data_frame.rename(columns={"level_0": "row_id"}) # rename old row id after resetting index
+    return flora_data_frame
+
+
+def main(output_filepath, fna_filepath=None, bc_filepath=None, budds_file_path=None, fm_file_path=None):
     """
     Runs data processing scripts to turn raw data from (../raw) into
         cleaned data ready to be analyzed (saved in ../processed).
@@ -22,27 +39,30 @@ def main(fna_filepath, bc_filepath, budds_file_path, fm_file_path, output_filepa
     logger = logging.getLogger(__name__)
     logger.info('making final data set from raw data')
 
+    flora_data_frame = pd.DataFrame()
+
     # Build component datasets
-    fna = make_flora_data_frame(fna_filepath, frac_to_sample=1, balance_categories=True,
+    if fna_filepath:
+        fna = make_flora_data_frame(fna_filepath, frac_to_sample=1, balance_categories=True,
                               categories_to_keep=["key", "morphology", "taxon_identification",
                                                   "distribution", "habitat"])
-    bc = make_bc_data_frame(bc_filepath, frac_to_sample=1, balance_categories=True,
+        flora_data_frame = append_flora_data_frame(flora_data_frame, fna, "fna")
+    if bc_filepath:
+        bc = make_bc_data_frame(bc_filepath, frac_to_sample=1, balance_categories=True,
                             categories_to_keep=["key", "morphology", "taxon_identification", "habitat"])
-    budds = make_budds_data_frame(budds_file_path, frac_to_sample=1, balance_categories=True)
-    fm = make_flora_data_frame(fm_file_path, frac_to_sample=1, balance_categories=False,
+        flora_data_frame = append_flora_data_frame(flora_data_frame, bc, "bc")
+    if budds_file_path:
+        budds = make_budds_data_frame(budds_file_path, frac_to_sample=1, balance_categories=True)
+        flora_data_frame = append_flora_data_frame(flora_data_frame, budds, "budds")
+    if fm_file_path:
+        fm = make_flora_data_frame(fm_file_path, frac_to_sample=1, balance_categories=False,
                                categories_to_keep=["key", "morphology", "taxon_identification", "distribution"],
                                rename_habitat=False)
+        flora_data_frame = append_flora_data_frame(flora_data_frame, fm, "fm")
 
-    # Concatenate all the component datasets together
-    flora_data_frame = pd.concat([fna, bc, budds, fm], keys=['fna', 'bc', 'budds', 'fm'], names=['dataset_name', 'row_id'])
-
-    # Do some last cleaning steps and save
-    flora_data_frame = flora_data_frame.sample(frac=1)  # Shuffle the dataset in place
-    flora_data_frame = flora_data_frame.drop(
-        flora_data_frame[flora_data_frame.text == "  "].index)  # drop weirdo rows with " " text
-    flora_data_frame = flora_data_frame.reset_index()
-    flora_data_frame.to_csv(path_or_buf=output_filepath)
-
+    flora_data_frame = shuffle_drop_reset_flora_data_frame(flora_data_frame)
+    flora_data_frame.to_csv(output_filepath)
+    return(flora_data_frame)
 
 if __name__ == '__main__':
     log_fmt = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
@@ -57,8 +77,9 @@ if __name__ == '__main__':
                         help='path to the Budds raw xml file')
     parser.add_argument('--fm_file_path', type=str, default="data/raw/fm.csv",
                         help='path to the raw Flora of Manitoba xml file')
-    parser.add_argument('--output_filepath', type=str, default="data/processed/flora_data_frame-2.csv",
+    parser.add_argument('--output_filepath', type=str, default="data/processed/flora_data_frame.csv",
                         help='a filename to store the final flora training dataset')
     args = parser.parse_args()
 
-    main(args.fna_filepath, args.bc_filepath, args.budds_file_path, args.fm_file_path, args.output_filepath)
+    main(args.output_filepath, fna_filepath=args.fna_filepath, bc_filepath=args.bc_filepath,
+         budds_file_path=args.budds_file_path, fm_file_path=args.fm_file_path)
