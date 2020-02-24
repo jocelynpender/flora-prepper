@@ -41,8 +41,9 @@ def main(test_file_path, col_name, results_path, model_path, custom_vec_path):
     #results = results.set_index('index')
     print(list(results.columns))
     results_file_name = results_path + "results.csv"
-    results.to_csv(path_or_buf=results_file_name)
+    results.to_csv(results_file_name)
 
+    return results
 
 if __name__ == '__main__':
     log_fmt = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
