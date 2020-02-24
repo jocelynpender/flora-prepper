@@ -31,7 +31,7 @@ features: requirements
 	$(PYTHON_INTERPRETER) src/make_features.py --train_file_path=data/processed/flora_data_frame.csv --features_save_path=models/
 
 model: requirements
-	$(PYTHON_INTERPRETER) src/run_model.py --train_file_path=data/processed/flora_data_frame.csv --dtm_file_path=models/dtm_text_counts --model_save_path=models/
+	$(PYTHON_INTERPRETER) src/make_model.py --train_file_path=data/processed/flora_data_frame.csv --dtm_file_path=models/dtm_text_counts --model_save_path=models/
 
 predict: requirements
 	$(PYTHON_INTERPRETER) src/predict_model.py --test_file_path=data/processed/combined_wikidata.csv
