@@ -31,7 +31,7 @@ import src.features as features
 # In[2]:
 
 
-flora_data_frame = pd.read_csv("../data/processed/flora_data_frame_full.csv", index_col=0)
+flora_data_frame = pd.read_csv("../data/processed/flora_data_frame.csv", index_col=0)
 flora_data_frame['dataset_name'].value_counts().plot.bar()
 plt.show()
 flora_data_frame[['classification', 'dataset_name', 'text']] .groupby(['classification', 'dataset_name']).count().plot.bar()
