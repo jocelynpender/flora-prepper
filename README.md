@@ -52,6 +52,7 @@ You can build your own using:
 ### Run the model
 
 First, test your environment using:
+`cd flora-prepper`
 `make requirements`
 
 To deploy the latest version of the model, you'll need:
