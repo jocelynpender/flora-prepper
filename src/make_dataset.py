@@ -46,7 +46,7 @@ def main(output_filepath, fna_filepath=None, bc_filepath=None, budds_file_path=N
     if fna_filepath:
         fna = make_flora_data_frame(fna_filepath, frac_to_sample=1, balance_categories=True,
                               categories_to_keep=["key", "morphology", "taxon_identification",
-                                                  "distribution", "habitat"])
+                                                  "distribution", "habitat"], rename_distribution_to_habitat=False)
         flora_data_frame = append_training_datasets_to_flora_data_frame(flora_data_frame, fna, "fna")
     if bc_filepath:
         bc = make_bc_data_frame(bc_filepath, frac_to_sample=1, balance_categories=True,
@@ -58,7 +58,7 @@ def main(output_filepath, fna_filepath=None, bc_filepath=None, budds_file_path=N
     if fm_file_path:
         fm = make_flora_data_frame(fm_file_path, frac_to_sample=1, balance_categories=False,
                                categories_to_keep=["key", "morphology", "taxon_identification", "distribution"],
-                               rename_habitat=False)
+                               rename_distribution_to_habitat=False)
         flora_data_frame = append_training_datasets_to_flora_data_frame(flora_data_frame, fm, "fm")
 
     flora_data_frame = shuffle_drop_reset_flora_data_frame(flora_data_frame)
