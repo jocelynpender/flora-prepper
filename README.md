@@ -62,6 +62,17 @@ To deploy the latest version of the model, you'll need:
 Next, run this in a terminal:
 `python3 src/predict_model.py test_dataset.csv text_column models/classifier_model models/custom_vec reports/`
 
+#### Optional: Deploy model inline in your Python project
+
+To run the model directly in your Python project, you can leverage the stable model files included in this repository. To use the stable model files in your code, you can import the `StableFloraPrepper` class defined in the `stable_model.py` file. More specifically, insert this code at the top of your script:
+
+```sys.path.insert(0, 'path/to/your/local/repository/clone/flora-prepper/src') # Add the project's source directory to your Python path
+from stable_model import StableFloraPrepper # import the stable model class
+
+flora_prepper = StableFloraPrepper() # initialize the stable model
+flora_canada_predictions = flora_prepper.generate_predictions(your_data) # run the model and generate predictions in your Python script
+```
+
 #### Optional: Run full data pipeline
 
 If you want to build the model from scratch, I've created some make commands that run the default dataset build, feature builds and model training. 

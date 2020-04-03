@@ -7,6 +7,15 @@ class StableFloraPrepper:
     """
     Run the stable release of the Flora Prepper model. You can access the stored location of the model
     files by exploring the StableFloraPrepper attributes.
+
+    To leverage this class and run the stable Flora Prepper model in your Python project, add this to the top of your script:
+
+    sys.path.insert(0, 'path/to/your/local/repository/clone/flora-prepper/src') # Add the project's source directory to your Python path
+    from stable_model import StableFloraPrepper # import the stable model class
+
+    flora_prepper = StableFloraPrepper() # initialize the stable model
+    flora_canada_predictions = flora_prepper.generate_predictions(your_data) # run the model and generate predictions in your Python script
+
     """
 
     def __init__(self):
@@ -27,3 +36,4 @@ class StableFloraPrepper:
         predicted = clf.predict(test_dtm)
         dtm_predictions_series = pd.Series(predicted)
         return dtm_predictions_series
+
